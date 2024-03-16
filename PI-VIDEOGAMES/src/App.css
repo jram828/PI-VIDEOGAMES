@@ -1,0 +1,70 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.buttonLanding {
+  border-radius: 40%;
+  /* border: 1px solid transparent; */
+  /* padding: 0.6em 1.2em; */
+  font-size: 500%;
+  /* font-weight: 500;
+  font-family: inherit; */
+  background-color: transparent;
+  cursor: pointer;
+  border-style: none;
+  /* background-image: url('./assets/VIDEOGAMECONTROL.png'); */
+  /* transition: border-color 0.25s; */
+  -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}
+.buttonLanding:hover {
+  border-color: #646cff;
+}
+.buttonLanding:focus,
+.buttonLanding:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.DivPrueba{
+  justify-content: space-between;
+  display: flex;
+}
