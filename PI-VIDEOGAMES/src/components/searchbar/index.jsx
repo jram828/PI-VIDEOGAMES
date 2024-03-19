@@ -2,18 +2,18 @@ import { Button2, ContainerNav, Input } from "../Mystyles";
 import { useState } from "react";
 
 const SearchBar = (props) => {
-  const [id, setId] = useState("");
+  const [name, setName] = useState("");
   const handleClick = () => {
-    //  props.onSearch(id);
+    props.onSearch(name);
   };
   const handleChange = (e) => {
-    setId(e.target.value);
+    setName(e.target.value);
   };
   return (
     <ContainerNav>
       <></>
       <Input
-        value={id}
+        value={name}
         onChange={handleChange}
         type="search"
         name="personaje"

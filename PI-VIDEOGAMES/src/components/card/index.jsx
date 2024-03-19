@@ -6,6 +6,7 @@ import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
 
 const Card = (props) => {
+  console.log(props.videogame)
   const { name, image, id } = props.videogame;
   const { addFav, removeFav } = props;
 

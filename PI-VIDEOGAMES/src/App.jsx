@@ -7,14 +7,18 @@ import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import About from "./components/about";
 import Detail from "./components/detail";
 import Landing from "./components/landing";
+import { useDispatch } from "react-redux";
 // import Favorites from "./components/favorites";
 // import CrearUsuario from "./components/crearusuario/index copy";
 
-export const URL = "http://localhost:3001/rickandmorty/character/";
+export const URL = "http://localhost:3001/videogames/";
 // 'https://rickandmortyapi.com/api/character/'
 
 function App() {
-  const [videogame, setVideogame] = useState([]);
+  
+  // const { data } = axios(`${URL}`);
+  // console.log('Data: ',data)
+  const [videogames, setVideogames] = useState([]);
 
   const [access, setAccess] = useState(false);
 
@@ -25,6 +29,18 @@ function App() {
     !access && navigate("/");
   }, [access, navigate]);
 
+  const initialVideogames = async () => {
+    try {
+      const { data } = await axios(`${URL}`);
+      setVideogames(...videogames, data);
+    } catch (error) {
+      window.alert("Character Not Found. There are 826 characters!");
+    }
+  };
+
+
+  
+  console.log('Initial video: ',videogames)
   // async function login(userData) {
   //   const { email, password } = userData;
   //   const URL = "http://localhost:3001/rickandmorty/login/";
@@ -58,15 +74,20 @@ function App() {
     setAccess(false);
     navigate("/");
   };
-    const signIn = () => {
+  const signIn = () => {
+      initialVideogames();
       setAccess(true);
       navigate("/home");
     };
 
-  const onSearch = async (id) => {
+  const onSearch = async (name) => {
     try {
-      const { data } = await axios(`${URL}${id}`);
-      setVideogame([...videogame, data]);
+      //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
+      console.log(name)
+      const { data } = await axios(`${URL}name?name=${name}`);
+      console.log('Data Onsearch: ',data)
+      setVideogames(...videogames, data);
+      console.log('Videogames Onsearch: ',videogames)
     } catch (error) {
       window.alert("Character Not Found. There are 826 characters!");
     }
@@ -115,7 +136,7 @@ function App() {
         <Route path="/" element={<Landing signIn={signIn} />} />
         <Route
           path="/home"
-          element={<Cards videogames={videogame} onClose={onClose} />}
+          element={<Cards videogames={videogames} onClose={onClose} />}
         />
         <Route path="/about" element={<About />} />
         {/* <Route path="/detail/:id" element={<Detail />} />

@@ -2,7 +2,7 @@ import SearchBar from "../searchbar";
 import { Link } from "react-router-dom";
 import { Button } from "../Mystyles";
 
-const Nav = () => {
+const Nav = ({onSearch}) => {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ const Nav = () => {
         width: "90%",
       }}
     >
-      <SearchBar  />
+      <SearchBar onSearch={onSearch} />
       <Link to="about/">
         <Button>About</Button>
       </Link>
@@ -22,7 +22,7 @@ const Nav = () => {
       {/* <Link to="favorites/">
         <Button>Favorites</Button>
       </Link> */}
-      <Link to={"/home"} >
+      <Link to={"/home"}>
         <Button>Logout</Button>
       </Link>
     </div>
