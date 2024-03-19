@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { DB_USER, DB_PASSWORD, DB_HOST,APIKEY } = process.env;
+const { APIKEY } = process.env;
 const URL ="https://api.rawg.io/api/genres?key=";
 const axios = require("axios");
 const { Sequelize } = require('sequelize');

@@ -13,21 +13,21 @@ const About = () => {
         <img className="fotoAbout" src={foto} alt="Foto Autor" />
       </div>
       <div className="containerAbout">
-         <h2 className="parrafoAbout">
+        <h2 className="parrafoAbout">
           Esta aplicación está siendo desarrollada por Julián Arango. <br />
           <br />
-          Permite visualizar los videojuegos más famosos a lo largo de la historia.
+          Permite visualizar los videojuegos más famosos a lo largo de la
+          historia.
         </h2>
 
         <h4>
-          La serie televisiva Rick and Morty está inspirada en la película
-          "Volver al futuro". Rick Sánchez es el "estereotipo" del "científico
-          loco". Es un genio y buen tipo, pero es irresponsable, poco arreglado,
-          alcohólico, egoísta, depresivo, sarcástico y con poca cordura. <br />
-          <br />
-          Al juntarse con su nieto Morty, un joven de 14 años sin expresión,
-          tímido y no muy listo; viven una variedad de aventuras a lo largo de
-          universos paralelos.
+          Es posible crear videojuegos u obtenerlos desde la API
+          https://rawg.io/, que es la base de datos más grande de Videojuegos.Se pueden encontrar más de 500.000 juegos
+        </h4>
+        <h4>
+          Además, cuenta con la posibilidad de identificar si los videojuegos fueron creados por el usuario 
+          u obtenidos de la API, y filtrarlos de acuerdo a este criterio. 
+          Permite filtrar los resultados por Género y ordenarlos.
         </h4>
       </div>
       <br />

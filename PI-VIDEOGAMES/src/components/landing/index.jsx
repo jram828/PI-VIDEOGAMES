@@ -17,21 +17,9 @@ const Landing = ({ signIn }) => {
       <br />
       <br />
       <button className="buttonLanding" onClick={signIn}>🎮 </button>
-      {/* <div className="divFoto">
-        <img className="fotoAbout" src={foto} alt="Foto Autor" />
-      </div> */}
+
 
       <br />
-      <div className="video">
-        {/* <ReactPlayer
-          url={videoRyM}
-          height={"100%"}
-          width={"100%"}
-          controls
-          playing
-          loop
-        /> */}
-      </div>
     </div>
   );
 };
