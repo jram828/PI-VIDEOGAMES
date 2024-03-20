@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
 
-const Card = (props) => {
+const Videogame = (props) => {
   console.log(props.videogame)
   const { name, image, id } = props.videogame;
   const { addFav, removeFav } = props;
@@ -87,4 +87,4 @@ var mapStateToProps = (state) => {
   return { myFavorites: state.myFavorites };
 };
 
-export default connect(mapStateToProps, { addFav, removeFav })(Card);
+export default connect(mapStateToProps, { addFav, removeFav })(Videogame);

@@ -22,8 +22,8 @@ const Nav = ({onSearch}) => {
       {/* <Link to="favorites/">
         <Button>Favorites</Button>
       </Link> */}
-      <Link to={"/home"}>
-        <Button>Logout</Button>
+      <Link to={"/crearvideojuego"}>
+        <Button>Crear Videojuego</Button>
       </Link>
     </div>
   );

@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-import Cards from "./components/cards";
 import Nav from "./components/nav";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import About from "./components/about";
 import Detail from "./components/detail";
 import Landing from "./components/landing";
 import { useDispatch } from "react-redux";
+import Videogames from "./components/videogames";
+import CrearVideogame from "./components/createvideogame";
 // import Favorites from "./components/favorites";
-// import CrearUsuario from "./components/crearusuario/index copy";
 
 export const URL = "http://localhost:3001/videogames/";
 // 'https://rickandmortyapi.com/api/character/'
@@ -25,7 +25,9 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
+ useEffect(() => {
+    !access && navigate("/");
+  }, [access, navigate]);  useEffect(() => {
     !access && navigate("/");
   }, [access, navigate]);
 
@@ -56,18 +58,18 @@ function App() {
   //   }
   // }
 
-  // async function crearUsuario(userDataCrear) {
-  //   const { email, password } = userDataCrear;
-  //   // const URL = "http://localhost:3001/rickandmorty/register/";
-  //   try {
-  //     await axios.post(URL, { email: `${email}`, password: `${password}` });
-  //     window.alert("Usuario creado con éxito.");
-  //     setAccess(false);
-  //     access && navigate("/");
-  //   } catch (error) {
-  //     window.alert("No fue posible crear el usuario.");
-  //   }
-  // }
+  async function crearVideogame(userDataCrear) {
+    const { email, password } = userDataCrear;
+    // const URL = "http://localhost:3001/rickandmorty/register/";
+    try {
+      await axios.post(URL, { email: `${email}`, password: `${password}` });
+      window.alert("Usuario creado con éxito.");
+      setAccess(false);
+      access && navigate("/");
+    } catch (error) {
+      window.alert("No fue posible crear el usuario.");
+    }
+  }
 
   const logout = () => {
     alert("Ha salido exitosamente");
@@ -75,22 +77,22 @@ function App() {
     navigate("/");
   };
   const signIn = () => {
-      initialVideogames();
+      
       setAccess(true);
       navigate("/home");
     };
 
   const onSearch = async (name) => {
-    try {
-      //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
-      console.log(name)
-      const { data } = await axios(`${URL}name?name=${name}`);
-      console.log('Data Onsearch: ',data)
-      setVideogames(...videogames, data);
-      console.log('Videogames Onsearch: ',videogames)
-    } catch (error) {
-      window.alert("Character Not Found. There are 826 characters!");
-    }
+    // try {
+    //   //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
+    //   console.log(name)
+    //   const { data } = await axios(`${URL}name?name=${name}`);
+    //   console.log('Data Onsearch: ',data)
+    //   setVideogames(...videogames, data);
+    //   console.log('Videogames Onsearch: ',videogames)
+    // } catch (error) {
+    //   window.alert("Videogame Not Found!");
+    // }
   };
 
   const onClose = (id) => {
@@ -106,7 +108,7 @@ function App() {
   //   setAccess(true);
   //   navigate("/crearusuario");
   // };
-
+console.log("Initial video 2: ", videogames);
   return (
     <div className="App">
       {location.pathname !== "/" ? (
@@ -136,15 +138,21 @@ function App() {
         <Route path="/" element={<Landing signIn={signIn} />} />
         <Route
           path="/home"
-          element={<Cards videogames={videogames} onClose={onClose} />}
+          element={
+            <Videogames
+              videogames={videogames}
+              onClose={onClose}
+              initialVideogames={initialVideogames}
+            />
+          }
         />
         <Route path="/about" element={<About />} />
-        {/* <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/favorites" element={<Favorites onClose={onClose} />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        {/* <Route path="/favorites" element={<Favorites onClose={onClose} />} /> */}
         <Route
-          path="/crearusuario"
-          element={<CrearUsuario crearUsuario={crearUsuario} />}
-        /> */}
+          path="/crearvideojuego"
+          element={<CrearVideogame crearVideogame={crearVideogame} />}
+        />
       </Routes>
     </div>
   );
