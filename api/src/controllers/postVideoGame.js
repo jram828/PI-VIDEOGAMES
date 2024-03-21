@@ -2,18 +2,19 @@ const { Videogame, Genre} = require("../db");
 
 
 const postVideoGame = async (req, res) => {
-  const { name, description, platforms, image, launchDate, rating, genres } = req.body;
+  const { name, description, platforms, image, rating, genres } = req.body;
   
   console.log('GEnres: ', genres)
-  if (!name || !description || !platforms||!image||!launchDate||!rating) {
+  console.log('Platforms: ',platforms)
+  if (!name || !description || !platforms||!image||!rating) {
     res.status(400).send("Faltan datos");
   } else {
     try {
       var newVideogame = await Videogame.create(
-        { name, description, platforms, image, launchDate, rating},
+        { name, description, platforms, image, rating, genres},
       );
+      console.log("GEnres TRy: ", newVideogame);
       newVideogame.addGenres(genres);
-      console.log("GEnres: ", genres);
 
       return res.status(200).json(newVideogame);
     } catch (error) {

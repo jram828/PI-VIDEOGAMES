@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
+import './createvideogame.css'
 import "../../App.css";
 //import logo from "../../assets/RickAndMorty.jpg"
-import { Button } from "../Mystyles";
+import { Button2 } from "../Mystyles";
 
 
 const CrearVideogame = ({crearVideogame}) => {
@@ -11,16 +11,56 @@ const CrearVideogame = ({crearVideogame}) => {
     name: "",
     description: "",
     image: "",
-    platforms: "",
+    platforms: [],
     launchDate:"",
-    rating:""
+    rating:"",
+    genres:[]
   });
 
   const handleChangeCrear = (e) => {
-    setUserDataCrear({
-      ...userDataCrear,
-      [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
-    });
+      if (e.target.parentNode.parentNode.id === "genres") {
+        if (e.target.checked) {
+          setUserDataCrear({
+            ...userDataCrear,
+            genres: userDataCrear.genres.concat(e.target.value),
+          });
+        } else {
+          setUserDataCrear({
+            ...userDataCrear,
+            genres: userDataCrear.genres.filter((x) => e.target.value !== x),
+          });
+        }
+      }
+      if (e.target.parentNode.parentNode.id === "platforms") {
+        if (e.target.checked) {
+          setUserDataCrear({
+            ...userDataCrear,
+            platforms: userDataCrear.platforms.concat(e.target.value),
+          });
+          console.log("Plataformas: ", userDataCrear.platforms);
+        } else {
+          setUserDataCrear({
+            ...userDataCrear,
+            platforms: userDataCrear.platforms.filter(
+              (x) => e.target.name !== x
+            ),
+          });
+        }
+      }
+      if (e.target.type !== "checkbox") {
+          setUserDataCrear({
+          ...userDataCrear,
+          [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
+          });
+      }
+      // setErrors(
+      //   validate({
+      //     ...form,
+      //     [e.target.name]: e.target.value,
+      //   })
+      // );
+    
+
   };
 
   const submitHandlerCrear = (e) => {
@@ -31,6 +71,8 @@ const CrearVideogame = ({crearVideogame}) => {
   return (
     <div>
       <form onSubmit={submitHandlerCrear}>
+        <hr style={{ borderStyle: "none" }} />
+        <hr style={{ borderStyle: "none" }} />
         <h2
           style={{
             color: "white",
@@ -53,162 +95,303 @@ const CrearVideogame = ({crearVideogame}) => {
           }}
         /> */}
         </div>
-        <div className="InputCrear">
-          <label className="label" htmlFor="name">
-            Nombre:
-          </label>
-          <input
-            name="name"
-            type="text"
-            placeholder="Ingrese el nombre"
-            value={userDataCrear.name}
-            onChange={handleChangeCrear}
-          />
-          <br />
-          <label className="label" htmlFor="description">
-            Description:
-          </label>
-          <input
-            name="description"
-            type="textarea"
-            placeholder="Ingrese la descripción"
-            value={userDataCrear.description}
-            onChange={handleChangeCrear}
-            cols="40"
-            rows="4"
-          />
-          <br />
-          <label className="label" htmlFor="launchDate">
-            Fecha de lanzamiento:
-          </label>
-          <input name="launchDate" className="date" type="date" id="date" />
-          <br />
-          <label className="label" htmlFor="image">
-            Imagen:
-          </label>
-          <input
-            name="image"
-            type="text"
-            placeholder="Ingrese la url de la imagen"
-            value={userDataCrear.image}
-            onChange={handleChangeCrear}
-          />
-          <br />
-          <label className="label" htmlFor="rating">
-            Rating:
-          </label>
-          <input
-            name="rating"
-            type="number"
-            placeholder="Ingrese el rating"
-            value={userDataCrear.rating}
-            onChange={handleChangeCrear}
-          />
-          <hr style={{ borderStyle: "none" }} />
-          <div className="contenedorAbout">
-            <label className="label" htmlFor="genres">
+        <div className="Crear">
+          <div className="inputcrear">
+            <label className="label" htmlFor="name">
+              Nombre:
+            </label>
+            <input
+              name="name"
+              type="text"
+              placeholder="Ingrese el nombre"
+              value={userDataCrear.name}
+              onChange={handleChangeCrear}
+            />
+            <br />
+            <label className="label" htmlFor="description">
+              Descripción:
+            </label>
+            <input
+              name="description"
+              type="textarea"
+              placeholder="Ingrese la descripción"
+              value={userDataCrear.description}
+              onChange={handleChangeCrear}
+              cols="40"
+              rows="4"
+            />
+            <br />
+            <label className="label" htmlFor="launchDate">
+              Fecha de lanzamiento:
+            </label>
+            <input
+              name="launchDate"
+              className="date"
+              type="date"
+              id="date"
+              value={userDataCrear.launchDate}
+              onChange={handleChangeCrear}
+            />
+            <br />
+            <label className="label" htmlFor="image">
+              Imagen:
+            </label>
+            <input
+              name="image"
+              type="text"
+              placeholder="Ingrese la url de la imagen"
+              value={userDataCrear.image}
+              onChange={handleChangeCrear}
+            />
+            <br />
+            <label className="label" htmlFor="rating">
+              Rating:
+            </label>
+            <input
+              name="rating"
+              type="number"
+              placeholder="Ingrese el rating"
+              value={userDataCrear.rating}
+              onChange={handleChangeCrear}
+            />
+            <hr style={{ borderStyle: "none" }} />
+          </div>
+          <div className="contenedorgenres">
+            <hr style={{ borderStyle: "none" }} />
+            <hr style={{ borderStyle: "none" }} />
+            <hr style={{ borderStyle: "none" }} />
+            <label className="labelgenres" htmlFor="genres">
               Generos:
             </label>
-            <div id="genres" className="genres-div">
-                <input name="Action" value="2" type="checkbox" id="Action" />
+            <div id="genres" className="genres" onChange={handleChangeCrear}>
+              <div className="Action">
+                <input
+                  name="Action"
+                  value="Action"
+                  type="checkbox"
+                  id="Action"
+                />
                 <label htmlFor="Action">Action</label>
-
-              <div className="indie">
-                <input name="Indie" value="1" type="checkbox" id="Indie" />
-                <label htmlFor="Indie">Indie.</label>
               </div>
+
               <div className="Adventure">
                 <input
                   name="Adventure"
-                  value="3"
+                  value="Adventure"
                   type="checkbox"
                   id="Adventure"
                 />
-                <label htmlFor="Adventure">Adventure.</label>
+                <label htmlFor="Adventure">Adventure</label>
               </div>
-              <div>
-                <input name="RPG" value="4" type="checkbox" id="RPG" />
-                <label htmlFor="RPG">RPG.</label>
-              </div>
-              <div>
+
+              <div className="Arcade">
                 <input
-                  name="Strategy"
-                  value="5"
+                  name="Arcade"
+                  value="Arcade"
                   type="checkbox"
-                  id="Strategy"
+                  id="Arcade"
                 />
-                <label htmlFor="Strategy">Strategy.</label>
+                <label htmlFor="Arcade">Arcade</label>
               </div>
-              <div>
-                <input name="Shooter" value="6" type="checkbox" id="Shooter" />
-                <label htmlFor="Shooter">Shooter.</label>
-              </div>
-              <div>
-                <input name="Casual" value="7" type="checkbox" id="Casual" />
-                <label htmlFor="Casual">Casual.</label>
-              </div>
-              <div>
+              <div className="BoardGames">
                 <input
-                  name="Simulation"
-                  value="8"
+                  name="BoardGames"
+                  value="BoardGames"
                   type="checkbox"
-                  id="Simulation"
+                  id="BoardGames"
                 />
-                <label htmlFor="Simulation">Simulation.</label>
+                <label htmlFor="BoardGames">Board Games</label>
               </div>
-              <div>
-                <input name="Puzzle" value="9" type="checkbox" id="Puzzle" />
-                <label htmlFor="Puzzle">Puzzle.</label>
+              <div className="Card">
+                <input name="Card" value="Card" type="checkbox" id="Card" />
+                <label htmlFor="Card">Card</label>
               </div>
-              <div>
-                <input name="Arcade" value="10" type="checkbox" id="Arcade" />
-                <label htmlFor="Arcade">Arcade.</label>
-              </div>
-              <div>
+              <div className="Casual">
                 <input
-                  name="Platformer"
-                  value="11"
+                  name="Casual"
+                  value="Casual"
                   type="checkbox"
-                  id="Platformer"
+                  id="Casual"
                 />
-                <label htmlFor="Platformer">Platformer.</label>
+                <label htmlFor="Casual">Casual</label>
               </div>
-              <div>
-                <input name="Racing" value="12" type="checkbox" id="Racing" />
-                <label htmlFor="Racing">Racing.</label>
-              </div>
-              <div>
+              <div className="Educational">
                 <input
-                  name="Massively-Multiplayer"
-                  value="13"
+                  name="Educational"
+                  value="Educational"
                   type="checkbox"
-                  id="Massively-Multiplayer"
+                  id="Educational"
                 />
-                <label htmlFor="Massively-Multiplayer">
-                  Massively-Multiplayer.
-                </label>
+                <label htmlFor="Educational">Educational</label>
               </div>
-              <div>
-                <input name="Sports" value="14" type="checkbox" id="Sports" />
-                <label htmlFor="Sports">Sports</label>
+              <div className="Family">
+                <input
+                  name="Family"
+                  value="Family"
+                  type="checkbox"
+                  id="Family"
+                />
+                <label htmlFor="Family">Family</label>
               </div>
-              <div>
+              <div className="Fighting">
                 <input
                   name="Fighting"
-                  value="15"
+                  value="Fighting"
                   type="checkbox"
                   id="Fighting"
                 />
                 <label htmlFor="Fighting">Fighting</label>
               </div>
+              <div className="indie">
+                <input name="Indie" value="Indie" type="checkbox" id="Indie" />
+                <label htmlFor="Indie">Indie</label>
+              </div>
+              <div className="Massively-Multiplayer">
+                <input
+                  name="Massively-Multiplayer"
+                  value="Massively-Multiplayer"
+                  type="checkbox"
+                  id="Massively-Multiplayer"
+                />
+                <label htmlFor="Massively-Multiplayer">
+                  Massively-Multiplayer
+                </label>
+              </div>
+              <div className="Platformer">
+                <input
+                  name="Platformer"
+                  value="Platformer"
+                  type="checkbox"
+                  id="Platformer"
+                />
+
+                <label htmlFor="Platformer">Platformer</label>
+              </div>
+              <div className="Puzzle">
+                <input
+                  name="Puzzle"
+                  value="Puzzle"
+                  type="checkbox"
+                  id="Puzzle"
+                />
+                <label htmlFor="Puzzle">Puzzle</label>
+              </div>
+              <div className="Racing">
+                <input
+                  name="Racing"
+                  value="Racing"
+                  type="checkbox"
+                  id="Racing"
+                />
+                <label htmlFor="Racing">Racing</label>
+              </div>
+              <div className="RPG">
+                <input name="RPG" value="RPG" type="checkbox" id="RPG" />
+                <label htmlFor="RPG">RPG</label>
+              </div>
+
+              <div className="Shooter">
+                <input
+                  name="Shooter"
+                  value="Shooter"
+                  type="checkbox"
+                  id="Shooter"
+                />
+                <label htmlFor="Shooter">Shooter</label>
+              </div>
+
+              <div className="Simulation">
+                <input
+                  name="Simulation"
+                  value="Simulation"
+                  type="checkbox"
+                  id="Simulation"
+                />
+                <label htmlFor="Simulation">Simulation</label>
+              </div>
+              <div className="Sports">
+                <input
+                  name="Sports"
+                  value="Sports"
+                  type="checkbox"
+                  id="Sports"
+                />
+                <label htmlFor="Sports">Sports</label>
+              </div>
+              <div className="Strategy">
+                <input
+                  name="Strategy"
+                  value="Adventure"
+                  type="checkbox"
+                  id="Strategy"
+                />
+
+                <label htmlFor="Strategy">Strategy</label>
+              </div>
             </div>
           </div>
-          <Button
+          <hr style={{ borderStyle: "none" }} />
+          <hr style={{ borderStyle: "none" }} />
+          <hr style={{ borderStyle: "none" }} />
+          <label className="labelgenres">Plataformas:</label>
+          <div id="platforms" className="genres" onChange={handleChangeCrear}>
+            <div>
+              <input name="PC" type="checkbox" id="PC" value="PC" />
+              <label htmlFor="PC">PC</label>
+            </div>
+            <div>
+              <input name="iOS" type="checkbox" id="iOS" value="iOS" />
+              <label htmlFor="iOS">iOS</label>
+            </div>
+            <div>
+              <input name="Android" type="checkbox" id="Android" value="Android" />
+              <label htmlFor="Android">Android.</label>
+            </div>
+            <div>
+              <input name="macOS" type="checkbox" id="macOS" value="" />
+              <label htmlFor="macOS">Mac OS</label>
+            </div>
+            <div>
+              <input
+                name="PlayStation 4"
+                type="checkbox"
+                id="PlayStation 4"
+                value=""
+              />
+              <label htmlFor="PlayStation 4">Play Station 4</label>
+            </div>
+            <div>
+              <input
+                name="PlayStation 5"
+                type="checkbox"
+                id="PlayStation 5"
+                value=""
+              />
+              <label htmlFor="PlayStation 5">PlayStation 5.</label>
+            </div>
+            <div>
+              <input name="XBOX" type="checkbox" id="XBOX" value="" />
+              <label htmlFor="XBOX">XBOX</label>
+            </div>
+            <div>
+              <input
+                name="PS Vita"
+                type="checkbox"
+                id="PS Vita"
+                value="PS Vita"
+              />
+              <label htmlFor="PS Vita">PS Vita</label>
+            </div>
+          </div>
+          <hr style={{ borderStyle: "none" }} />
+          <hr style={{ borderStyle: "none" }} />
+          <hr style={{ borderStyle: "none" }} />
+          <Button2
             type="submit"
-            disabled={!userDataCrear.email || !userDataCrear.password}
+            //disabled={!userDataCrear.email || !userDataCrear.password}
           >
             CREAR
-          </Button>
+          </Button2>
         </div>
       </form>
     </div>

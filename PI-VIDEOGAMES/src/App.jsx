@@ -11,6 +11,7 @@ import Videogames from "./components/videogames";
 import CrearVideogame from "./components/createvideogame";
 // import Favorites from "./components/favorites";
 
+
 export const URL = "http://localhost:3001/videogames/";
 // 'https://rickandmortyapi.com/api/character/'
 
@@ -59,15 +60,25 @@ function App() {
   // }
 
   async function crearVideogame(userDataCrear) {
-    const { email, password } = userDataCrear;
+    const { name, description, image, launchDate, rating, platforms, genres } = userDataCrear;
+    console.log('Datos videojuego Crear:', userDataCrear)
+    console.log('Plataformas: ',platforms)
     // const URL = "http://localhost:3001/rickandmorty/register/";
     try {
-      await axios.post(URL, { email: `${email}`, password: `${password}` });
-      window.alert("Usuario creado con éxito.");
-      setAccess(false);
-      access && navigate("/");
+      await axios.post(URL, {
+    name,
+    description,
+    image,
+    platforms,
+    launchDate,
+    rating,
+    genres
+  });
+      window.alert("Videojuego creado con éxito.");
+      setAccess(true);
+      access && navigate("/home");
     } catch (error) {
-      window.alert("No fue posible crear el usuario.");
+      window.alert("No fue posible crear el videojuego.");
     }
   }
 
