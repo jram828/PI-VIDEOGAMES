@@ -2,33 +2,33 @@ import React from "react";
 import "../../App.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addFav, removeFav } from "../../redux/actions";
+import { getVideoGames, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
 
 const Videogame = (props) => {
-  console.log(props.videogame)
+  console.log('Props Videogame',props)
   const { name, image, id } = props.videogame;
-  const { addFav, removeFav } = props;
+ // const { addFav, removeFav } = props;
 
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
     if (isFav === false) {
       setIsFav(true);
-      addFav(props.videogame);
+     // addFav(props.videogame);
     } else if (isFav === true) {
       setIsFav(false);
-      removeFav(props.videogame.id);
+      //removeFav(props.videogame.id);
     }
   };
 
-  useEffect(() => {
-    props.myFavorites.forEach((fav) => {
-      if (fav.id === props.character.id) {
-        setIsFav(true);
-      }
-    });
-  }, [props.myFavorites, props.videogame.id]);
+  // useEffect(() => {
+  //   props.myFavorites.forEach((fav) => {
+  //     if (fav.id === props.character.id) {
+  //       setIsFav(true);
+  //     }
+  //   });
+  // }, [props.myFavorites, props.videogame.id]);
 
   return (
     <div className="container">
@@ -87,4 +87,4 @@ var mapStateToProps = (state) => {
   return { myFavorites: state.myFavorites };
 };
 
-export default connect(mapStateToProps, { addFav, removeFav })(Videogame);
+export default connect(mapStateToProps, { getVideoGames, removeFav })(Videogame);

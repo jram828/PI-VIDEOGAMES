@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const ADD_FAV = 'ADD_FAV';
-export const REMOVE_FAV = 'REMOVE_FAV';
-export const FILTER_CARDS = 'FILTER_CARDS';
-export const ORDER_CARDS = 'ORDER_CARDS';
-
+export const GET_VIDEOGAMES = 'GET_VIDEOGAMES';
+export const GET_VIDEOGAME_BY_ID = 'GET_VIDEOGAME_BY_ID';
+export const GET_VIDEOGAME_BY_NAME = 'GET_VIDEOGAME_BY_NAME';
+export const ORDER_VIDEOGAMES = 'ORDER_VIDEOGAMES';
+export const FILTER_VIDEOGAMES = "FILTER_VIDEOGAMES";
 // export const addFav = (character) => {
   
 //   return {
@@ -15,19 +15,19 @@ export const ORDER_CARDS = 'ORDER_CARDS';
 
 
 // ACTION | addFav
-export const addFav = (character) => {
-  const endpoint = "http://localhost:3001/rickandmorty/fav";
+export const getVideoGames = () => {
+  const endpoint = "http://localhost:3001/videogames";
   return async (dispatch) => {
-    const { data } = await axios.post(endpoint, character)
+    const { data } = await axios.get(endpoint)
     try{
-      
-      return dispatch({
-        type: "ADD_FAV",
+       return dispatch({
+        type: "GET_VIDEOGAMES",
         payload: data,
       });
-    } catch (erorr){
-       throw new TypeError('El favorito no ha sido agregado')
+    } catch (error){
+       window.alert("Videojuego no encontrado!");
     }
+
   };
 };
 // export const removeFav = (id) => {
@@ -52,18 +52,18 @@ export const removeFav = (id) => {
   };
 };
 
-export const filterCards = (gender) => {
+export const filterVideogames = (gender) => {
   return {
-    type: FILTER_CARDS,
+    type: FILTER_VIDEOGAMES,
     payload: gender
   }
 }
 
-export const orderCards = (order) => {
+export const orderVideogames = (order) => {
   console.log('Order Action:', order)
   return {
     
-    type: ORDER_CARDS,
+    type: ORDER_VIDEOGAMES,
     payload: order
   }
 }

@@ -1,21 +1,21 @@
-import { ADD_FAV, FILTER_CARDS, ORDER_CARDS, REMOVE_FAV } from "./actions";
+import {FILTER_VIDEOGAMES, GET_VIDEOGAMES, GET_VIDEOGAME_BY_ID, ORDER_VIDEOGAMES} from "./actions";
 
 let initialState = {
-  myFavorites: [],
-  allCharacters: []
+  // myFavorites: [],
+  allVideogames: []
   };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_FAV:
+    case GET_VIDEOGAMES:
       // return {
       //   ...state,
       //   allCharacters: [...state.allCharacters, action.payload],
       //   myFavorites: [...state.myFavorites, action.payload],
       // };
-      console.log('Payload ADD: ',action.payload)
-      return { ...state, myFavorites: action.payload, allCharacters: action.payload };
-    case REMOVE_FAV:
+      console.log('Payload Get Videogames: ',action.payload)
+      return { ...state, allVideogames: action.payload };
+    case GET_VIDEOGAME_BY_ID:
     // const myFavoritesFilter = state.myFavorites.filter(
     //   (character) => character.id !== action.payload
       // );
@@ -23,7 +23,7 @@ const rootReducer = (state = initialState, action) => {
        return { ...state, myFavorites: action.payload };
 
       
-    case FILTER_CARDS:
+    case FILTER_VIDEOGAMES:
       if (action.payload.toUpperCase() === "ALL") {
         return {
           ...state,
@@ -41,7 +41,7 @@ const rootReducer = (state = initialState, action) => {
         };
       }
 
-    case ORDER_CARDS:
+    case ORDER_VIDEOGAMES:
       if (action.payload.toUpperCase() === "A") {
         return {
           ...state,

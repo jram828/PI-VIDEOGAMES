@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
         //allowNull: false,
       },
       platforms: {
-        type: DataTypes.TSVECTOR,
+        type: DataTypes.STRING,
         //allowNull: false,
       },
       image: {
@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
         //  allowNull: false,
       },
       // launchDate: {
-      //   type: DataTypes.DATEONLY,
+      //   type: DataTypes.STRING,
       //   //allowNull: false,
       // },
       rating: {

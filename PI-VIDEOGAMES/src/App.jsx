@@ -3,12 +3,14 @@ import axios from "axios";
 import "./App.css";
 import Nav from "./components/nav";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { getVideoGames } from "./redux/actions";
 import About from "./components/about";
 import Detail from "./components/detail";
 import Landing from "./components/landing";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Videogames from "./components/videogames";
 import CrearVideogame from "./components/createvideogame";
+import videogame from "./components/videogame";
 // import Favorites from "./components/favorites";
 
 
@@ -16,34 +18,34 @@ export const URL = "http://localhost:3001/videogames/";
 // 'https://rickandmortyapi.com/api/character/'
 
 function App() {
-  
+  const dispatch = useDispatch();
+  const allVideogames = useSelector((state) => state.allVideogames);
   // const { data } = axios(`${URL}`);
   // console.log('Data: ',data)
-  const [videogames, setVideogames] = useState([]);
+  //const [videogames, setVideogames] = useState([]);
 
   const [access, setAccess] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
 
+
+
+
  useEffect(() => {
     !access && navigate("/");
-  }, [access, navigate]);  useEffect(() => {
-    !access && navigate("/");
-  }, [access, navigate]);
-
+  }, [access, navigate]); 
+useEffect(() => {
+  dispatch(getVideoGames());
+}, [dispatch]);
+  
   const initialVideogames = async () => {
-    try {
-      const { data } = await axios(`${URL}`);
-      setVideogames(...videogames, data);
-    } catch (error) {
-      window.alert("Character Not Found. There are 826 characters!");
-    }
+
   };
 
 
   
-  console.log('Initial video: ',videogames)
+  console.log('Initial video: ',allVideogames)
   // async function login(userData) {
   //   const { email, password } = userData;
   //   const URL = "http://localhost:3001/rickandmorty/login/";
@@ -65,15 +67,16 @@ function App() {
     console.log('Plataformas: ',platforms)
     // const URL = "http://localhost:3001/rickandmorty/register/";
     try {
-      await axios.post(URL, {
+     const newVideogame=await axios.post(URL, {
     name,
     description,
     image,
-    platforms,
-    launchDate,
+    platforms:"PC,XBOX",
+    launchDate:"",
     rating,
-    genres
-  });
+    genres,
+      });
+      console.log('Juego creado:',newVideogame)
       window.alert("Videojuego creado con éxito.");
       setAccess(true);
       access && navigate("/home");
@@ -119,7 +122,7 @@ function App() {
   //   setAccess(true);
   //   navigate("/crearusuario");
   // };
-console.log("Initial video 2: ", videogames);
+console.log("Initial video 2: ", allVideogames);
   return (
     <div className="App">
       {location.pathname !== "/" ? (
@@ -151,7 +154,7 @@ console.log("Initial video 2: ", videogames);
           path="/home"
           element={
             <Videogames
-              videogames={videogames}
+              allVideogames={allVideogames}
               onClose={onClose}
               initialVideogames={initialVideogames}
             />
@@ -162,7 +165,7 @@ console.log("Initial video 2: ", videogames);
         {/* <Route path="/favorites" element={<Favorites onClose={onClose} />} /> */}
         <Route
           path="/crearvideojuego"
-          element={<CrearVideogame crearVideogame={crearVideogame} />}
+          element={<CrearVideogame videogame={videogame} crearVideogame={crearVideogame} />}
         />
       </Routes>
     </div>

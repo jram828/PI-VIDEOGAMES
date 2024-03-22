@@ -11,7 +11,7 @@ const CrearVideogame = ({crearVideogame}) => {
     name: "",
     description: "",
     image: "",
-    platforms: [],
+    platforms: "",
     launchDate:"",
     rating:"",
     genres:[]
@@ -167,7 +167,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Action">
                 <input
                   name="Action"
-                  value="Action"
+                  value="4"
                   type="checkbox"
                   id="Action"
                 />
@@ -177,7 +177,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Adventure">
                 <input
                   name="Adventure"
-                  value="Adventure"
+                  value="3"
                   type="checkbox"
                   id="Adventure"
                 />
@@ -187,7 +187,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Arcade">
                 <input
                   name="Arcade"
-                  value="Arcade"
+                  value="11"
                   type="checkbox"
                   id="Arcade"
                 />
@@ -196,20 +196,20 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="BoardGames">
                 <input
                   name="BoardGames"
-                  value="BoardGames"
+                  value="28"
                   type="checkbox"
                   id="BoardGames"
                 />
                 <label htmlFor="BoardGames">Board Games</label>
               </div>
               <div className="Card">
-                <input name="Card" value="Card" type="checkbox" id="Card" />
+                <input name="Card" value="17" type="checkbox" id="Card" />
                 <label htmlFor="Card">Card</label>
               </div>
               <div className="Casual">
                 <input
                   name="Casual"
-                  value="Casual"
+                  value="40"
                   type="checkbox"
                   id="Casual"
                 />
@@ -218,7 +218,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Educational">
                 <input
                   name="Educational"
-                  value="Educational"
+                  value="34"
                   type="checkbox"
                   id="Educational"
                 />
@@ -227,7 +227,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Family">
                 <input
                   name="Family"
-                  value="Family"
+                  value="19"
                   type="checkbox"
                   id="Family"
                 />
@@ -236,20 +236,20 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Fighting">
                 <input
                   name="Fighting"
-                  value="Fighting"
+                  value="6"
                   type="checkbox"
                   id="Fighting"
                 />
                 <label htmlFor="Fighting">Fighting</label>
               </div>
               <div className="indie">
-                <input name="Indie" value="Indie" type="checkbox" id="Indie" />
+                <input name="Indie" value="51" type="checkbox" id="Indie" />
                 <label htmlFor="Indie">Indie</label>
               </div>
               <div className="Massively-Multiplayer">
                 <input
                   name="Massively-Multiplayer"
-                  value="Massively-Multiplayer"
+                  value="59"
                   type="checkbox"
                   id="Massively-Multiplayer"
                 />
@@ -260,7 +260,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Platformer">
                 <input
                   name="Platformer"
-                  value="Platformer"
+                  value="83"
                   type="checkbox"
                   id="Platformer"
                 />
@@ -270,7 +270,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Puzzle">
                 <input
                   name="Puzzle"
-                  value="Puzzle"
+                  value="7"
                   type="checkbox"
                   id="Puzzle"
                 />
@@ -279,21 +279,21 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Racing">
                 <input
                   name="Racing"
-                  value="Racing"
+                  value="1"
                   type="checkbox"
                   id="Racing"
                 />
                 <label htmlFor="Racing">Racing</label>
               </div>
               <div className="RPG">
-                <input name="RPG" value="RPG" type="checkbox" id="RPG" />
+                <input name="RPG" value="5" type="checkbox" id="RPG" />
                 <label htmlFor="RPG">RPG</label>
               </div>
 
               <div className="Shooter">
                 <input
                   name="Shooter"
-                  value="Shooter"
+                  value="2"
                   type="checkbox"
                   id="Shooter"
                 />
@@ -303,7 +303,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Simulation">
                 <input
                   name="Simulation"
-                  value="Simulation"
+                  value="14"
                   type="checkbox"
                   id="Simulation"
                 />
@@ -312,7 +312,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Sports">
                 <input
                   name="Sports"
-                  value="Sports"
+                  value="15"
                   type="checkbox"
                   id="Sports"
                 />
@@ -321,7 +321,7 @@ const CrearVideogame = ({crearVideogame}) => {
               <div className="Strategy">
                 <input
                   name="Strategy"
-                  value="Adventure"
+                  value="10"
                   type="checkbox"
                   id="Strategy"
                 />
