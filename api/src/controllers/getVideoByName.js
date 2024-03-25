@@ -14,19 +14,22 @@ const getVideoByName = async (req, res) => {
     const videogamesDB = await Videogame.findAll({
       where: {
         name: {
-          [Op.iLike]: `%${name}%`,
+          [Op.iLike]: `${name}`,
         },
       },
       limit: 15,
     });
+
     console.log("Videogames DB: ", videogamesDB);
 
     //console.log("URL", `${URL}?search=${name.name}&key=${APIKEY}`);
     const response = await axios.get(`${URL}?search=${name}&key=${APIKEY}`);
     //console.log("Response:", response.data.results);
-    const videogamesAPI = response.data.results.map((videogame) => {
+    const videogamesAPIRaw = response.data.results.map((videogame) => {
       return cleanVideogame(videogame);
     });
+          const videogamesAPI = videogamesAPIRaw.filter((game) => game.name === name);
+         
 
     const videogames = [...videogamesDB, ...videogamesAPI].slice(0, 15);
 

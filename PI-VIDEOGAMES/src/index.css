@@ -37,7 +37,8 @@ body {
   background-image: url('https://media.gq-magazine.co.uk/photos/645b5c3c8223a5c3801b8b26/16:9/w_2560%2Cc_limit/100-best-games-hp-b.jpg');
   /* background-image: url('./assets/espacio.jpg'); */
    background-repeat:no-repeat;
-   background-size: cover;
+   background-attachment: fixed;
+   background-size:cover;
    flex-direction: column;
 }
 h1 {

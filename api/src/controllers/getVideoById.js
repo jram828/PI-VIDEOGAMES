@@ -3,7 +3,9 @@ require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST, APIKEY } = process.env;
 const URL = "https://api.rawg.io/api/games/";
 const axios = require("axios");
-const {Videogame} = require("../db");
+const {Videogame,Genre} = require("../db");
+const cleanVideogameAPI = require("../utils/cleanVideogameAPI");
+const cleanVideogameDB = require("../utils/cleanVideogameDB");
 
 const getVideoById = async (req, res) => {
   const ID = req.params.idVideogame;
@@ -11,29 +13,41 @@ const getVideoById = async (req, res) => {
     
     //console.log('Response:',response)
  
-      
-      if (ID.length === 36) {
-            var videogame = await Videogame.findAll({
-              where: {
-                id: ID,
-                },
-            },
-            );
-      } else {
+    if (ID.length === 36) {
+      console.log("ID getbyID:", ID);
+      const responseDB = await Videogame.findAll({
+        include: {
+          model: Genre,
+          attributes: ["name"],
+          through: { attributes: [] },
+        },
+      });
+        const videogamesDB = responseDB.map((videogame) => {
+          return cleanVideogameDB(videogame);
+        });
+      const videogameDB = videogamesDB.filter(
+        (game) => game.id === ID
+      );
+       var videogame= videogameDB[0];
+        console.log('Videogame getbyID: ',videogame)
+      //console.log("videogame getbyiD: ", videogame.genres[0].dataValues.name);
+    } else {
         const response = await axios.get(`${URL}${ID}?key=${APIKEY}`);
-        const { id, name, description, platforms, image, launchDate, rating, genres } =
+        const { id, name, description_raw, platforms, background_image, release, rating, genres } =
           response.data;
-
-        var videogame = {
-          id,
-          name,
-          description,
-          platforms,
-          image,
-          launchDate,
-          rating,
-          genres
-        };
+         console.log('Image by id:', response.data)
+      var videogame =cleanVideogameAPI(response.data)
+      // {
+      //     id,
+      //     name,
+      //     description:description_raw,
+      //     platforms,
+      //     image:background_image,
+      //     launchDate: release,
+      //     rating,
+      //     genres
+      // };
+      console.log("videogame getbyiD: ", videogame);
       }
         res.status(200).json(videogame);
       // } else {

@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 import Nav from "./components/nav";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { getVideoGames } from "./redux/actions";
+import { getVideoGames, getVideoGamesByName } from "./redux/actions";
 import About from "./components/about";
 import Detail from "./components/detail";
 import Landing from "./components/landing";
@@ -34,10 +34,13 @@ function App() {
 
  useEffect(() => {
     !access && navigate("/");
-  }, [access, navigate]); 
-useEffect(() => {
-  dispatch(getVideoGames());
-}, [dispatch]);
+ }, [access, navigate]); 
+  
+// useEffect(() => {
+//   dispatch(getVideoGames());
+// }, [dispatch]);
+  
+
   
   const initialVideogames = async () => {
 
@@ -45,7 +48,7 @@ useEffect(() => {
 
 
   
-  console.log('Initial video: ',allVideogames)
+  //console.log('Initial video: ',allVideogames)
   // async function login(userData) {
   //   const { email, password } = userData;
   //   const URL = "http://localhost:3001/rickandmorty/login/";
@@ -71,8 +74,8 @@ useEffect(() => {
     name,
     description,
     image,
-    platforms:"PC,XBOX",
-    launchDate:"",
+    platforms:platforms.join(', '),
+    launchDate,
     rating,
     genres,
       });
@@ -97,16 +100,18 @@ useEffect(() => {
     };
 
   const onSearch = async (name) => {
-    // try {
-    //   //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
-    //   console.log(name)
-    //   const { data } = await axios(`${URL}name?name=${name}`);
-    //   console.log('Data Onsearch: ',data)
-    //   setVideogames(...videogames, data);
-    //   console.log('Videogames Onsearch: ',videogames)
-    // } catch (error) {
-    //   window.alert("Videogame Not Found!");
-    // }
+  //   try {
+  //     //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
+  //     console.log(name)
+  //     const { data } = await axios(`${URL}name?name=${name}`);
+  //     console.log('Data Onsearch: ',data)
+  //     setVideogames([videogames, data]);
+  //     console.log('Videogames Onsearch: ', videogames)
+  //     setAccess(true);
+  //     access && navigate("/home");
+  //   } catch (error) {
+  //     window.alert("Videogame Not Found!");
+  //   }
   };
 
   const onClose = (id) => {

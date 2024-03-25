@@ -1,10 +1,31 @@
+import { useDispatch } from "react-redux";
 import { Button2, ContainerNav, Input } from "../Mystyles";
 import { useState } from "react";
+import { getVideoGamesByName } from "../../redux/actions";
 
-const SearchBar = (props) => {
-  const [name, setName] = useState("");
-  const handleClick = () => {
-    props.onSearch(name);
+
+const SearchBar = () => {
+  const dispatch = useDispatch();
+  var [name, setName] = useState("");
+
+
+console.log('Name SearchBar: ',name);
+  const handleClick = async() => {
+
+    console.log("Name handleClick: ", name);
+
+    try {
+        dispatch(getVideoGamesByName(name));
+        //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
+        // console.log(name);
+        // console.log("URL SearchBAr: ", `${URL}${name}`);
+        // const { data } = await axios(`${URL}${name}`);
+        // console.log("Data HandleClick: ", data);
+        //console.log("Videogames Onsearch: ", videogames);
+      } catch (error) {
+        window.alert("Videogame Not Found!");
+      }
+    // };
   };
   const handleChange = (e) => {
     setName(e.target.value);
@@ -16,10 +37,10 @@ const SearchBar = (props) => {
         value={name}
         onChange={handleChange}
         type="search"
-        name="personaje"
-        placeholder="ID..."
+        name="videogame"
+        placeholder="Videojuego..."
       />
-      <Button2 onClick={handleClick}>Agregar</Button2>
+      <Button2 onClick={handleClick}>Buscar</Button2>
       <></>
     </ContainerNav>
   );

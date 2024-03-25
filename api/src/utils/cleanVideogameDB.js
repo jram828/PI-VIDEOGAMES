@@ -11,8 +11,13 @@ const cleanVideogameDB = (results) => {
       platforms,
       genres,
     } = results;
-
-    const genresFlat = genres.map((genre) => genre.name);
+   
+    const newRating = [];
+    const roundRating = Math.round(rating);
+    for (i = 1; i < roundRating + 1; i++) {
+      newRating.push("⭐");
+    }
+    const genresFlat = genres.map((genre) => genre.name).join(', ');
 
     return {
       id,
@@ -22,8 +27,10 @@ const cleanVideogameDB = (results) => {
       image,
       launchDate,
       rating,
+      newRating,
       genres: genresFlat,
     };
+    
   } else {
     return {};
   }

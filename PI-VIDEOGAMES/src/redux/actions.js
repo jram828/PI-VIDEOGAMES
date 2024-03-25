@@ -21,7 +21,7 @@ export const getVideoGames = () => {
     const { data } = await axios.get(endpoint)
     try{
        return dispatch({
-        type: "GET_VIDEOGAMES",
+        type: GET_VIDEOGAMES,
         payload: data,
       });
     } catch (error){
@@ -30,6 +30,26 @@ export const getVideoGames = () => {
 
   };
 };
+
+export const getVideoGamesByName = (name) => {
+  
+  const endpoint = "http://localhost:3001/videogames/";
+  return async (dispatch) => {
+    console.log('Name getVideogamesByName: ',name);
+    const { data } = await axios.get(`${endpoint}name?name=${name}`);
+    console.log("Data getVideoGamesByName: ", data);
+
+    try {
+      return dispatch({
+        type: GET_VIDEOGAME_BY_NAME,
+        payload: data,
+      });
+    } catch (error) {
+      window.alert("Videojuego no encontrado!");
+    }
+  };
+};
+
 // export const removeFav = (id) => {
 //   return {
 //     type: REMOVE_FAV,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import './createvideogame.css'
 import "../../App.css";
 //import logo from "../../assets/RickAndMorty.jpg"
@@ -11,7 +11,7 @@ const CrearVideogame = ({crearVideogame}) => {
     name: "",
     description: "",
     image: "",
-    platforms: "",
+    platforms: [],
     launchDate:"",
     rating:"",
     genres:[]
@@ -165,12 +165,7 @@ const CrearVideogame = ({crearVideogame}) => {
             </label>
             <div id="genres" className="genres" onChange={handleChangeCrear}>
               <div className="Action">
-                <input
-                  name="Action"
-                  value="4"
-                  type="checkbox"
-                  id="Action"
-                />
+                <input name="Action" value="4" type="checkbox" id="Action" />
                 <label htmlFor="Action">Action</label>
               </div>
 
@@ -185,12 +180,7 @@ const CrearVideogame = ({crearVideogame}) => {
               </div>
 
               <div className="Arcade">
-                <input
-                  name="Arcade"
-                  value="11"
-                  type="checkbox"
-                  id="Arcade"
-                />
+                <input name="Arcade" value="11" type="checkbox" id="Arcade" />
                 <label htmlFor="Arcade">Arcade</label>
               </div>
               <div className="BoardGames">
@@ -207,12 +197,7 @@ const CrearVideogame = ({crearVideogame}) => {
                 <label htmlFor="Card">Card</label>
               </div>
               <div className="Casual">
-                <input
-                  name="Casual"
-                  value="40"
-                  type="checkbox"
-                  id="Casual"
-                />
+                <input name="Casual" value="40" type="checkbox" id="Casual" />
                 <label htmlFor="Casual">Casual</label>
               </div>
               <div className="Educational">
@@ -225,12 +210,7 @@ const CrearVideogame = ({crearVideogame}) => {
                 <label htmlFor="Educational">Educational</label>
               </div>
               <div className="Family">
-                <input
-                  name="Family"
-                  value="19"
-                  type="checkbox"
-                  id="Family"
-                />
+                <input name="Family" value="19" type="checkbox" id="Family" />
                 <label htmlFor="Family">Family</label>
               </div>
               <div className="Fighting">
@@ -268,21 +248,11 @@ const CrearVideogame = ({crearVideogame}) => {
                 <label htmlFor="Platformer">Platformer</label>
               </div>
               <div className="Puzzle">
-                <input
-                  name="Puzzle"
-                  value="7"
-                  type="checkbox"
-                  id="Puzzle"
-                />
+                <input name="Puzzle" value="7" type="checkbox" id="Puzzle" />
                 <label htmlFor="Puzzle">Puzzle</label>
               </div>
               <div className="Racing">
-                <input
-                  name="Racing"
-                  value="1"
-                  type="checkbox"
-                  id="Racing"
-                />
+                <input name="Racing" value="1" type="checkbox" id="Racing" />
                 <label htmlFor="Racing">Racing</label>
               </div>
               <div className="RPG">
@@ -291,12 +261,7 @@ const CrearVideogame = ({crearVideogame}) => {
               </div>
 
               <div className="Shooter">
-                <input
-                  name="Shooter"
-                  value="2"
-                  type="checkbox"
-                  id="Shooter"
-                />
+                <input name="Shooter" value="2" type="checkbox" id="Shooter" />
                 <label htmlFor="Shooter">Shooter</label>
               </div>
 
@@ -310,12 +275,7 @@ const CrearVideogame = ({crearVideogame}) => {
                 <label htmlFor="Simulation">Simulation</label>
               </div>
               <div className="Sports">
-                <input
-                  name="Sports"
-                  value="15"
-                  type="checkbox"
-                  id="Sports"
-                />
+                <input name="Sports" value="15" type="checkbox" id="Sports" />
                 <label htmlFor="Sports">Sports</label>
               </div>
               <div className="Strategy">
@@ -344,11 +304,16 @@ const CrearVideogame = ({crearVideogame}) => {
               <label htmlFor="iOS">iOS</label>
             </div>
             <div>
-              <input name="Android" type="checkbox" id="Android" value="Android" />
+              <input
+                name="Android"
+                type="checkbox"
+                id="Android"
+                value="Android"
+              />
               <label htmlFor="Android">Android.</label>
             </div>
             <div>
-              <input name="macOS" type="checkbox" id="macOS" value="" />
+              <input name="macOS" type="checkbox" id="macOS" value="macOS" />
               <label htmlFor="macOS">Mac OS</label>
             </div>
             <div>
@@ -356,7 +321,7 @@ const CrearVideogame = ({crearVideogame}) => {
                 name="PlayStation 4"
                 type="checkbox"
                 id="PlayStation 4"
-                value=""
+                value="PlayStation 4"
               />
               <label htmlFor="PlayStation 4">Play Station 4</label>
             </div>
@@ -365,12 +330,12 @@ const CrearVideogame = ({crearVideogame}) => {
                 name="PlayStation 5"
                 type="checkbox"
                 id="PlayStation 5"
-                value=""
+                value="PlayStation 5"
               />
               <label htmlFor="PlayStation 5">PlayStation 5.</label>
             </div>
             <div>
-              <input name="XBOX" type="checkbox" id="XBOX" value="" />
+              <input name="XBOX" type="checkbox" id="XBOX" value="XBOX" />
               <label htmlFor="XBOX">XBOX</label>
             </div>
             <div>

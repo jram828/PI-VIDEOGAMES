@@ -6,10 +6,10 @@ import { getVideoGames, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
 
 const Videogame = (props) => {
-  console.log('Props Videogame',props)
-  const { name, image, id } = props.videogame;
+  //console.log('Props Videogame',props)
+  const { name, image, id, genres } = props.videogame;
  // const { addFav, removeFav } = props;
-
+   //console.log('Video id:',id)
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
@@ -33,7 +33,7 @@ const Videogame = (props) => {
   return (
     <div className="container">
       <div className="card" key={id}>
-        {isFav ? (
+        {/* {isFav ? (
           <button
             onClick={handleFavorite}
             style={{
@@ -57,7 +57,7 @@ const Videogame = (props) => {
           >
             🤍
           </button>
-        )}
+        )} */}
 
         <button
           className="boton2"
@@ -67,16 +67,20 @@ const Videogame = (props) => {
         >
           X
         </button>
-        <img className="photo" src={image} alt="Imagen del personaje" />
+        <img className="photo" src={image} alt="Imagen del videojuego" />
+        <h1 style={{fontSize:"20px"}}>{name}</h1>
+        {/* <h4>Rating: {rating}</h4>
+        <h4>Plataforms: {platforms}</h4> */}
+        <h4>Géneros: {genres}</h4>
         <Link to={`/detail/${id}`}>
-          <h1
+          <h3
             style={{
-              backgroundColor: "yellowgreen",
-              fontSize: 16,
+              color:"white",
+              backgroundColor:"gray",
             }}
           >
-            {name}
-          </h1>
+            Ver detalles
+          </h3>
         </Link>
       </div>
     </div>

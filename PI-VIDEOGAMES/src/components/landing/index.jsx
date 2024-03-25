@@ -1,10 +1,5 @@
-
-
-    //import React from "react"
 import "../../App.css";
-// import './about.css'
-//import ReactPlayer from 'react-player'
-//import videoRyM from '../../assets/videoRyM.mp4'
+
 
 const Landing = ({ signIn }) => {
   

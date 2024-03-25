@@ -1,12 +1,12 @@
 import styled from "styled-components"
 
 export const ContainerNav = styled.div`
-  width: 30%;
+  // width: 10%;
   display: flex;
   flex-direction: row;
   // justify-content: center;
   height: 40px;
-  margin-left: 10px;
+  // margin-left: 10px;
 `;
 export const Button = styled.button`
   border-radius: 10%;
@@ -15,7 +15,7 @@ export const Button = styled.button`
   background-color: black;
   color: white;
   height: 30px;
-  width: 100%;
+  width: 50%;
   font-weight: bold;
 `;
 
@@ -26,14 +26,14 @@ export const Button2 = styled.button`
   background-color: black;
   color: white;
   height: 30px;
-  width: 80px;
+  width: 140px;
   font-weight: bold;
 `;
 export const Input = styled.input`
 border-radius:10px;
 margin-right: 10px;
 height: 30px;
-width: 90px;
+width: 150px;
 `;
 
 export const Button3 = styled.button`
@@ -42,7 +42,7 @@ export const Button3 = styled.button`
   cursor: pointer;
   background-color: black;
   color: blue;
-  height: 30%;
-  width: 70%;
+  height: 30px;
+  width: 20%;
   font-weight: bold;
 `;

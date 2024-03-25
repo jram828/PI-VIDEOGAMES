@@ -28,10 +28,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         //  allowNull: false,
       },
-      // launchDate: {
-      //   type: DataTypes.STRING,
-      //   //allowNull: false,
-      // },
+      launchDate: {
+        type: DataTypes.STRING,
+        //allowNull: false,
+      },
       rating: {
         type: DataTypes.FLOAT,
         //allowNull: false,

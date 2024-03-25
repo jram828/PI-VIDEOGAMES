@@ -1,0 +1,40 @@
+.nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    grid-auto-rows: minmax(20px, auto);
+    align-content: center;
+    /* background-color: aqua; */
+    margin-bottom: 15px;
+}
+
+.botonesnav {
+    grid-column: 1/5;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    grid-auto-rows: minmax(20px, auto);
+    justify-content:end;
+    align-content: center;
+    /* background-color: brown; */
+}
+
+.filtros {
+    grid-column: 1/5;
+    grid-row: 3;
+    /* background-color: blue; */
+}
+
+.filtros > select{
+  margin-right: 100px;
+}
+
+.orden  {
+    grid-column: 1/5;
+    grid-row: 2;
+}
+
+.orden > select{
+  margin-right: 100px;
+}
