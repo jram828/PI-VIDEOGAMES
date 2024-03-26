@@ -28,6 +28,8 @@
 
 .filtros > select{
   margin-right: 100px;
+  height: 20px;
+  width: 150px;
 }
 
 .orden  {
@@ -37,4 +39,6 @@
 
 .orden > select{
   margin-right: 100px;
+  height: 20px;
+  width: 150px;
 }

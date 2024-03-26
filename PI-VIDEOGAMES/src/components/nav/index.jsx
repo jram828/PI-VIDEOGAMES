@@ -1,12 +1,16 @@
 import SearchBar from "../searchbar";
 import { Link } from "react-router-dom";
-import { Button, Button2, Button3 } from "../Mystyles";
+import { Button } from "../Mystyles";
 import { useDispatch } from "react-redux";
-import { getVideoGames } from "../../redux/actions";
+import { filterVideogamesGen, filterVideogamesOrig, getVideoGames, orderVideogamesAlfa, orderVideogamesRat } from "../../redux/actions";
 import './nav.css'
+import { useState } from "react";
 
 const Nav = ({ onSearch }) => {
   //const allVideogames = useSelector((state) => state.allVideogames);
+
+  const [aux, setAux] = useState(false);
+
   const dispatch = useDispatch();
 
   const onClickHome = () => {
@@ -15,13 +19,24 @@ const Nav = ({ onSearch }) => {
 
   };
 
-    const handleOrder = () => {
-      
+    const handleOrderRat = (e) => {
+      //setAux(!aux);
+      e.preventDefault();
+      dispatch(orderVideogamesRat(e.target.value));
   };
-  
-    const handleFilter = () => {
-      
+
+      const handleOrderAlfa = (e) => {  e.preventDefault();
+      dispatch(orderVideogamesAlfa(e.target.value));};
+
+    const handleFilterGen = (e) => {
+      e.preventDefault();
+      dispatch(filterVideogamesGen(e.target.value));
   };
+
+  const handleFilterOrig = (e) => {
+        e.preventDefault();
+        dispatch(filterVideogamesOrig(e.target.value));
+      };
   
 
   return (
@@ -54,24 +69,24 @@ const Nav = ({ onSearch }) => {
         <Button>Favorites</Button>
       </Link> */}
       <div className="orden">
-        <select className="orderid" onChange={handleOrder}>
+        {/* <select className="orderid" onChange={handleOrder}>
           <option value="">Ordenar por Id</option>
           <option value="A">Ascendente</option>
           <option value="D">Descendente</option>
-        </select>
-        <select className="ordenalfa" onChange={handleOrder}>
+        </select> */}
+        <select className="ordenalfa" onChange={handleOrderAlfa}>
           <option value="">Ordenar alfabéticamente</option>
           <option value="A-Z">A - Z</option>
           <option value="Z-A">Z - A</option>
         </select>
-        <select className="orderrating" onChange={handleOrder}>
+        <select className="orderrating" onChange={handleOrderRat}>
           <option value="">Ordenar por Rating</option>
           <option value="RA">Ascendente</option>
           <option value="RD">Descendente</option>
         </select>
       </div>
       <div className="filtros">
-        <select className="filtergenre" onChange={handleFilter}>
+        <select className="filtergenre" onChange={handleFilterGen}>
           <option value="">Seleccione el género</option>
           <option value="Action">Action</option>
           <option value="Adventure">Adventure</option>
@@ -94,7 +109,7 @@ const Nav = ({ onSearch }) => {
           <option value="Sports">Sports</option>
           <option value="Strategy">Strategy</option>
         </select>
-        <select className="filterorigen" onChange={handleFilter}>
+        <select className="filterorigen" onChange={handleFilterOrig}>
           <option value="">Seleccione el origen:</option>
           <option value="API">API</option>
           <option value="Creado">Creado</option>

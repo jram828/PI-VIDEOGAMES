@@ -1,59 +1,94 @@
-import {FILTER_VIDEOGAMES, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES} from "./actions";
+import {FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING} from "./actions";
 
 let initialState = {
-  // myFavorites: [],
-  allVideogames: []
-  };
+  VideogamesOrdered: [],
+  allVideogames: [],
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_VIDEOGAMES:
-      // return {
-      //   ...state,
-      //   allCharacters: [...state.allCharacters, action.payload],
-      //   myFavorites: [...state.myFavorites, action.payload],
-      // };
-      console.log('Payload Get Videogames: ',action.payload)
+      console.log("Payload Get Videogames: ", action.payload);
       return { ...state, allVideogames: action.payload };
+       
     case GET_VIDEOGAME_BY_NAME:
-    // const myFavoritesFilter = state.myFavorites.filter(
-    //   (character) => character.id !== action.payload
-      // );
-      // return { ...state, myFavorites: myFavoritesFilter };
       console.log("Payload Get Videogames By Name: ", action.payload);
-       return { ...state, allVideogames: action.payload };
+      return { ...state, allVideogames: action.payload };
 
-      
-    case FILTER_VIDEOGAMES:
+    case FILTER_VIDEOGAMES_BY_GENRE:
       if (action.payload.toUpperCase() === "ALL") {
         return {
           ...state,
-          myFavorites: state.allCharacters,
+          allVideogames: state.allVideogames,
         };
       } else {
-        const charactersFilter = state.allCharacters.filter(
-          (character) =>
-            character.gender.toUpperCase() === action.payload.toUpperCase()
+        // var videogamesFilter = state.allVideogames.filter(
+        //   (videogame) =>
+        //     videogame.genres[0].toUpperCase() === action.payload.toUpperCase()
+        // );
+
+        // return {
+        //   ...state,
+        //   allVideogames: videogamesFilter,
+        // };
+        break
+      }
+    case FILTER_VIDEOGAMES_BY_ORIGIN:
+      console.log("Payload origin: ", action.payload.toUpperCase());
+      if (action.payload.toUpperCase() === "CREADO") {
+        
+        let videogamesFilterOrig = state.allVideogames.filter(
+                  (videogame) =>
+                    videogame.id.length===36
+        );
+        
+        return {
+          ...state,
+          allVideogames: videogamesFilterOrig,
+        };
+      } else {
+        let videogamesFilterOrig = state.allVideogames.filter(
+          (videogame) =>
+            videogame.id.length!==36
         );
 
         return {
           ...state,
-          myFavorites: charactersFilter,
+          allVideogames: videogamesFilterOrig,
         };
       }
 
-    case ORDER_VIDEOGAMES:
-      if (action.payload.toUpperCase() === "A") {
+    case ORDER_VIDEOGAMES_BY_RATING:
+      if (action.payload.toUpperCase() === "RA") {
+        console.log("Payload Rating: ", action.payload);
+        console.log("Estado Rating:", state.allVideogames);
+        console.log("Primer rating", state.allVideogames[0].rating);
         return {
           ...state,
-          myFavorites: state.allCharacters.sort((a, b) =>
+          allVideogames: [...state.allVideogames].sort(
+            (a, b) => a.rating - b.rating
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          allVideogames: [...state.allVideogames].sort(
+            (a, b) => b.rating - a.rating
+          ),
+        };
+      }
+    case ORDER_VIDEOGAMES_BY_NAME:
+      if (action.payload.toUpperCase() === "A-Z") {
+        return {
+          ...state,
+          allVideogames: [...state.allVideogames].sort((a, b) =>
             a.name > b.name ? 1 : -1
           ),
         };
       } else {
         return {
           ...state,
-          myFavorites: state.allCharacters.sort((a, b) =>
+          allVideogames: [...state.allVideogames].sort((a, b) =>
             a.name < b.name ? 1 : -1
           ),
         };
