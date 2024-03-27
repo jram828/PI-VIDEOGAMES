@@ -1,13 +1,19 @@
 .nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
-    grid-auto-rows: minmax(20px, auto);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(10px, auto);
     align-content: center;
     /* background-color: aqua; */
-    margin-bottom: 15px;
 }
 
+.containerselect {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(10px, auto);
+    align-content: center;
+}
 .botonesnav {
     grid-column: 1/5;
     grid-row: 1;

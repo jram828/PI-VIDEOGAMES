@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 const Videogame = (props) => {
   //console.log('Props Videogame',props)
-  const { name, image, id, genres, rating } = props.videogame;
+  const { name, image, id, genres, rating, newRating } = props.videogame;
  // const { addFav, removeFav } = props;
    //console.log('Video id:',id)
   const [isFav, setIsFav] = useState(false);
@@ -69,7 +69,7 @@ const Videogame = (props) => {
         </button>
         <img className="photo" src={image} alt="Imagen del videojuego" />
         <h1 style={{fontSize:"20px"}}>{name}</h1>
-        <h4>Rating: {rating}</h4>
+        <h4>Rating: {rating}{ newRating}</h4>
         {/* <h4>Plataforms: {platforms}</h4> */}
         <h4>Géneros: {genres}</h4>
         <Link to={`/detail/${id}`}>

@@ -97,7 +97,7 @@ const CrearVideogame = ({crearVideogame}) => {
         </div>
         <div className="Crear">
           <div className="inputcrear">
-            <label className="label" htmlFor="name">
+            <label className="labelcrear" htmlFor="name">
               Nombre:
             </label>
             <input
@@ -108,7 +108,7 @@ const CrearVideogame = ({crearVideogame}) => {
               onChange={handleChangeCrear}
             />
             <br />
-            <label className="label" htmlFor="description">
+            <label className="labelcrear" htmlFor="description">
               Descripción:
             </label>
             <input
@@ -121,7 +121,7 @@ const CrearVideogame = ({crearVideogame}) => {
               rows="4"
             />
             <br />
-            <label className="label" htmlFor="launchDate">
+            <label className="labelcrear" htmlFor="launchDate">
               Fecha de lanzamiento:
             </label>
             <input
@@ -133,7 +133,7 @@ const CrearVideogame = ({crearVideogame}) => {
               onChange={handleChangeCrear}
             />
             <br />
-            <label className="label" htmlFor="image">
+            <label className="labelcrear" htmlFor="image">
               Imagen:
             </label>
             <input
@@ -144,7 +144,7 @@ const CrearVideogame = ({crearVideogame}) => {
               onChange={handleChangeCrear}
             />
             <br />
-            <label className="label" htmlFor="rating">
+            <label className="labelcrear" htmlFor="rating">
               Rating:
             </label>
             <input

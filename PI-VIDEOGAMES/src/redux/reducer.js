@@ -1,7 +1,7 @@
 import {FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING} from "./actions";
 
 let initialState = {
-  VideogamesOrdered: [],
+  initialVideogames: [],
   allVideogames: [],
 };
 
@@ -9,33 +9,46 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_VIDEOGAMES:
       console.log("Payload Get Videogames: ", action.payload);
-      return { ...state, allVideogames: action.payload };
+      return {
+        ...state,
+        allVideogames: action.payload,
+        initialVideogames: action.payload,
+      };
        
     case GET_VIDEOGAME_BY_NAME:
       console.log("Payload Get Videogames By Name: ", action.payload);
       return { ...state, allVideogames: action.payload };
 
     case FILTER_VIDEOGAMES_BY_GENRE:
-      if (action.payload.toUpperCase() === "ALL") {
+      console.log('Payload Filter by genre: ', action.payload)
+      if (action.payload.toUpperCase() === "TODOS") {
         return {
           ...state,
           allVideogames: state.allVideogames,
         };
       } else {
-        // var videogamesFilter = state.allVideogames.filter(
-        //   (videogame) =>
-        //     videogame.genres[0].toUpperCase() === action.payload.toUpperCase()
-        // );
+        console.log("Genres filter by genre: ", state.allVideogames);
 
-        // return {
-        //   ...state,
-        //   allVideogames: videogamesFilter,
-        // };
-        break
+        var videogamesFilter = state.allVideogames.filter(
+          (videogame) => videogame.genres
+                .toUpperCase()
+                .includes(action.payload.toUpperCase())
+        );
+        
+        return {
+          ...state,
+          allVideogames: videogamesFilter,
+        };
+        
       }
     case FILTER_VIDEOGAMES_BY_ORIGIN:
       console.log("Payload origin: ", action.payload.toUpperCase());
-      if (action.payload.toUpperCase() === "CREADO") {
+      if (action.payload.toUpperCase() === "TODOS") {
+                return {
+          ...state,
+          allVideogames: state.allVideogames,
+        };
+      } else if (action.payload.toUpperCase() === "CREADO") {
         
         let videogamesFilterOrig = state.allVideogames.filter(
                   (videogame) =>

@@ -4,13 +4,31 @@
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
   grid-auto-rows: minmax(10px, auto);
-  justify-content: left;
+  justify-content: right;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.9;
   color:white;
-  align-items: center;
+  align-content: left; 
   border-radius: 3%;
   
+}
+
+.Action{
+  grid-column: 1;
+    grid-row: 1;
+}
+
+.Arcade{
+  grid-column: 1;
+    grid-row: 2;
+}
+.Adventure{
+  grid-column: 1;
+    grid-row: 4;
+}
+.Massively-Multiplayer{
+  grid-column: 2;
+    grid-row: 4;
 }
 .labelgenres{
             color: white;
@@ -29,7 +47,7 @@
   grid-auto-rows: minmax(10px, auto);
   align-items: center;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.9;
   color:white;
   align-items: center;
   border-radius: 3%;
