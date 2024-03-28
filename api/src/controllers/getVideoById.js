@@ -15,13 +15,30 @@ const getVideoById = async (req, res) => {
  
     if (ID.length === 36) {
       console.log("ID getbyID:", ID);
-      const responseDB = await Videogame.findAll({
+      const responseDB = await Videogame.findOne({
         include: {
           model: Genre,
           attributes: ["name"],
           through: { attributes: [] },
         },
       });
+
+      // {
+      //   where: {
+      //     id: id;
+      //   }
+      //   include: [
+      //     {
+      //       model: Project,
+      //       through: {
+      //         where: {
+      //           // Here, `completed` is a column present at the junction table
+      //           completed: true,
+      //         },
+      //       },
+      //     },
+      //   ];
+      // }
         const videogamesDB = responseDB.map((videogame) => {
           return cleanVideogameDB(videogame);
         });
@@ -37,23 +54,9 @@ const getVideoById = async (req, res) => {
           response.data;
          console.log('Image by id:', response.data)
       var videogame =cleanVideogameAPI(response.data)
-      // {
-      //     id,
-      //     name,
-      //     description:description_raw,
-      //     platforms,
-      //     image:background_image,
-      //     launchDate: release,
-      //     rating,
-      //     genres
-      // };
       console.log("videogame getbyiD: ", videogame);
       }
         res.status(200).json(videogame);
-      // } else {
-      //   res.status(400).json({ message: "Not found" });
-      //   console.log(res.status);
-      // }
     
   } catch (error) {
     // console.log('Aqui se rompe');

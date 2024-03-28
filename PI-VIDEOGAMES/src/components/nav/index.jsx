@@ -1,8 +1,8 @@
 import SearchBar from "../searchbar";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../Mystyles";
-import { useDispatch } from "react-redux";
-import { filterVideogamesGen, filterVideogamesOrig, getVideoGames, orderVideogamesAlfa, orderVideogamesRat } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { filterVideogamesGen, filterVideogamesOrig, getVideoGames, orderVideogamesAlfa, orderVideogamesRat, paginate } from "../../redux/actions";
 import './nav.css'
 import { useState } from "react";
 
@@ -10,6 +10,11 @@ const Nav = ({ onSearch }) => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+
+  const allVideogames = useSelector((state) => state.allVideogames);
+
+
+  const [Page, setPage] = useState(2);
 
   const onClickHome = () => {
 
@@ -35,6 +40,24 @@ const Nav = ({ onSearch }) => {
         dispatch(filterVideogamesOrig(e.target.value));
       };
   
+    const videoPerPage = 15;
+    //const Page = 1;
+    const nPages = Math.ceil(allVideogames.length / videoPerPage);
+
+
+    const prevPage = () => {
+      if (Page > 1) {
+        setPage(Page - 1);
+        dispatch(paginate(Page, nPages));
+      }
+    };
+
+    const nextPage = () => {
+      if (Page <= nPages) {
+        setPage(Page + 1);
+        dispatch(paginate(Page,nPages,))
+      }
+    };
 
   return (
     <div>
@@ -120,6 +143,14 @@ const Nav = ({ onSearch }) => {
               <option value="Creado">Creado</option>
             </select>
           </div>
+          {/* <div className="pagination">
+            <button onClick={prevPage}>Anterior</button>
+            <h3>
+              {" "}
+              Página: {Page-1} de {nPages}
+            </h3>
+            <button onClick={nextPage}>Siguiente</button>
+          </div> */}
         </div>
       ) : undefined}
     </div>

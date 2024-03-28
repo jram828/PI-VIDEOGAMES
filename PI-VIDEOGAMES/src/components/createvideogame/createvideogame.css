@@ -1,19 +1,25 @@
 
 .genres{
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
   grid-auto-rows: minmax(10px, auto);
-  justify-content: right;
+  /* justify-content: justify; */
   background-color: black;
   opacity: 0.9;
   color:white;
-  align-content: left; 
+  align-items: right; 
   border-radius: 3%;
+  flex-wrap: wrap;
   
 }
 
-.Action{
+.genres > div {
+  height: 20px;
+  width: 180px
+}
+
+/* .Action{
   grid-column: 1;
     grid-row: 1;
 }
@@ -29,7 +35,7 @@
 .Massively-Multiplayer{
   grid-column: 2;
     grid-row: 4;
-}
+} */
 .labelgenres{
             color: white;
             -webkit-text-stroke-width: 1px;

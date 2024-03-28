@@ -1,8 +1,9 @@
-import {FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING} from "./actions";
+import {FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, PAGINATE_VIDEOGAMES} from "./actions";
 
 let initialState = {
-  initialVideogames: [],
+ // initialVideogames: [],
   allVideogames: [],
+  videoPageContent:[],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -12,15 +13,15 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allVideogames: action.payload,
-        initialVideogames: action.payload,
+        //initialVideogames: action.payload,
       };
-       
+
     case GET_VIDEOGAME_BY_NAME:
       console.log("Payload Get Videogames By Name: ", action.payload);
       return { ...state, allVideogames: action.payload };
 
     case FILTER_VIDEOGAMES_BY_GENRE:
-      console.log('Payload Filter by genre: ', action.payload)
+      console.log("Payload Filter by genre: ", action.payload);
       if (action.payload.toUpperCase() === "TODOS") {
         return {
           ...state,
@@ -29,40 +30,34 @@ const rootReducer = (state = initialState, action) => {
       } else {
         console.log("Genres filter by genre: ", state.allVideogames);
 
-        var videogamesFilter = state.allVideogames.filter(
-          (videogame) => videogame.genres
-                .toUpperCase()
-                .includes(action.payload.toUpperCase())
+        var videogamesFilter = state.allVideogames.filter((videogame) =>
+          videogame.genres.toUpperCase().includes(action.payload.toUpperCase())
         );
-        
+
         return {
           ...state,
           allVideogames: videogamesFilter,
         };
-        
       }
     case FILTER_VIDEOGAMES_BY_ORIGIN:
       console.log("Payload origin: ", action.payload.toUpperCase());
       if (action.payload.toUpperCase() === "TODOS") {
-                return {
+        return {
           ...state,
           allVideogames: state.allVideogames,
         };
       } else if (action.payload.toUpperCase() === "CREADO") {
-        
         let videogamesFilterOrig = state.allVideogames.filter(
-                  (videogame) =>
-                    videogame.id.length===36
+          (videogame) => videogame.id.length === 36
         );
-        
+
         return {
           ...state,
           allVideogames: videogamesFilterOrig,
         };
       } else {
         let videogamesFilterOrig = state.allVideogames.filter(
-          (videogame) =>
-            videogame.id.length!==36
+          (videogame) => videogame.id.length !== 36
         );
 
         return {
@@ -106,6 +101,19 @@ const rootReducer = (state = initialState, action) => {
           ),
         };
       }
+    case PAGINATE_VIDEOGAMES:
+      console.log(
+        "Payload Paginate Videogames: ",
+        state.allVideogames
+      );
+      
+      return {
+        ...state,
+        videoPageContent: state.allVideogames.slice(
+          action.payload.start,
+          action.payload.end
+        ),
+      };
     default:
       return state;
   }

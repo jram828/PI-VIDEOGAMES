@@ -7,6 +7,7 @@ export const ORDER_VIDEOGAMES_BY_RATING = 'ORDER_VIDEOGAMES_BY_RATING';
 export const ORDER_VIDEOGAMES_BY_NAME = "ORDER_VIDEOGAMES_BY_NAME";
 export const FILTER_VIDEOGAMES_BY_GENRE = "FILTER_VIDEOGAMES_BY_GENRE";
 export const FILTER_VIDEOGAMES_BY_ORIGIN = "FILTER_VIDEOGAMES_BY_ORIGIN";
+export const PAGINATE_VIDEOGAMES = "PAGINATE_VIDEOGAMES";
 // export const addFav = (character) => {
   
 //   return {
@@ -102,5 +103,16 @@ export const orderVideogamesAlfa = (order) => {
   return {
     type: ORDER_VIDEOGAMES_BY_NAME,
     payload: order,
+  };
+};
+
+export const paginate = (Page) => {
+  console.log("Order Paginate:", Page);
+  const videoPerPage = 15;
+  const start = (Page - 1) * videoPerPage;
+  const end = start + videoPerPage;
+  return {
+    type: PAGINATE_VIDEOGAMES,
+    payload: {start,end},
   };
 };
