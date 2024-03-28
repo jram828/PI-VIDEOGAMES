@@ -1,0 +1,48 @@
+  .card:hover{
+      transform: scale(1.1);
+      transition: 1s;
+   }
+   
+.card{
+   display:flex;
+   border-radius: 10%;
+   /* align-items: center; */
+   vertical-align: middle;
+   place-items: center; 
+   border-style: solid;
+   border-color:white;
+   font-size: 16px;
+   background-color: black;
+   opacity: 0.9;
+   width: 240px;
+   height: 370px;
+   
+   margin: 20px;
+   padding: 10px;
+   flex-direction: column;
+   position: relative;
+   align-items: center;
+   box-shadow: 15px 20px 25px orangered ;
+   
+}
+
+.card .photo{
+   width: 60%;
+   height: 150px;
+   border-radius: 70%;
+   
+}
+
+.card .boton2{
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   cursor: pointer;
+}
+
+.container{
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   font-size: small;
+}

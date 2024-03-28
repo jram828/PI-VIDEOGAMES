@@ -1,5 +1,4 @@
-import "../../App.css";
-
+import "./landing.css";
 
 const Landing = ({ signIn }) => {
   

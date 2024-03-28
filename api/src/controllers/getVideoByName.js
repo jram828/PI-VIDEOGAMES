@@ -25,10 +25,10 @@ const getVideoByName = async (req, res) => {
     //console.log("URL", `${URL}?search=${name.name}&key=${APIKEY}`);
     const response = await axios.get(`${URL}?search=${name}&key=${APIKEY}`);
     //console.log("Response:", response.data.results);
-    const videogamesAPIRaw = response.data.results.map((videogame) => {
+    const videogamesAPI = response.data.results.map((videogame) => {
       return cleanVideogame(videogame);
     });
-          const videogamesAPI = videogamesAPIRaw.filter((game) => game.name === name);
+          //const videogamesAPI = videogamesAPIRaw.filter((game) => game.name === name);
          
 
     const videogames = [...videogamesDB, ...videogamesAPI].slice(0, 15);

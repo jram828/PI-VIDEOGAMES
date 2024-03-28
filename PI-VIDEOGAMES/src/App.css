@@ -5,42 +5,6 @@
   text-align: center;
 }
 
-.buttonLanding {
-  border-radius: 40%;
-  font-size: 700%;
-  background-color: transparent;
-  cursor: pointer;
-  border-style: none;
-  -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: black;
-}
-.buttonLanding:hover {
-  border-color: #646cff;
-}
-.buttonLanding:focus,
-.buttonLanding:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* @keyframes buttonLanding-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .buttonLanding {
-    animation: buttonLanding-spin infinite 20s linear;
-  }
-} */
-
-.read-the-docs {
-  color: #888;
-}
-
 .DivPrueba{
   justify-content: space-between;
   display: flex;
@@ -53,115 +17,16 @@
    align-items: center;
    }
 
-.cards{
-   display: flex;
-   flex-wrap: wrap; 
-   flex-direction: row;
-   justify-content: center;
-   }
 
-   .card:hover{
-      transform: scale(1.1);
-      transition: 1s;
-   }
-   
-.card{
-   display:flex;
-   border-radius: 10%;
-   /* align-items: center; */
-   vertical-align: middle;
-   place-items: center; 
-   border-style: solid;
-   border-color:white;
-   font-size: 16px;
-   background-color: black;
-   opacity: 0.9;
-   width: 240px;
-   height: 370px;
-   
-   margin: 20px;
-   padding: 10px;
-   flex-direction: column;
-   position: relative;
-   align-items: center;
-   box-shadow: 15px 20px 25px orangered ;
-   
-}
+ 
 
-.card .photo{
-   width: 60%;
-   height: 150px;
-   border-radius: 70%;
-   
-}
 
-.card .boton2{
-   position: absolute;
-   top: 10px;
-   right: 10px;
-   cursor: pointer;
-}
-
-.container{
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-   font-size: small;
-}
 
 .errores{
    font-size: 110%;
    color: red
 }
 
-.label{
-   font-size: 120%;
-   color: aqua;
-   margin: 10px;
-   font-weight: bold;
-   -webkit-text-stroke-width: 1px;
-   -webkit-text-stroke-color: black;
-}
-
-.textoAbout{
-   font-size: 180%;
-   color: aqua
-}
-
-.detail{
-   border-radius: 5%;
-   font-size: 10px;
-   font-weight: lighter;
-   opacity: 0.9;
-   color: white;
-   background-color: black;
-   /* width: 100%;
-   height: 20 px; */
-   display:flex;
-   text-align: justify;
-   /* vertical-align: middle; */
-   /* margin: 20px; */
-   padding: 10px;
-   flex-direction: column;
-   position: relative;
-   align-items: center;
-   border-style: solid;
-   border-color: black;
-   box-shadow: 15px 20px 25px orangered ;
-   
-}
-
-.detail:hover{
-      transform: scale(1.1);
-      transition: 1s;
-   }
-
-.detail .photo{
-   width: 30%;
-   height: 40%;
-   border-radius: 70%;
-   
-}
 
 .favorites{
    display: flex;

@@ -1,9 +1,9 @@
-import React from "react";
 import "../../App.css";
+import "./videogame.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getVideoGames, removeFav } from "../../redux/actions";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Videogame = (props) => {
   //console.log('Props Videogame',props)

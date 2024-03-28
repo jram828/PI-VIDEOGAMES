@@ -1,4 +1,3 @@
-//import React from "react"
 import "../../App.css";
 import foto from '../../assets/FOTOJULIAN.jpg'
 import './about.css'

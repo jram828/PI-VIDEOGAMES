@@ -1,14 +1,13 @@
 
 import './videogames.css';
-import { Button } from "../Mystyles";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoGames, paginate } from "../../redux/actions";
+import { getVideoGames} from "../../redux/actions";
 
 export const Videogames = ({onClose }) => {
   const allVideogames = useSelector((state) => state.allVideogames);
-  //const videoPageContent = useSelector((state) => state.videoPageContent);
+ 
   const [Page,setPage]=useState(1)
   const dispatch = useDispatch();
 
@@ -17,12 +16,8 @@ export const Videogames = ({onClose }) => {
    
   }, [dispatch]);
 
-    // useEffect(() => {
-    //   dispatch(paginate(1));
-    // }, [dispatch]);
-
   const videoPerPage = 15;
-  // //const Page = 1;
+
   const nPages = Math.ceil(allVideogames.length / videoPerPage);
   const start = (Page - 1) * videoPerPage;
   const end = start + videoPerPage;

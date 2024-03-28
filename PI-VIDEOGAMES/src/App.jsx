@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.css";
 import Nav from "./components/nav";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { getVideoGames, getVideoGamesByName } from "./redux/actions";
 import About from "./components/about";
 import Detail from "./components/detail";
 import Landing from "./components/landing";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Videogames from "./components/videogames";
 import CrearVideogame from "./components/createvideogame";
 import videogame from "./components/videogame";
+import { crearvideojuego } from "./utils/crearvideojuego";
 // import Favorites from "./components/favorites";
 
 
@@ -18,11 +17,7 @@ export const URL = "http://localhost:3001/videogames/";
 // 'https://rickandmortyapi.com/api/character/'
 
 function App() {
-  const dispatch = useDispatch();
-  const allVideogames = useSelector((state) => state.allVideogames);
-  // const { data } = axios(`${URL}`);
-  // console.log('Data: ',data)
-  //const [videogames, setVideogames] = useState([]);
+   const allVideogames = useSelector((state) => state.allVideogames);
 
   const [access, setAccess] = useState(false);
 
@@ -30,55 +25,22 @@ function App() {
   const navigate = useNavigate();
 
 
-
-
  useEffect(() => {
     !access && navigate("/");
  }, [access, navigate]); 
   
-// useEffect(() => {
-//   dispatch(getVideoGames());
-// }, [dispatch]);
-  
-
-  
   const initialVideogames = async () => {
 
   };
-
-
   
   //console.log('Initial video: ',allVideogames)
-  // async function login(userData) {
-  //   const { email, password } = userData;
-  //   const URL = "http://localhost:3001/rickandmorty/login/";
-  //   try {
-  //     const { data } = await axios(
-  //       URL + `?email=${email}&password=${password}`
-  //     );
-  //     const { access } = data;
-  //     setAccess(data);
-  //     access && navigate("/home");
-  //   } catch (error) {
-  //     window.alert("Usuario o contraseña incorrectos");
-  //   }
-  // }
 
-  async function crearVideogame(userDataCrear) {
-    const { name, description, image, launchDate, rating, platforms, genres } = userDataCrear;
+  function crearVideogame(userDataCrear) {
     console.log('Datos videojuego Crear:', userDataCrear)
-    console.log('Plataformas: ',platforms)
+    //console.log('Plataformas: ',platforms)
     // const URL = "http://localhost:3001/rickandmorty/register/";
     try {
-     const newVideogame=await axios.post(URL, {
-    name,
-    description,
-    image,
-    platforms:platforms.join(', '),
-    launchDate,
-    rating,
-    genres,
-      });
+      const newVideogame = crearvideojuego(userDataCrear);
       console.log('Juego creado:',newVideogame)
       window.alert("Videojuego creado con éxito.");
       setAccess(true);
@@ -132,24 +94,6 @@ console.log("Initial video 2: ", allVideogames);
     <div className="App">
       {location.pathname !== "/" ? (
         <div className="DivPrueba">
-          {/* <h1
-            style={{
-              color: "blue",
-              WebkitTextStrokeWidth: "1px",
-              WebkitTextStrokeColor: "black",
-            }}
-          >
-            PROYECTO INDIVIDUAL - SOY HENRY{" "}
-          </h1>
-          <h2
-            style={{
-              color: "blue",
-              WebkitTextStrokeWidth: "1px",
-              WebkitTextStrokeColor: "black",
-            }}
-          >
-            Videogames{" "}
-          </h2> */}
           <Nav onSearch={onSearch} logout={logout} />
         </div>
       ) : undefined}

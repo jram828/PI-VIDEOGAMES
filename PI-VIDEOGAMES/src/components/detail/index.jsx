@@ -1,9 +1,9 @@
-import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { URL } from "../../App";
+import "./detail.css";
 
 const Detail = () => {
   const [videogame, setVideogame] = useState({});
@@ -43,10 +43,4 @@ const Detail = () => {
   );
 };
 
-  //   name,
-  //   description,
-  //   platforms,
-  //   image,
-  //   rating,
-  //   genres,
 export default Detail;

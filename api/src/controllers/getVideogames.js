@@ -19,8 +19,6 @@ const getVideogames = async (req, res) => {
   const videogamesDB = responseDB.map((videogame) => {
   return cleanVideogameDB(videogame);
 });
-    //console.log("Videogame con Genre: ", videogamesDB);
-
     console.log("URL:", `${URL}${APIKEY}`);
 
     for (let i = 1; i < 6; i++) {
@@ -29,26 +27,12 @@ const getVideogames = async (req, res) => {
         return cleanVideogameAPI(videogame);
       });
       videogamesAPIRaw.push(videogamesAPIPage);
-
     }
-    // if (response.data.results.length !== 0) {
     const videogamesAPI = videogamesAPIRaw.flat()
     console.log("Videogames API length", videogamesAPI.length);
-   // console.log("Videogames API:", videogamesAPI);
 
-
-
-
-
-
-
-    //const response = await axios.get(`${URL}${APIKEY}`);
-    // if (response.data.results.length !== 0) {
     res.status(200).json([...videogamesDB, ...videogamesAPI]);
-    // } else {
-    //   res.status(400).json({ message: "No genres were found" });
-    //   console.log(res.status);
-    // }
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

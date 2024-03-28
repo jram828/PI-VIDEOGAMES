@@ -15,7 +15,7 @@ const getVideoById = async (req, res) => {
  
     if (ID.length === 36) {
       console.log("ID getbyID:", ID);
-      const responseDB = await Videogame.findOne({
+      const responseDB = await Videogame.findAll({
         include: {
           model: Genre,
           attributes: ["name"],

@@ -82,19 +82,7 @@ const CrearVideogame = ({crearVideogame}) => {
         >
           CREAR VIDEOGAME{" "}
         </h2>
-        <div className="fotoRegistro">
-          {/* <img
-          // src={}
-          alt="Videogame"
-          style={{
-            height: "300px",
-            marginBottom: "10px",
-            borderRadius: "18%",
-            borderColor: "black",
-            borderStyle: "solid",
-          }}
-        /> */}
-        </div>
+
         <div className="Crear">
           <div className="inputcrear">
             <label className="labelcrear" htmlFor="name">
