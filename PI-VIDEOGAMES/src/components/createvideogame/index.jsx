@@ -1,71 +1,72 @@
+/* eslint-disable */
 import { useState } from "react";
-import './createvideogame.css'
+import "./createvideogame.css";
 import "../../App.css";
 //import logo from "../../assets/RickAndMorty.jpg"
 import { Button2 } from "../Mystyles";
+import validar from "../../utils/validacion";
 
-
-const CrearVideogame = ({crearVideogame}) => {
-
+const CrearVideogame = ({ crearVideogame }) => {
   const [userDataCrear, setUserDataCrear] = useState({
     name: "",
     description: "",
     image: "",
     platforms: [],
-    launchDate:"",
-    rating:"",
-    genres:[]
+    launchDate: "",
+    rating: "",
+    genres: [],
   });
-
+  
+  const [errors, setErrors] = useState({
+      email: "",
+      password: "",
+  });
+  
   const handleChangeCrear = (e) => {
-      if (e.target.parentNode.parentNode.id === "genres") {
-        if (e.target.checked) {
-          setUserDataCrear({
-            ...userDataCrear,
-            genres: userDataCrear.genres.concat(e.target.value),
-          });
-        } else {
-          setUserDataCrear({
-            ...userDataCrear,
-            genres: userDataCrear.genres.filter((x) => e.target.value !== x),
-          });
-        }
-      }
-      if (e.target.parentNode.parentNode.id === "platforms") {
-        if (e.target.checked) {
-          setUserDataCrear({
-            ...userDataCrear,
-            platforms: userDataCrear.platforms.concat(e.target.value),
-          });
-          console.log("Plataformas: ", userDataCrear.platforms);
-        } else {
-          setUserDataCrear({
-            ...userDataCrear,
-            platforms: userDataCrear.platforms.filter(
-              (x) => e.target.name !== x
-            ),
-          });
-        }
-      }
-      if (e.target.type !== "checkbox") {
-          setUserDataCrear({
+    if (e.target.parentNode.parentNode.id === "genres") {
+      if (e.target.checked) {
+        setUserDataCrear({
           ...userDataCrear,
-          [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
-          });
+          genres: userDataCrear.genres.concat(e.target.value),
+        });
+      } else {
+        setUserDataCrear({
+          ...userDataCrear,
+          genres: userDataCrear.genres.filter((x) => e.target.value !== x),
+        });
       }
-      // setErrors(
-      //   validate({
-      //     ...form,
-      //     [e.target.name]: e.target.value,
-      //   })
-      // );
-    
-
+    }
+    if (e.target.parentNode.parentNode.id === "platforms") {
+      if (e.target.checked) {
+        setUserDataCrear({
+          ...userDataCrear,
+          platforms: userDataCrear.platforms.concat(e.target.value),
+        });
+        console.log("Plataformas: ", userDataCrear.platforms);
+      } else {
+        setUserDataCrear({
+          ...userDataCrear,
+          platforms: userDataCrear.platforms.filter((x) => e.target.name !== x),
+        });
+      }
+    }
+    if (e.target.type !== "checkbox") {
+      setUserDataCrear({
+        ...userDataCrear,
+        [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
+      });
+    }
+    setErrors(
+      validar({
+        ...userDataCrear,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const submitHandlerCrear = (e) => {
     e.preventDefault();
-    crearVideogame(userDataCrear)
+    crearVideogame(userDataCrear);
   };
 
   return (
@@ -95,6 +96,7 @@ const CrearVideogame = ({crearVideogame}) => {
               value={userDataCrear.name}
               onChange={handleChangeCrear}
             />
+            {errors.name !== "" && <h2 className="error">{errors.name}</h2>}
             <br />
             <label className="labelcrear" htmlFor="description">
               Descripción:
@@ -108,6 +110,9 @@ const CrearVideogame = ({crearVideogame}) => {
               cols="40"
               rows="4"
             />
+            {errors.description !== "" && (
+              <h2 className="error">{errors.description}</h2>
+            )}
             <br />
             <label className="labelcrear" htmlFor="launchDate">
               Fecha de lanzamiento:
@@ -120,6 +125,9 @@ const CrearVideogame = ({crearVideogame}) => {
               value={userDataCrear.launchDate}
               onChange={handleChangeCrear}
             />
+            {errors.launchDate !== "" && (
+              <h2 className="error">{errors.launchDate}</h2>
+            )}
             <br />
             <label className="labelcrear" htmlFor="image">
               Imagen:
@@ -131,6 +139,7 @@ const CrearVideogame = ({crearVideogame}) => {
               value={userDataCrear.image}
               onChange={handleChangeCrear}
             />
+            {errors.image !== "" && <h2 className="error">{errors.image}</h2>}
             <br />
             <label className="labelcrear" htmlFor="rating">
               Rating:
@@ -142,6 +151,7 @@ const CrearVideogame = ({crearVideogame}) => {
               value={userDataCrear.rating}
               onChange={handleChangeCrear}
             />
+            {errors.rating !== "" && <h2 className="error">{errors.rating}</h2>}
             <hr style={{ borderStyle: "none" }} />
           </div>
           <div className="contenedorgenres">
@@ -151,6 +161,7 @@ const CrearVideogame = ({crearVideogame}) => {
             <label className="labelgenres" htmlFor="genres">
               Generos:
             </label>
+            {errors.genres !== "" && <h2 className="error">{errors.genres}</h2>}
             <div id="genres" className="genres" onChange={handleChangeCrear}>
               <div className="Action">
                 <input name="Action" value="4" type="checkbox" id="Action" />
@@ -282,6 +293,7 @@ const CrearVideogame = ({crearVideogame}) => {
           <hr style={{ borderStyle: "none" }} />
           <hr style={{ borderStyle: "none" }} />
           <label className="labelgenres">Plataformas:</label>
+          {errors.platforms !== "" && <h2 className="error">{errors.platforms}</h2>}
           <div id="platforms" className="genres" onChange={handleChangeCrear}>
             <div>
               <input name="PC" type="checkbox" id="PC" value="PC" />
@@ -351,4 +363,3 @@ const CrearVideogame = ({crearVideogame}) => {
   );
 };
 export default CrearVideogame;
-

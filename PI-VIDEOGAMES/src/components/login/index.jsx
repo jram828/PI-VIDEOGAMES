@@ -1,42 +1,48 @@
-
-import "./landing.css";
-import imgControl from "../../../public/ICONOVIDEOGAMECONTROL.png"
-import imgUsuario from "../../../public/usuario.png"
+import React, { useState } from "react";
+import "../../App.css";
+import logo from "../../assets/RickAndMorty.jpg"
 import { Button3 } from "../Mystyles";
-import { useState } from "react";
 
-const Landing = ({ login, clickHandlerCrear }) => {
-  console.log("Login: ", login);
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
+const Form = ({ login, clickHandlerCrear }) => {
+  console.log('Login: ',login)
+    const [userData, setUserData] = useState({
+      email: "",
+      password: "",
+    });
 
-  const handleChange = (e) => {
-    setUserData({
+  const handleChange=(e)=> {
+     setUserData({
       ...userData,
       [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
     });
-  };
-
+    
+  }
+  
   const submitHandler = (e) => {
     e.preventDefault();
     login(userData);
-  };
+  }
 
   return (
-    <div className="divLanding">
-      <h1>Proyecto Individual Soy HENRY</h1>
-      <br />
-      <br />
-      <h1>Videogames</h1>
-      <br />
-      <br />
+    <div>
       <form onSubmit={submitHandler}>
+        <div className="fotoRegistro">
+          <img
+            src={logo}
+            alt="Rick and Morty login"
+            style={{
+              height: "300px",
+              marginBottom: "10px",
+              borderRadius: "18%",
+              borderColor: "black",
+              borderStyle: "solid",
+            }}
+          />
+        </div>
         <div className="InputLogin">
-          {/* <label className="label" htmlFor="email">
+          <label className="label" htmlFor="email">
             Email:
-          </label> */}
+          </label>
           <br />
           <input
             name="email"
@@ -47,9 +53,9 @@ const Landing = ({ login, clickHandlerCrear }) => {
           />
           <br />
 
-          {/* <label className="label" htmlFor="password">
+          <label className="label" htmlFor="password">
             Contraseña:
-          </label> */}
+          </label>
           <br />
           <input
             name="password"
@@ -60,34 +66,20 @@ const Landing = ({ login, clickHandlerCrear }) => {
           />
 
           <hr style={{ borderStyle: "none" }} />
-          {/* <Button3
+          <Button3
             style={{ margin: "10px" }}
             type="submit"
             disabled={!userData.email || !userData.password}
           >
             INGRESAR
-          </Button3> */}
-          {/* <br />
+          </Button3>
+          <br />
           <Button3 type="button" onClick={clickHandlerCrear}>
             CREAR USUARIO
-          </Button3> */}
+          </Button3>
         </div>
-
-        <img
-          className="buttonLanding"
-          src={imgUsuario}
-          alt="Imagen usuario"
-          onClick={clickHandlerCrear}
-        ></img>
-
-        <img
-          className="buttonLanding"
-          src={imgControl}
-          alt="Imagen control"
-          onClick={submitHandler}
-        ></img>
       </form>
     </div>
   );
-};
-export default Landing;
+  };
+export default Form;

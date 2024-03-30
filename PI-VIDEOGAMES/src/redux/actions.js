@@ -8,16 +8,12 @@ export const ORDER_VIDEOGAMES_BY_NAME = "ORDER_VIDEOGAMES_BY_NAME";
 export const FILTER_VIDEOGAMES_BY_GENRE = "FILTER_VIDEOGAMES_BY_GENRE";
 export const FILTER_VIDEOGAMES_BY_ORIGIN = "FILTER_VIDEOGAMES_BY_ORIGIN";
 export const PAGINATE_VIDEOGAMES = "PAGINATE_VIDEOGAMES";
-// export const addFav = (character) => {
-  
-//   return {
-//     type: ADD_FAV,
-//   payload:character}
-// }
+export const CLOSE_VIDEOGAME = "CLOSE_VIDEOGAME";
+export const ADD_FAV = "ADD_FAV"
+export const REMOVE_FAV = "REMOVE_FAV";
 
 
 
-// ACTION | addFav
 export const getVideoGames = () => {
   const endpoint = "http://localhost:3001/videogames";
   return async (dispatch) => {
@@ -53,27 +49,12 @@ export const getVideoGamesByName = (name) => {
   };
 };
 
-// export const removeFav = (id) => {
-//   return {
-//     type: REMOVE_FAV,
-//     payload:id
-//   }
-// }
-
-export const removeFav = (id) => {
-  const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
-  return async (dispatch) => {
-    const { data } = await axios.delete(endpoint)
-    try{
-      return dispatch({
-        type: "REMOVE_FAV",
-        payload: data,
-      });
-    } catch (error) {
-      throw new TypeError("El favorito no se ha borrado");
-    }
-  };
-};
+export const closeVideogame = (id) => {
+  return {
+    type: CLOSE_VIDEOGAME,
+    payload:id
+  }
+}
 
 export const filterVideogamesGen = (genre) => {
   return {
@@ -106,13 +87,24 @@ export const orderVideogamesAlfa = (order) => {
   };
 };
 
-export const paginate = (Page) => {
-  console.log("Order Paginate:", Page);
-  const videoPerPage = 15;
-  const start = (Page - 1) * videoPerPage;
-  const end = start + videoPerPage;
+export const addFav = (videogame) => {
   return {
-    type: PAGINATE_VIDEOGAMES,
-    payload: {start,end},
+    type: ADD_FAV,
+    payload: videogame,
+  };
+};
+
+export const removeFav = (id) => {
+  const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
+  return async (dispatch) => {
+    const { data } = await axios.delete(endpoint);
+    try {
+      return dispatch({
+        type: "REMOVE_FAV",
+        payload: data,
+      });
+    } catch (error) {
+      throw new TypeError("El favorito no se ha borrado");
+    }
   };
 };

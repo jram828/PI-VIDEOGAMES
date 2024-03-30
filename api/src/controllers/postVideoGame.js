@@ -4,7 +4,7 @@ const { Videogame} = require("../db");
 const postVideoGame = async (req, res) => {
   const { name, description, platforms, image, rating, genres,launchDate } = req.body;
 
-  console.log('Platforms: ',platforms)
+  //console.log('Platforms: ',platforms)
   if (!name || !description || !platforms||!image||!rating) {
     res.status(400).send("Faltan datos");
   } else {
@@ -12,7 +12,7 @@ const postVideoGame = async (req, res) => {
       var newVideogame = await Videogame.create(
         { name, description, platforms, image, rating, genres, launchDate},
       );
-      console.log("GEnres TRy: ", newVideogame);
+      //console.log("GEnres TRy: ", newVideogame);
       newVideogame.addGenres(genres);
 
       return res.status(200).json(newVideogame);

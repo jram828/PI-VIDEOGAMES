@@ -1,7 +1,8 @@
-import {FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, PAGINATE_VIDEOGAMES} from "./actions";
+import {ADD_FAV, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, PAGINATE_VIDEOGAMES, REMOVE_FAV} from "./actions";
 
 let initialState = {
- // initialVideogames: [],
+  // initialVideogames: [],
+  myFavorites:[],
   allVideogames: [],
   videoPageContent:[],
 };
@@ -39,6 +40,15 @@ const rootReducer = (state = initialState, action) => {
           allVideogames: videogamesFilter,
         };
       }
+    case CLOSE_VIDEOGAME:
+      console.log("Payload cLOSE : ", action.payload);
+      return {
+        ...state,
+        allVideogames: state.allVideogames.filter(
+          (videogame) => videogame.id !== action.payload
+        ),
+      };
+
     case FILTER_VIDEOGAMES_BY_ORIGIN:
       console.log("Payload origin: ", action.payload.toUpperCase());
       if (action.payload.toUpperCase() === "TODOS") {
@@ -102,11 +112,8 @@ const rootReducer = (state = initialState, action) => {
         };
       }
     case PAGINATE_VIDEOGAMES:
-      console.log(
-        "Payload Paginate Videogames: ",
-        state.allVideogames
-      );
-      
+      console.log("Payload Paginate Videogames: ", state.allVideogames);
+
       return {
         ...state,
         videoPageContent: state.allVideogames.slice(
@@ -114,6 +121,16 @@ const rootReducer = (state = initialState, action) => {
           action.payload.end
         ),
       };
+    case ADD_FAV:
+
+      console.log("Payload ADD: ", action.payload);
+      return {
+        ...state,
+        myFavorites: [...state.myFavorites,action.payload],
+        allCharacters: action.payload,
+      };
+    case REMOVE_FAV:
+      return { ...state, myFavorites: action.payload };
     default:
       return state;
   }

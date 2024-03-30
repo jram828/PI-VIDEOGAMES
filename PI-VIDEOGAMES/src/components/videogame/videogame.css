@@ -46,3 +46,11 @@
    flex-wrap: wrap;
    font-size: small;
 }
+
+.botonfav{
+  background-color: black;
+  opacity: 0.9;
+  border-style: none;
+  font-size: 160%;
+  cursor: pointer;
+}

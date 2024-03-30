@@ -10,7 +10,6 @@ export const ContainerNav = styled.div`
 `;
 export const Button = styled.button`
   border-radius: 10%;
-  margin-left: 10px;
   cursor: pointer;
   background-color: black;
   color: white;

@@ -1,19 +1,24 @@
-
-import './videogames.css';
+/* eslint-disable */
+import "./videogames.css";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoGames} from "../../redux/actions";
+import { getVideoGames } from "../../redux/actions";
 
-export const Videogames = ({onClose }) => {
-  const allVideogames = useSelector((state) => state.allVideogames);
- 
-  const [Page,setPage]=useState(1)
+export const Videogames = ({ onClose, videogames, source }) => {
+    
+  console.log('Source videogames:' , source)
+  if (source === "all") {
+    var allVideogames = useSelector((state) => state.allVideogames);
+  } else {
+    var allVideogames = useSelector((state) => state.myFavorites);
+  }
+
+  const [Page, setPage] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getVideoGames());
-   
   }, [dispatch]);
 
   const videoPerPage = 15;
@@ -22,16 +27,20 @@ export const Videogames = ({onClose }) => {
   const start = (Page - 1) * videoPerPage;
   const end = start + videoPerPage;
 
-  const videoPageContent=allVideogames.slice(start,end)
+  const videoPageContent = allVideogames.slice(start, end);
 
   const prevPage = () => {
-    if(Page>1){setPage(Page-1)}
-  }
+    if (Page > 1) {
+      setPage(Page - 1);
+    }
+  };
 
   const nextPage = () => {
-    if(Page<nPages){setPage(Page + 1);}
-  }
-  console.log('Videogames Cards: ',videoPageContent)
+    if (Page < nPages) {
+      setPage(Page + 1);
+    }
+  };
+  console.log("Videogames Cards: ", videoPageContent);
   return (
     <div>
       <div className="paginate">
@@ -39,8 +48,7 @@ export const Videogames = ({onClose }) => {
         <button className="botonpage" onClick={prevPage}>
           Anterior
         </button>
-        <h3 className='labelpage'>
-          {" "}
+        <h3 className="labelpage">
           Página: {Page} de {nPages}
         </h3>
         <button className="botonpage" onClick={nextPage}>

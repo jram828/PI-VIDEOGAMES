@@ -29,7 +29,7 @@ const getVideogames = async (req, res) => {
       videogamesAPIRaw.push(videogamesAPIPage);
     }
     const videogamesAPI = videogamesAPIRaw.flat()
-    console.log("Videogames API length", videogamesAPI.length);
+    //console.log("Videogames API length", videogamesAPI.length);
 
     res.status(200).json([...videogamesDB, ...videogamesAPI]);
 

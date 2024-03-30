@@ -6,16 +6,16 @@ const { Sequelize } = require('sequelize');
 const {Genre} = require('../db');
 
 
-console.log(APIKEY)
+//console.log(APIKEY)
 const getGenres = async (req, res) => {
   
   try {
     // console.log("URL:", `${URL}${APIKEY}`);
     const response = await axios.get(`${URL}${APIKEY}`);
-    console.log(response.data.results);
+    //console.log(response.data.results);
     if (response.data.results.length !== 0) {
       const resMod = response.data.results.map((genre) => {
-        // console.log()
+        
         return { id: genre.id, name: genre.name};
         
        ; 
@@ -34,7 +34,7 @@ const getGenres = async (req, res) => {
       }
     else {
       res.status(400).json({ message: "No genres were found" });
-      console.log(res.status);
+      //console.log(res.status);
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

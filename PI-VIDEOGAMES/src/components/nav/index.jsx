@@ -1,39 +1,44 @@
+/* eslint-disable */
 import SearchBar from "../searchbar";
 import { Link, useLocation } from "react-router-dom";
 import { Button, Button2 } from "../Mystyles";
 import { useDispatch } from "react-redux";
-import { filterVideogamesGen, filterVideogamesOrig, getVideoGames, orderVideogamesAlfa, orderVideogamesRat} from "../../redux/actions";
-import './nav.css'
-
+import {
+  filterVideogamesGen,
+  filterVideogamesOrig,
+  getVideoGames,
+  orderVideogamesAlfa,
+  orderVideogamesRat,
+} from "../../redux/actions";
+import "./nav.css";
 
 const Nav = ({ onSearch }) => {
-
   const dispatch = useDispatch();
   const location = useLocation();
 
   const onClickHome = () => {
-
-        dispatch(getVideoGames());
-
+    dispatch(getVideoGames());
   };
 
-    const handleOrderRat = (e) => {
-      e.preventDefault();
-      dispatch(orderVideogamesRat(e.target.value));
+  const handleOrderRat = (e) => {
+    e.preventDefault();
+    dispatch(orderVideogamesRat(e.target.value));
   };
 
-      const handleOrderAlfa = (e) => {  e.preventDefault();
-      dispatch(orderVideogamesAlfa(e.target.value));};
+  const handleOrderAlfa = (e) => {
+    e.preventDefault();
+    dispatch(orderVideogamesAlfa(e.target.value));
+  };
 
-    const handleFilterGen = (e) => {
-      e.preventDefault();
-      dispatch(filterVideogamesGen(e.target.value));
+  const handleFilterGen = (e) => {
+    e.preventDefault();
+    dispatch(filterVideogamesGen(e.target.value));
   };
 
   const handleFilterOrig = (e) => {
-        e.preventDefault();
-        dispatch(filterVideogamesOrig(e.target.value));
-      };
+    e.preventDefault();
+    dispatch(filterVideogamesOrig(e.target.value));
+  };
 
   return (
     <div>
@@ -51,12 +56,12 @@ const Nav = ({ onSearch }) => {
           <Link to="about/">
             <Button className="about">About</Button>
           </Link>
+          <Link to="favorites/">
+            <Button>Favorites</Button>
+          </Link>
           <SearchBar className="searchbar" onSearch={onSearch} />
         </div>
 
-        {/* <Link to="favorites/">
-        <Button>Favorites</Button>
-      </Link> */}
       </div>
       {location.pathname !== "/about/" &&
       location.pathname !== "/crearvideojuego" ? (
@@ -73,6 +78,7 @@ const Nav = ({ onSearch }) => {
               <option value="RD">Descendente</option>
             </select>
           </div>
+          {/* <div className="contenedor filtros"> */}
           <div className="filtros">
             <select className="filtergenre" onChange={handleFilterGen}>
               <option value="">Seleccione el género</option>
@@ -106,10 +112,13 @@ const Nav = ({ onSearch }) => {
               <option value="API">API</option>
               <option value="Creado">Creado</option>
             </select>
-              <Button2 className="home" onClick={onClickHome}>
-                Limpiar filtros
-              </Button2>
           </div>
+          <div className="limpiar">
+            <Button2 className="home" onClick={onClickHome}>
+              Limpiar filtros
+            </Button2>
+          </div>
+          {/* </div> */}
         </div>
       ) : undefined}
     </div>
