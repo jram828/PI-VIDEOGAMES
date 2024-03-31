@@ -1,47 +1,53 @@
-/* eslint-disable */
+
 import SearchBar from "../searchbar";
 import { Link, useLocation } from "react-router-dom";
 import { Button, Button2 } from "../Mystyles";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filterVideogamesGen,
   filterVideogamesOrig,
   getVideoGames,
   orderVideogamesAlfa,
   orderVideogamesRat,
+  setSourceFilter,
 } from "../../redux/actions";
 import "./nav.css";
 
 const Nav = ({ onSearch }) => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const sourceFilter = useSelector((state) => state.sourceFilter);
 
   const onClickHome = () => {
     dispatch(getVideoGames());
   };
 
+    const onClickFavorites = () => {
+      dispatch(setSourceFilter("favorites"));
+    };
+
   const handleOrderRat = (e) => {
     e.preventDefault();
-    dispatch(orderVideogamesRat(e.target.value));
+    dispatch(orderVideogamesRat(e.target.value, sourceFilter));
   };
 
   const handleOrderAlfa = (e) => {
     e.preventDefault();
-    dispatch(orderVideogamesAlfa(e.target.value));
+    dispatch(orderVideogamesAlfa(e.target.value, sourceFilter));
   };
 
   const handleFilterGen = (e) => {
     e.preventDefault();
-    dispatch(filterVideogamesGen(e.target.value));
+    dispatch(filterVideogamesGen(e.target.value, sourceFilter));
   };
 
   const handleFilterOrig = (e) => {
     e.preventDefault();
-    dispatch(filterVideogamesOrig(e.target.value));
+    dispatch(filterVideogamesOrig(e.target.value, sourceFilter));
   };
 
   return (
-    <div>
+    <div className="contenedornav">
       <div className="nav">
         <div className="botonesnav">
           <Link to="/home/">
@@ -57,7 +63,7 @@ const Nav = ({ onSearch }) => {
             <Button className="about">About</Button>
           </Link>
           <Link to="favorites/">
-            <Button>Favorites</Button>
+            <Button onClick={onClickFavorites}>Favorites</Button>
           </Link>
           <SearchBar className="searchbar" onSearch={onSearch} />
         </div>
@@ -77,9 +83,6 @@ const Nav = ({ onSearch }) => {
               <option value="RA">Ascendente</option>
               <option value="RD">Descendente</option>
             </select>
-          </div>
-          {/* <div className="contenedor filtros"> */}
-          <div className="filtros">
             <select className="filtergenre" onChange={handleFilterGen}>
               <option value="">Seleccione el género</option>
               <option value="Todos">Todos</option>
@@ -113,11 +116,14 @@ const Nav = ({ onSearch }) => {
               <option value="Creado">Creado</option>
             </select>
           </div>
-          <div className="limpiar">
+          {/* <div className="contenedor filtros"> */}
+          <div className="filtros">
+          </div>
+          {/* <div className="limpiar">
             <Button2 className="home" onClick={onClickHome}>
               Limpiar filtros
             </Button2>
-          </div>
+          </div> */}
           {/* </div> */}
         </div>
       ) : undefined}

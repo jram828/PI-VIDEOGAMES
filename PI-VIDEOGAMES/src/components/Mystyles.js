@@ -13,9 +13,10 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: black;
   color: white;
-  height: 30px;
-  width: 50%;
+  height: 70%;
+  width: 100%;
   font-weight: bold;
+  font-size: 80%
 `;
 
 export const Button2 = styled.button`

@@ -1,11 +1,11 @@
 .nav {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     /* grid-gap: 10px; */
     grid-auto-rows: minmax(10px, auto);
     text-align:start;
-    background-color: aqua;
-
+    /* background-color: aqua; */
+    margin: 10px;
 }
 
 .containerselect {
@@ -14,52 +14,61 @@
     grid-gap: 10px;
     grid-auto-rows: minmax(10px, auto);
     align-content: center;
-    background-color: yellow;
+    /* background-color: yellow; */
 }
 .botonesnav {
     grid-column: 1/9;
     grid-row: 1;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
     grid-auto-rows: minmax(20px, auto);
     /* justify-content:center; */
     align-content: center;
     text-align: start;
-    background-color: green;
+    /* background-color: green; */
 }
 
 .filtros {
     grid-column: 1/4;
     grid-row: 2;
-    background-color:aquamarine;
-    text-align:end;
+    /* background-color:aquamarine; */
+    text-align:center;
 }
 
 .filtros > select{
-  margin-right: 80px;
+  margin-right: 90px;
   height: 25px;
   width: 200px;
   margin-left: 90px;
+  margin-top: 15px;
 }
 
 .orden  {
     grid-column: 1/4;
     grid-row: 1;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     text-align:end;
 }
 
 .orden > select{
-  margin-right: 80px;
+  margin-right: 90px;
   height: 25px;
   width: 200px;
   margin-left: 90px;
+   margin-top: 15px;
 }
 
 .limpiar  {
     grid-column: 4/5;
     grid-row: 1;
-    background-color: blue;
-    text-align: start;
+    /* background-color: blue; */
+    text-align: end;
+}
+
+.contenedornav{
+    background-color: rgb(243, 11, 243,0.6);
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 5px;
 }

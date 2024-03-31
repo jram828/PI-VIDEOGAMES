@@ -9,9 +9,9 @@ export const FILTER_VIDEOGAMES_BY_GENRE = "FILTER_VIDEOGAMES_BY_GENRE";
 export const FILTER_VIDEOGAMES_BY_ORIGIN = "FILTER_VIDEOGAMES_BY_ORIGIN";
 export const PAGINATE_VIDEOGAMES = "PAGINATE_VIDEOGAMES";
 export const CLOSE_VIDEOGAME = "CLOSE_VIDEOGAME";
-export const ADD_FAV = "ADD_FAV"
+export const ADD_FAV = "ADD_FAV";
 export const REMOVE_FAV = "REMOVE_FAV";
-
+export const SET_SOURCE_FILTER = "SET_SOURCE_FILTER";
 
 
 export const getVideoGames = () => {
@@ -56,34 +56,40 @@ export const closeVideogame = (id) => {
   }
 }
 
-export const filterVideogamesGen = (genre) => {
+export const filterVideogamesGen = (genre, sourceFilter) => {
   return {
     type: FILTER_VIDEOGAMES_BY_GENRE,
-    payload: genre
-  }
-}
-
-export const filterVideogamesOrig = (origin) => {
-  return {
-    type: FILTER_VIDEOGAMES_BY_ORIGIN,
-    payload: origin,
+    payload: {genre,sourceFilter }
   };
 };
 
-export const orderVideogamesRat = (order) => {
-  console.log('Order Action:', order)
-  return {
-    
-    type: ORDER_VIDEOGAMES_BY_RATING,
-    payload: order
-  }
+export const filterVideogamesOrig = (origin, sourceFilter) => {
+    return {
+      type: FILTER_VIDEOGAMES_BY_ORIGIN,
+      payload: { origin, sourceFilter }
+    };
 }
 
-export const orderVideogamesAlfa = (order) => {
+export const orderVideogamesRat = (order, sourceFilter) => {
+  console.log("Order Action:", order);
+  return {
+    type: ORDER_VIDEOGAMES_BY_RATING,
+    payload: {order,sourceFilter }
+  };
+};
+
+export const orderVideogamesAlfa = (order, sourceFilter) => {
   console.log("Order Action:", order);
   return {
     type: ORDER_VIDEOGAMES_BY_NAME,
-    payload: order,
+    payload: {order,sourceFilter }
+  };
+};
+
+export const setSourceFilter = (sourceFilter) => {
+  return {
+    type: SET_SOURCE_FILTER,
+    payload: sourceFilter,
   };
 };
 
