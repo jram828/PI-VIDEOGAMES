@@ -2,18 +2,18 @@ const {User} = require("../../src/db");
 
 const login = async (req, res) => {
   const { email, password } = req.query;
-  console.log('Email Query:', email)
-  console.log("Password Query:", password);
+  //console.log('Email Query:', email)
+  //console.log("Password Query:", password);
   if (!email || !password || password.length === 0 || email.length === 0) {
     res.status(400).send("Faltan datos");
-    console.log("Faltan datos");
+    //console.log("Faltan datos");
   } else {
     try {
-      console.log("Email:",email);
+      //console.log("Email:",email);
       const foundUser = await User.findOne({
         where: { email: email }
       });
-      console.log('Usuario find:', foundUser)
+     // console.log('Usuario find:', foundUser)
       
       try {
         

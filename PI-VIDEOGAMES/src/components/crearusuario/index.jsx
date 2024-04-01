@@ -1,7 +1,7 @@
 import { useState } from "react";
-
-import "../../App.css";
+import "./crearusuario.css";
 import { Button3 } from "../Mystyles";
+import validarusuario from "../../utils/validarusuario";
 
 
 const CrearUsuario = ({crearUsuario}) => {
@@ -11,18 +11,23 @@ const CrearUsuario = ({crearUsuario}) => {
     password: "",
   });
 
+    const [errors, setErrors] = useState({
+      email: "",
+      password: "",
+    });
+
   const handleChangeCrear = (e) => {
     setUserDataCrear({
       ...userDataCrear,
       [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
     });
 
-    // setErrors(
-    //   validar({
-    //     ...userDataCrear,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setErrors(
+      validarusuario({
+        ...userDataCrear,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const submitHandlerCrear = (e) => {
@@ -38,11 +43,7 @@ const CrearUsuario = ({crearUsuario}) => {
       <br />
       <form onSubmit={submitHandlerCrear}>
         <h2
-          style={{
-            color: "white",
-            WebkitTextStrokeWidth: "1px",
-            WebkitTextStrokeColor: "black",
-          }}
+          className="titulo2"
         >
           CREAR USUARIO
         </h2>
@@ -59,6 +60,7 @@ const CrearUsuario = ({crearUsuario}) => {
             value={userDataCrear.email}
             onChange={handleChangeCrear}
           />
+          {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
           <br />
           <label className="label" htmlFor="password">
             Contraseña:
@@ -71,12 +73,13 @@ const CrearUsuario = ({crearUsuario}) => {
             value={userDataCrear.password}
             onChange={handleChangeCrear}
           />
-          <hr style={{ borderStyle: "none" }} />
+          {errors.email !== "" && <h2 className="error">{errors.password}</h2>}
+
           <Button3
             type="submit"
             disabled={!userDataCrear.email || !userDataCrear.password}
           >
-            CREAR
+            Crear
           </Button3>
         </div>
       </form>

@@ -34,9 +34,9 @@ export const getVideoGamesByName = (name) => {
   
   const endpoint = "http://localhost:3001/videogames/";
   return async (dispatch) => {
-    console.log('Name getVideogamesByName: ',name);
+    //console.log('Name getVideogamesByName: ',name);
     const { data } = await axios.get(`${endpoint}name?name=${name}`);
-    console.log("Data getVideoGamesByName: ", data);
+    //console.log("Data getVideoGamesByName: ", data);
 
     try {
       return dispatch({
@@ -71,7 +71,7 @@ export const filterVideogamesOrig = (origin, sourceFilter) => {
 }
 
 export const orderVideogamesRat = (order, sourceFilter) => {
-  console.log("Order Action:", order);
+  //console.log("Order Action:", order);
   return {
     type: ORDER_VIDEOGAMES_BY_RATING,
     payload: {order,sourceFilter }
@@ -79,7 +79,7 @@ export const orderVideogamesRat = (order, sourceFilter) => {
 };
 
 export const orderVideogamesAlfa = (order, sourceFilter) => {
-  console.log("Order Action:", order);
+  //console.log("Order Action:", order);
   return {
     type: ORDER_VIDEOGAMES_BY_NAME,
     payload: {order,sourceFilter }
@@ -101,16 +101,21 @@ export const addFav = (videogame) => {
 };
 
 export const removeFav = (id) => {
-  const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
-  return async (dispatch) => {
-    const { data } = await axios.delete(endpoint);
-    try {
-      return dispatch({
-        type: "REMOVE_FAV",
-        payload: data,
-      });
-    } catch (error) {
-      throw new TypeError("El favorito no se ha borrado");
-    }
-  };
+  console.log('Id remove Fav:', id)
+  // const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
+  // return async (dispatch) => {
+  //   const { data } = await axios.delete(endpoint);
+  //   try {
+  //     return dispatch({
+  //       type: "REMOVE_FAV",
+  //       payload: data,
+  //     });
+  //   } catch (error) {
+  //     throw new TypeError("El favorito no se ha borrado");
+  //   }
+  // };
+    return {
+      type: REMOVE_FAV,
+      payload: id,
+    };
 };

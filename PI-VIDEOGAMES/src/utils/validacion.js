@@ -7,11 +7,11 @@ const validar=(input)=> {
   if (!input.name) {
     errors.name = "Debe ingresar un nombre";
   }
-  if (!input.description) {
-    errors.description = "Debe ingresar una descripción";
+  if (input.description.length > 255) {
+    errors.description = "Máximo 255 caracteres";
   }
   if (input.image.length > 255) {
-    errors.image = "La URL de la imagen debe contener máximo 255 caracteres";
+    errors.image = "Máximo 255 caracteres";
   }
 
   //validacion del password

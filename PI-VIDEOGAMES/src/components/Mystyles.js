@@ -14,7 +14,7 @@ export const Button = styled.button`
   background-color: black;
   color: white;
   height: 70%;
-  width: 100%;
+  width: 80%;
   font-weight: bold;
   font-size: 80%
 `;
@@ -41,8 +41,9 @@ export const Button3 = styled.button`
   margin-right: 10px;
   cursor: pointer;
   background-color: black;
-  color: blue;
+  color: white;
   height: 30px;
   width: 20%;
   font-weight: bold;
+  font-size: 80%;
 `;

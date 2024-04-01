@@ -9,18 +9,18 @@ const { Op } = require("sequelize");
 
 const getVideoByName = async (req, res) => {
   const { name } = req.query;
-  console.log("Name: ", name);
+  //console.log("Name: ", name);
   try {
     const videogamesDB = await Videogame.findAll({
       where: {
         name: {
-          [Op.iLike]: `${name}`,
+          [Op.iLike]: `%${name}%`,
         },
       },
       limit: 15,
     });
 
-    console.log("Videogames DB: ", videogamesDB);
+    //console.log("Videogames DB: ", videogamesDB);
 
     //console.log("URL", `${URL}?search=${name.name}&key=${APIKEY}`);
     const response = await axios.get(`${URL}?search=${name}&key=${APIKEY}`);

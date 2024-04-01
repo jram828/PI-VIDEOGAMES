@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions";
 import "./nav.css";
 
-const Nav = ({ onSearch }) => {
+const Nav = ({ onSearch, logout }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const sourceFilter = useSelector((state) => state.sourceFilter);
@@ -48,41 +48,32 @@ const Nav = ({ onSearch }) => {
 
   return (
     <div className="contenedornav">
-      <div className="nav">
-        <div className="botonesnav">
-          <Link to="/home/">
-            <Button className="home" onClick={onClickHome}>
-              {" "}
-              Home{" "}
-            </Button>
-          </Link>
-          <Link to={"/crearvideojuego"}>
-            <Button className="crear">Crear Videojuego</Button>
-          </Link>
-          <Link to="about/">
-            <Button className="about">About</Button>
-          </Link>
-          <Link to="favorites/">
-            <Button onClick={onClickFavorites}>Favorites</Button>
-          </Link>
-          <SearchBar className="searchbar" onSearch={onSearch} />
-        </div>
-
+      <div className="botonesnav">
+        <Link to="/home/">
+          <Button className="home" onClick={onClickHome}>
+            {" "}
+            Home{" "}
+          </Button>
+        </Link>
+        <Link to={"/crearvideojuego"}>
+          <Button className="crear">Crear Videojuego</Button>
+        </Link>
+        <Link to="favorites/">
+          <Button onClick={onClickFavorites}>Favorites</Button>
+        </Link>
+        <SearchBar className="searchbar" onSearch={onSearch} />
+        <Link to="about/">
+          <Button className="about">About</Button>
+        </Link>
+        <Link to={"/home"} onClick={logout}>
+          <Button>Logout</Button>
+        </Link>
       </div>
+
       {location.pathname !== "/about/" &&
       location.pathname !== "/crearvideojuego" ? (
         <div className="containerselect">
-          <div className="orden">
-            <select className="ordenalfa" onChange={handleOrderAlfa}>
-              <option value="">Ordenar alfabéticamente</option>
-              <option value="A-Z">A - Z</option>
-              <option value="Z-A">Z - A</option>
-            </select>
-            <select className="orderrating" onChange={handleOrderRat}>
-              <option value="">Ordenar por Rating</option>
-              <option value="RA">Ascendente</option>
-              <option value="RD">Descendente</option>
-            </select>
+          <div className="filtros">
             <select className="filtergenre" onChange={handleFilterGen}>
               <option value="">Seleccione el género</option>
               <option value="Todos">Todos</option>
@@ -116,15 +107,18 @@ const Nav = ({ onSearch }) => {
               <option value="Creado">Creado</option>
             </select>
           </div>
-          {/* <div className="contenedor filtros"> */}
-          <div className="filtros">
+          <div className="orden">
+            <select className="ordenalfa" onChange={handleOrderAlfa}>
+              <option value="">Ordenar alfabéticamente</option>
+              <option value="A-Z">A - Z</option>
+              <option value="Z-A">Z - A</option>
+            </select>
+            <select className="orderrating" onChange={handleOrderRat}>
+              <option value="">Ordenar por Rating</option>
+              <option value="RA">Ascendente</option>
+              <option value="RD">Descendente</option>
+            </select>
           </div>
-          {/* <div className="limpiar">
-            <Button2 className="home" onClick={onClickHome}>
-              Limpiar filtros
-            </Button2>
-          </div> */}
-          {/* </div> */}
         </div>
       ) : undefined}
     </div>

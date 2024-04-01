@@ -37,12 +37,12 @@ function App() {
       async function crearUsuario(userDataCrear) {
         const { email, password } = userDataCrear;
 
-        console.log('User Data crear: ', userDataCrear)
+        //console.log('User Data crear: ', userDataCrear)
         const URL = "http://localhost:3001/register";
         try {
-          console.log({ email: email, password: password })
+          //console.log({ email: email, password: password })
           const response = await axios.post(URL, { email: `${email}`, password: `${password}` });
-          console.log('Response crear usuario: ', response)
+          //console.log('Response crear usuario: ', response)
           window.alert("Usuario creado con éxito.");
           setAccess(false);
           access && navigate("/");
@@ -53,7 +53,7 @@ function App() {
       }
 
   function crearVideogame(userDataCrear) {
-    console.log("Datos videojuego Crear:", userDataCrear);
+    //console.log("Datos videojuego Crear:", userDataCrear);
     //console.log('Plataformas: ',platforms)
     // const URL = "http://localhost:3001/rickandmorty/register/";
     try {
@@ -119,7 +119,7 @@ function App() {
     navigate("/crearusuario");
   };
   const source = "all";
-  console.log("Initial video 2: ", allVideogames);
+  //console.log("Initial video 2: ", allVideogames);
   return (
     <div className="App">
       {location.pathname !== "/" &&

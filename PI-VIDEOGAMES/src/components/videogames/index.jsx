@@ -7,7 +7,7 @@ import { getVideoGames } from "../../redux/actions";
 
 export const Videogames = ({ onClose, videogames, source }) => {
     
-  console.log('Source videogames:' , source)
+ //console.log('Source videogames:' , source)
   if (source === "all") {
     var allVideogames = useSelector((state) => state.allVideogames);
   } else {
@@ -40,21 +40,31 @@ export const Videogames = ({ onClose, videogames, source }) => {
       setPage(Page + 1);
     }
   };
-  console.log("Videogames Cards: ", videoPageContent);
+  //console.log("Videogames Cards: ", videoPageContent);
   return (
     <div>
-      <div className="paginate">
-        {" "}
-        <button className="botonpage" onClick={prevPage}>
-          Anterior
-        </button>
-        <h3 className="labelpage">
-          Página: {Page} de {nPages}
-        </h3>
-        <button className="botonpage" onClick={nextPage}>
-          Siguiente
-        </button>
-      </div>
+      {nPages !== 0 ? (
+        <div className="paginate">
+          {" "}
+          <button className="botonpage" onClick={prevPage}>
+            Anterior
+          </button>
+          <h3 className="labelpage">
+            Página: {Page} de {nPages}
+          </h3>
+          <button className="botonpage" onClick={nextPage}>
+            Siguiente
+          </button>
+        </div>
+      ) : (
+        <div>
+            <br />
+            <br />
+          <h2 className="nogenres">
+            No se encontraron videojuegos con ese género
+          </h2>
+        </div>
+      )}
       <div className="cards">
         {videoPageContent.map((videogame) => {
           return (

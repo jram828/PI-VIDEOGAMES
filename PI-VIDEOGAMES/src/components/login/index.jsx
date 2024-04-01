@@ -4,7 +4,7 @@ import logo from "../../assets/RickAndMorty.jpg"
 import { Button3 } from "../Mystyles";
 
 const Form = ({ login, clickHandlerCrear }) => {
-  console.log('Login: ',login)
+  //console.log('Login: ',login)
     const [userData, setUserData] = useState({
       email: "",
       password: "",

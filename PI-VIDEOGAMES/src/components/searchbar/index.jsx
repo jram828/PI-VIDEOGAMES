@@ -9,10 +9,10 @@ const SearchBar = () => {
   var [name, setName] = useState("");
 
 
-console.log('Name SearchBar: ',name);
+//console.log('Name SearchBar: ',name);
   const handleClick = async() => {
 
-    console.log("Name handleClick: ", name);
+    //console.log("Name handleClick: ", name);
 
     try {
         dispatch(getVideoGamesByName(name));

@@ -2,12 +2,13 @@
 import "../../App.css";
 import "./videogame.css";
 import { Link } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getVideoGames, removeFav, addFav } from "../../redux/actions";
 import { useEffect, useState } from "react";
 
 const Videogame = (props) => {
-  console.log('Props Videogame',props)
+  //console.log('Props Videogame',props)
+  const dispatch = useDispatch();
   const myFavorites = useSelector((state) => state.myFavorites);
   const { name, image, id, genres, rating, newRating, onClose } =
     props.videogame;
@@ -21,10 +22,11 @@ const Videogame = (props) => {
       addFav(props.videogame);
     } else if (isFav === true) {
       setIsFav(false);
-      removeFav(props.videogame.id);
+      console.log(props.videogame.id)
+      dispatch(removeFav(props.videogame.id));
     }
   };
- console.log('My favorites: ', myFavorites)
+// console.log('My favorites: ', myFavorites)
   useEffect(() => {
     myFavorites.forEach((fav) => {
       if (fav.id === props.videogame.id) {
@@ -67,6 +69,7 @@ const Videogame = (props) => {
             style={{
               color: "white",
               backgroundColor: "gray",
+              fontSize: "14px",
             }}
           >
             Ver detalles

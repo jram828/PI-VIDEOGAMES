@@ -1,74 +1,56 @@
-.nav {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    /* grid-gap: 10px; */
-    grid-auto-rows: minmax(10px, auto);
-    text-align:start;
-    /* background-color: aqua; */
-    margin: 10px;
-}
-
 .containerselect {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(10px, auto);
     align-content: center;
     /* background-color: yellow; */
 }
 .botonesnav {
-    grid-column: 1/9;
+    grid-column: 1/7;
     grid-row: 1;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-gap: 15px;
     grid-auto-rows: minmax(20px, auto);
-    /* justify-content:center; */
     align-content: center;
     text-align: start;
     /* background-color: green; */
 }
 
 .filtros {
-    grid-column: 1/4;
-    grid-row: 2;
-    /* background-color:aquamarine; */
-    text-align:center;
+    grid-column: 4/7;
+    grid-row: 1;
+    /* background-color:red; */
+    text-align:start;
+    padding: 10px;
 }
 
 .filtros > select{
-  margin-right: 90px;
   height: 25px;
   width: 200px;
-  margin-left: 90px;
-  margin-top: 15px;
+  margin-left: 30px;
 }
 
 .orden  {
     grid-column: 1/4;
     grid-row: 1;
     /* background-color: blueviolet; */
-    text-align:end;
+    text-align:start;
+    padding: 10px;
 }
 
 .orden > select{
-  margin-right: 90px;
   height: 25px;
   width: 200px;
-  margin-left: 90px;
-   margin-top: 15px;
-}
-
-.limpiar  {
-    grid-column: 4/5;
-    grid-row: 1;
-    /* background-color: blue; */
-    text-align: end;
+  margin-left: 30px;
 }
 
 .contenedornav{
-    background-color: rgb(243, 11, 243,0.6);
+    /* rgb(243, 11, 243,0.6); */
+    background-color: rgb(87, 84, 87, 0.6);
     border-radius: 10px;
     border: 2px solid black;
     padding: 5px;
+    z-index:auto;
 }
