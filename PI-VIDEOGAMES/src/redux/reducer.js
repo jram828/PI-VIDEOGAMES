@@ -1,4 +1,5 @@
-import {ADD_FAV, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_SOURCE_FILTER} from "./actions";
+import { SET_LOADING } from "./actionTypes";
+import {ADD_FAV, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_SOURCE_FILTER} from "./actionTypes";
 
 let initialState = {
   initialVideogames: [],
@@ -7,6 +8,7 @@ let initialState = {
   allVideogames: [],
   videoPageContent: [],
   sourceFilter: "all",
+  loading:""
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -20,8 +22,11 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_VIDEOGAME_BY_NAME:
-      //console.log("Payload Get Videogames By Name: ", action.payload);
+      console.log("Payload Get Videogames By Name: ", action.payload);
       return { ...state, allVideogames: action.payload };
+    // case CLEAR_VIDEOGAMES:
+    //   console.log("Payload Clear Videogames: ", action.payload);
+    //   return { ...state, allVideogames: action.payload };
 
     case FILTER_VIDEOGAMES_BY_GENRE:
       if (action.payload.sourceFilter === "all") {
@@ -35,7 +40,9 @@ const rootReducer = (state = initialState, action) => {
           //console.log("Genres filter by genre: ", state.allVideogames);
 
           let videogamesFilter = state.allVideogames.filter((videogame) =>
-            videogame.genres.toUpperCase().includes(action.payload.genre.toUpperCase())
+            videogame.genres
+              .toUpperCase()
+              .includes(action.payload.genre.toUpperCase())
           );
           //console.log("Videogames filter: ", videogamesFilter);
           return {
@@ -43,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
             allVideogames: videogamesFilter,
           };
         }
-      } else { 
+      } else {
         //console.log('Payload genres filter: ', action.payload)
         if (action.payload.genre.toUpperCase() === "TODOS") {
           return {
@@ -65,7 +72,7 @@ const rootReducer = (state = initialState, action) => {
           };
         }
       }
-        
+
     case CLOSE_VIDEOGAME:
       //console.log("Payload cLOSE : ", action.payload);
       return {
@@ -130,7 +137,6 @@ const rootReducer = (state = initialState, action) => {
       }
     case ORDER_VIDEOGAMES_BY_RATING:
       if (action.payload.sourceFilter === "all") {
-
         if (action.payload.order.toUpperCase() === "RA") {
           //console.log("Payload Rating: ", action.payload);
           //console.log("Estado Rating:", state.allVideogames);
@@ -149,7 +155,7 @@ const rootReducer = (state = initialState, action) => {
             ),
           };
         }
-      } else { 
+      } else {
         //console.log("Payload Rating: ", action.payload);
         if (action.payload.order.toUpperCase() === "RA") {
           //console.log("Estado Rating:", state.initialMyFavorites);
@@ -168,12 +174,10 @@ const rootReducer = (state = initialState, action) => {
             ),
           };
         }
-
       }
-        
+
     case ORDER_VIDEOGAMES_BY_NAME:
       if (action.payload.sourceFilter === "all") {
-
         if (action.payload.order.toUpperCase() === "A-Z") {
           return {
             ...state,
@@ -190,22 +194,22 @@ const rootReducer = (state = initialState, action) => {
           };
         }
       } else {
-                if (action.payload.order.toUpperCase() === "A-Z") {
-                  return {
-                    ...state,
-                    myFavorites: [...state.myFavorites].sort((a, b) =>
-                      a.name > b.name ? 1 : -1
-                    ),
-                  };
-                } else {
-                  return {
-                    ...state,
-                    myFavorites: [...state.myFavorites].sort((a, b) =>
-                      a.name < b.name ? 1 : -1
-                    ),
-                  };
-                }
-       }
+        if (action.payload.order.toUpperCase() === "A-Z") {
+          return {
+            ...state,
+            myFavorites: [...state.myFavorites].sort((a, b) =>
+              a.name > b.name ? 1 : -1
+            ),
+          };
+        } else {
+          return {
+            ...state,
+            myFavorites: [...state.myFavorites].sort((a, b) =>
+              a.name < b.name ? 1 : -1
+            ),
+          };
+        }
+      }
 
     case ADD_FAV:
       //console.log("Payload ADD: ", action.payload);
@@ -214,20 +218,26 @@ const rootReducer = (state = initialState, action) => {
         initialMyFavorites: [...state.initialMyFavorites, action.payload],
         myFavorites: [...state.myFavorites, action.payload],
       };
-    
+
     case REMOVE_FAV:
-          return {
-            ...state,
-            myFavorites:  state.myFavorites.filter(
-            (videogame) => videogame.id !== action.payload
-          )
+      return {
+        ...state,
+        myFavorites: state.myFavorites.filter(
+          (videogame) => videogame.id !== action.payload
+        ),
       };
-    
+
     case SET_SOURCE_FILTER:
       //console.log("Payload Source filter: ", action.payload);
       return {
         ...state,
         sourceFilter: action.payload,
+      };
+    case SET_LOADING:
+      //console.log("Payload Source filter: ", action.payload);
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

@@ -9,9 +9,12 @@ const { Op } = require("sequelize");
 
 const getVideoByName = async (req, res) => {
   const { name } = req.query;
-  //console.log("Name: ", name);
+  console.log("Name: ", name);
+  let videogamesDB = [];
+  let videogamesAPI = [];
+  let videogames = [];
   try {
-    const videogamesDB = await Videogame.findAll({
+    videogamesDB = await Videogame.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
@@ -21,21 +24,15 @@ const getVideoByName = async (req, res) => {
     });
 
     //console.log("Videogames DB: ", videogamesDB);
-
     //console.log("URL", `${URL}?search=${name.name}&key=${APIKEY}`);
     const response = await axios.get(`${URL}?search=${name}&key=${APIKEY}`);
     //console.log("Response:", response.data.results);
-    const videogamesAPI = response.data.results.map((videogame) => {
+    videogamesAPI = response.data.results.map((videogame) => {
       return cleanVideogame(videogame);
     });
-          //const videogamesAPI = videogamesAPIRaw.filter((game) => game.name === name);
-         
+    videogames = [...videogamesDB,... videogamesAPI].slice(0, 15);
 
-    const videogames = [...videogamesDB, ...videogamesAPI].slice(0, 15);
-
-    //console.log("Videogame API:", videogameAPI);
-    //const videogame = [...videogameAPI, ...videogameDB];
-
+    console.log("Videogame API:", videogamesAPI);
     res.status(200).json(videogames);
   } catch (error) {
     // console.log('Aqui se rompe');

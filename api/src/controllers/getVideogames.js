@@ -19,7 +19,7 @@ const getVideogames = async (req, res) => {
   const videogamesDB = responseDB.map((videogame) => {
   return cleanVideogameDB(videogame);
 });
-    console.log("URL:", `${URL}${APIKEY}`);
+    //console.log("URL:", `${URL}${APIKEY}`);
 
     for (let i = 1; i < 6; i++) {
       const response = await axios.get(`${URL}${APIKEY}&page=${i}`);

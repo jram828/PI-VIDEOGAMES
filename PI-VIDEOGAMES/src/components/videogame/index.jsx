@@ -7,7 +7,7 @@ import { getVideoGames, removeFav, addFav } from "../../redux/actions";
 import { useEffect, useState } from "react";
 
 const Videogame = (props) => {
-  //console.log('Props Videogame',props)
+  console.log('Props Videogame',props)
   const dispatch = useDispatch();
   const myFavorites = useSelector((state) => state.myFavorites);
   const { name, image, id, genres, rating, newRating, onClose } =

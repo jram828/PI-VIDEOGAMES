@@ -7,8 +7,6 @@ import { getVideoGamesByName } from "../../redux/actions";
 const SearchBar = () => {
   const dispatch = useDispatch();
   var [name, setName] = useState("");
-
-
 //console.log('Name SearchBar: ',name);
   const handleClick = async() => {
 

@@ -1,7 +1,7 @@
-
+/* eslint-disable */
 import SearchBar from "../searchbar";
 import { Link, useLocation } from "react-router-dom";
-import { Button, Button2 } from "../Mystyles";
+import { Button } from "../Mystyles";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterVideogamesGen,
@@ -22,9 +22,9 @@ const Nav = ({ onSearch, logout }) => {
     dispatch(getVideoGames());
   };
 
-    const onClickFavorites = () => {
-      dispatch(setSourceFilter("favorites"));
-    };
+  const onClickFavorites = () => {
+    dispatch(setSourceFilter("favorites"));
+  };
 
   const handleOrderRat = (e) => {
     e.preventDefault();
@@ -49,19 +49,22 @@ const Nav = ({ onSearch, logout }) => {
   return (
     <div className="contenedornav">
       <div className="botonesnav">
-        <Link to="/home/">
+        <Link to="/home">
           <Button className="home" onClick={onClickHome}>
             {" "}
             Home{" "}
           </Button>
         </Link>
+        {location.pathname !== "/crearvideojuego"? (
         <Link to={"/crearvideojuego"}>
           <Button className="crear">Crear Videojuego</Button>
-        </Link>
+        </Link>) : undefined}
         <Link to="favorites/">
           <Button onClick={onClickFavorites}>Favorites</Button>
         </Link>
-        <SearchBar className="searchbar" onSearch={onSearch} />
+        {location.pathname === "/home" ? (
+          <SearchBar className="searchbar" onSearch={onSearch} />
+        ) : undefined}
         <Link to="about/">
           <Button className="about">About</Button>
         </Link>

@@ -10,10 +10,8 @@ const cleanVideogameDB = require("../utils/cleanVideogameDB");
 const getVideoById = async (req, res) => {
   const ID = req.params.idVideogame;
   try {
-    
     //console.log('Response:',response)
- 
-    if (ID.length === 36) {
+     if (ID.length === 36) {
       //console.log("ID getbyID:", ID);
       const responseDB = await Videogame.findAll({
         include: {
@@ -22,23 +20,6 @@ const getVideoById = async (req, res) => {
           through: { attributes: [] },
         },
       });
-
-      // {
-      //   where: {
-      //     id: id;
-      //   }
-      //   include: [
-      //     {
-      //       model: Project,
-      //       through: {
-      //         where: {
-      //           // Here, `completed` is a column present at the junction table
-      //           completed: true,
-      //         },
-      //       },
-      //     },
-      //   ];
-      // }
         const videogamesDB = responseDB.map((videogame) => {
           return cleanVideogameDB(videogame);
         });

@@ -1,7 +1,7 @@
-
+/* eslint-disable */
 import "./landing.css";
 import imgControl from "../../../src/assets/ICONOVIDEOGAMECONTROL.png";
-import imgUsuario from "../../../src/assets/usuario.png"
+import imgUsuario from "../../../src/assets/usuario.png";
 import { useState } from "react";
 import validarusuario from "../../utils/validarusuario";
 
@@ -12,24 +12,24 @@ const Landing = ({ login, clickHandlerCrear }) => {
     password: "",
   });
 
-      const [errors, setErrors] = useState({
-        email: "",
-        password: "",
-      });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
-      const handleChange = (e) => {
-        setUserData({
-          ...userData,
-          [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
-        });
+  const handleChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
+    });
 
-        setErrors(
-          validarusuario({
-            ...userData,
-            [e.target.name]: e.target.value,
-          })
-        );
-      };
+    setErrors(
+      validarusuario({
+        ...userData,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import "./videogames.css";
+import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,8 +20,9 @@ export const Videogames = ({ onClose, videogames, source }) => {
 
   useEffect(() => {
     dispatch(getVideoGames());
-  }, [dispatch]);
 
+  }, [dispatch]);
+  console.log('All videogames: ',allVideogames)
   const videoPerPage = 15;
 
   const nPages = Math.ceil(allVideogames.length / videoPerPage);
@@ -40,7 +42,7 @@ export const Videogames = ({ onClose, videogames, source }) => {
       setPage(Page + 1);
     }
   };
-  //console.log("Videogames Cards: ", videoPageContent);
+  console.log("Videogames Cards: ", videoPageContent);
   return (
     <div>
       {nPages !== 0 ? (
@@ -56,19 +58,26 @@ export const Videogames = ({ onClose, videogames, source }) => {
             Siguiente
           </button>
         </div>
+      ) : location.pathname !== "/home" ? (
+        <div>
+          <br />
+          <br />
+          <h2 className="nogenres">No se encontraron videojuegos</h2>
+        </div>
       ) : (
         <div>
-            <br />
-            <br />
-          <h2 className="nogenres">
-            No se encontraron videojuegos con ese género
-          </h2>
+          <br />
+          <br />
+          <br />
+          <h2 className="nogenres">Cargando videojuegos</h2>
+          <img className="loading" src={loading} alt="loading"></img>
         </div>
       )}
       <div className="cards">
-        {videoPageContent.map((videogame) => {
+        {
+          videoPageContent.map((videogame) => {
           return (
-            <div key={videogame.name}>
+            <div key={videogame.id}>
               <Videogame videogame={videogame} onClose={onClose} />
             </div>
           );

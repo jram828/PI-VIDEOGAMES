@@ -1,8 +1,7 @@
 import "../../App.css";
 import foto from '../../assets/FOTOJULIAN.jpg'
+import videojuego from "../../assets/videojuego.gif";
 import './about.css'
-import ReactPlayer from 'react-player'
-import videoGameplay from '../../assets/Gameplay.mp4'
 
 const About = () => {
   
@@ -34,17 +33,9 @@ const About = () => {
         </div>
         <br />
       </div>
+
       <div className="containervideo">
-        <div className="video">
-          <ReactPlayer
-            url={videoGameplay}
-            height={"100%"}
-            width={"100%"}
-            controls
-            playing
-            loop
-          />
-        </div>
+        <img className="video" src={videojuego} alt="Gif Videojuego" />
       </div>
     </div>
   ); 

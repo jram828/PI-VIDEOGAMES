@@ -31,7 +31,7 @@ function App() {
     !access && navigate("/");
   }, [access, navigate]);
 
-  const initialVideogames = async () => {};
+  // const initialVideogames = async () => {};
 
   //console.log('Initial video: ',allVideogames)
       async function crearUsuario(userDataCrear) {
@@ -87,28 +87,9 @@ function App() {
     setAccess(false);
     navigate("/");
   };
-  // const signIn = () => {
-  //   setAccess(true);
-  //   navigate("/home");
-  // };
 
-  const onSearch = async (name) => {
-    //   try {
-    //     //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22
-    //     console.log(name)
-    //     const { data } = await axios(`${URL}name?name=${name}`);
-    //     console.log('Data Onsearch: ',data)
-    //     setVideogames([videogames, data]);
-    //     console.log('Videogames Onsearch: ', videogames)
-    //     setAccess(true);
-    //     access && navigate("/home");
-    //   } catch (error) {
-    //     window.alert("Videogame Not Found!");
-    //   }
-  };
 
   const onClose = (id) => {
-    //e.preventdefault();
     dispatch(closeVideogame(id));
   };
 
@@ -125,7 +106,7 @@ function App() {
       {location.pathname !== "/" &&
        location.pathname !== "/crearusuario" ? (
         <div className="DivPrueba">
-          <Nav onSearch={onSearch} logout={logout} />
+          <Nav logout={logout} />
         </div>
       ) : undefined}
       <Routes>
@@ -141,7 +122,7 @@ function App() {
             <Videogames
               allVideogames={allVideogames}
               onClose={onClose}
-              initialVideogames={initialVideogames}
+              // initialVideogames={initialVideogames}
               source={source}
             />
           }

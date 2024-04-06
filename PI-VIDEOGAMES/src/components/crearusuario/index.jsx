@@ -1,20 +1,19 @@
+/* eslint-disable */
 import { useState } from "react";
 import "./crearusuario.css";
 import { Button3 } from "../Mystyles";
 import validarusuario from "../../utils/validarusuario";
 
-
-const CrearUsuario = ({crearUsuario}) => {
-
+const CrearUsuario = ({ crearUsuario }) => {
   const [userDataCrear, setUserDataCrear] = useState({
     email: "",
     password: "",
   });
 
-    const [errors, setErrors] = useState({
-      email: "",
-      password: "",
-    });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
   const handleChangeCrear = (e) => {
     setUserDataCrear({
@@ -32,7 +31,7 @@ const CrearUsuario = ({crearUsuario}) => {
 
   const submitHandlerCrear = (e) => {
     e.preventDefault();
-    crearUsuario(userDataCrear)
+    crearUsuario(userDataCrear);
   };
 
   return (
@@ -42,11 +41,7 @@ const CrearUsuario = ({crearUsuario}) => {
       <h1>Videogames</h1>
       <br />
       <form onSubmit={submitHandlerCrear}>
-        <h2
-          className="titulo2"
-        >
-          CREAR USUARIO
-        </h2>
+        <h2 className="titulo2">CREAR USUARIO</h2>
 
         <div className="InputLogin">
           <label className="label" htmlFor="email">

@@ -13,8 +13,8 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: black;
   color: white;
-  height: 70%;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   font-weight: bold;
   font-size: 80%
 `;
@@ -25,14 +25,14 @@ export const Button2 = styled.button`
   cursor: pointer;
   background-color: black;
   color: white;
-  height: 30px;
+  height: 100%;
   width: 140px;
   font-weight: bold;
 `;
 export const Input = styled.input`
 border-radius:10px;
 margin-right: 10px;
-height: 30px;
+height: 100%;
 width: 150px;
 `;
 

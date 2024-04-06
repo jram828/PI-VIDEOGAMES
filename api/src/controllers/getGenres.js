@@ -20,7 +20,7 @@ const getGenres = async (req, res) => {
         
        ; 
       })
-        console.log(resMod)
+        //console.log(resMod)
         resMod.forEach((genre) => {
           Genre.findOrCreate({
             where: {
