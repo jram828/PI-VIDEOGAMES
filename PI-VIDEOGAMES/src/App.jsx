@@ -99,7 +99,7 @@ function App() {
     setAccess(true);
     navigate("/crearusuario");
   };
-  const source = "all";
+  // const source = "all";
   //console.log("Initial video 2: ", allVideogames);
   return (
     <div className="App">
@@ -120,10 +120,7 @@ function App() {
           path="/home"
           element={
             <Videogames
-              allVideogames={allVideogames}
               onClose={onClose}
-              // initialVideogames={initialVideogames}
-              source={source}
             />
           }
         />

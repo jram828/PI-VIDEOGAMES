@@ -37,9 +37,7 @@ const CrearUsuario = ({ crearUsuario }) => {
   return (
     <div>
       <h1>Proyecto Individual Soy HENRY</h1>
-      <br />
       <h1>Videogames</h1>
-      <br />
       <form onSubmit={submitHandlerCrear}>
         <h2 className="titulo2">CREAR USUARIO</h2>
 
@@ -69,7 +67,9 @@ const CrearUsuario = ({ crearUsuario }) => {
             onChange={handleChangeCrear}
           />
           {errors.email !== "" && <h2 className="error">{errors.password}</h2>}
-
+          <br />
+          <br />
+          <br />
           <Button3
             type="submit"
             disabled={!userDataCrear.email || !userDataCrear.password}

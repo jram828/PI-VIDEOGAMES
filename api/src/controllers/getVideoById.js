@@ -13,21 +13,21 @@ const getVideoById = async (req, res) => {
     //console.log('Response:',response)
      if (ID.length === 36) {
       //console.log("ID getbyID:", ID);
-      const responseDB = await Videogame.findAll({
-        include: {
-          model: Genre,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
+      const responseDB = await Videogame.findOne({
+        where: {
+            id:ID,
+          },
+        include: [
+          {
+            model: Genre,
+            attributes: ["name"],
+            through: { attributes: [] },
+          },
+        ],
       });
-        const videogamesDB = responseDB.map((videogame) => {
-          return cleanVideogameDB(videogame);
-        });
-      const videogameDB = videogamesDB.filter(
-        (game) => game.id === ID
-      );
-       var videogame= videogameDB[0];
-        //console.log('Videogame getbyID: ',videogame)
+
+       var videogame = cleanVideogameDB(responseDB.dataValues);
+        console.log('Videogame getbyID: ',responseDB)
       //console.log("videogame getbyiD: ", videogame.genres[0].dataValues.name);
     } else {
         const response = await axios.get(`${URL}${ID}?key=${APIKEY}`);

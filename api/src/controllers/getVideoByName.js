@@ -3,9 +3,10 @@ require("dotenv").config();
 const { DB_USER, DB_PASSWORD, DB_HOST, APIKEY } = process.env;
 const URL = "https://api.rawg.io/api/games";
 const axios = require("axios");
-const { Videogame } = require("../db");
+const { Videogame, Genre } = require("../db");
 const cleanVideogame = require("../utils/cleanVideogameAPI");
 const { Op } = require("sequelize");
+const cleanVideogameDB = require("../utils/cleanVideogameDB");
 
 const getVideoByName = async (req, res) => {
   const { name } = req.query;
@@ -14,15 +15,23 @@ const getVideoByName = async (req, res) => {
   let videogamesAPI = [];
   let videogames = [];
   try {
-    videogamesDB = await Videogame.findAll({
+    const responseDB = await Videogame.findAll({
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
         },
       },
-      limit: 15,
+      include: [
+        {
+          model: Genre,
+          attributes: ["name"],
+          through: { attributes: [] },
+        }
+      ],limit:15
     });
-
+       const videogamesDB = responseDB.map((videogame) => {
+         return cleanVideogameDB(videogame);
+       });
     //console.log("Videogames DB: ", videogamesDB);
     //console.log("URL", `${URL}?search=${name.name}&key=${APIKEY}`);
     const response = await axios.get(`${URL}?search=${name}&key=${APIKEY}`);

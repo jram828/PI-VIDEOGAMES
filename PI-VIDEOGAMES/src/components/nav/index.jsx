@@ -13,12 +13,13 @@ import {
 } from "../../redux/actions";
 import "./nav.css";
 
-const Nav = ({ onSearch, logout }) => {
+const Nav = ({logout }) => {
   const dispatch = useDispatch();
   const location = useLocation();
   const sourceFilter = useSelector((state) => state.sourceFilter);
 
   const onClickHome = () => {
+    dispatch(setSourceFilter("all"));
     dispatch(getVideoGames());
   };
 
@@ -43,6 +44,7 @@ const Nav = ({ onSearch, logout }) => {
 
   const handleFilterOrig = (e) => {
     e.preventDefault();
+    console.log("Handle filter orig: ", e.target.value, sourceFilter);
     dispatch(filterVideogamesOrig(e.target.value, sourceFilter));
   };
 
@@ -55,15 +57,16 @@ const Nav = ({ onSearch, logout }) => {
             Home{" "}
           </Button>
         </Link>
-        {location.pathname !== "/crearvideojuego"? (
-        <Link to={"/crearvideojuego"}>
-          <Button className="crear">Crear Videojuego</Button>
-        </Link>) : undefined}
+        {location.pathname !== "/crearvideojuego" ? (
+          <Link to={"/crearvideojuego"}>
+            <Button className="crear">Crear Videojuego</Button>
+          </Link>
+        ) : undefined}
         <Link to="favorites/">
           <Button onClick={onClickFavorites}>Favorites</Button>
         </Link>
         {location.pathname === "/home" ? (
-          <SearchBar className="searchbar" onSearch={onSearch} />
+          <SearchBar className="searchbar" />
         ) : undefined}
         <Link to="about/">
           <Button className="about">About</Button>
@@ -122,6 +125,9 @@ const Nav = ({ onSearch, logout }) => {
               <option value="RD">Descendente</option>
             </select>
           </div>
+          <Button className="botonpage" onClick={cleanFilter}>
+            Limpiar filtros
+          </Button>
         </div>
       ) : undefined}
     </div>

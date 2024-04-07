@@ -1,23 +1,25 @@
 /* eslint-disable */
-import { useSelector } from "react-redux";
-// import Videogame from "../videogame";
+import { useEffect } from "react";
+import { setLoading } from "../../redux/actions";
 import Videogames from "../videogames";
+import { useDispatch } from "react-redux";
 
-const Favorites = ({ onClose }) => {
-  const myFavorites = useSelector((state) => state.myFavorites);
- const source="favorites"
+const Favorites = () => {
+  const dispatch = useDispatch();
+
+   useEffect(() => {
+     dispatch(setLoading(false));
+    //  return (() => {
+    //    dispatch(setLoading(''));
+    //  })
+   }, [dispatch]);
+  
+//  const source="favorites"
   return (
     <div className="favorites">
-      {/* {myFavorites.map((videogame) => {
-        return ( */}
       <Videogames
-        // key={videogame.id}
-        allVideogames={myFavorites}
-        onClose={onClose}
-        source={source}
+        // source={source}
       />
-      {/* );
-      })} */}
     </div>
   );
 };

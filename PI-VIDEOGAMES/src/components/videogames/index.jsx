@@ -4,24 +4,31 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoGames } from "../../redux/actions";
+import { getVideoGames, setLoading } from "../../redux/actions";
 
-export const Videogames = ({ onClose, videogames, source }) => {
-    
- //console.log('Source videogames:' , source)
-  if (source === "all") {
-    var allVideogames = useSelector((state) => state.allVideogames);
-  } else {
-    var allVideogames = useSelector((state) => state.myFavorites);
-  }
-
+export const Videogames = ({ onClose }) => {
   const [Page, setPage] = useState(1);
   const dispatch = useDispatch();
-
+  
+  var Loading = useSelector((state) => state.loading);
+  var source = useSelector((state) => state.sourceFilter);
+  
+  //console.log('Source videogames:' , source)
+  if (source === "all") {
+    var allVideogames = useSelector((state) => state.allVideogames);
+  } else if (source === "favorites") {
+    var allVideogames = useSelector((state) => state.myFavorites);
+  } else {
+    var allVideogames = useSelector((state) => state.foundVideogame);
+  }
+  
+  
   useEffect(() => {
+    // dispatch(setLoading(true));
     dispatch(getVideoGames());
-
   }, [dispatch]);
+  
+
   console.log('All videogames: ',allVideogames)
   const videoPerPage = 15;
 
@@ -42,7 +49,12 @@ export const Videogames = ({ onClose, videogames, source }) => {
       setPage(Page + 1);
     }
   };
+
+  const cleanFilter = () => {
+    dispatch(getVideoGames());
+  }
   console.log("Videogames Cards: ", videoPageContent);
+  console.log('Loading', Loading)
   return (
     <div>
       {nPages !== 0 ? (
@@ -57,8 +69,11 @@ export const Videogames = ({ onClose, videogames, source }) => {
           <button className="botonpage" onClick={nextPage}>
             Siguiente
           </button>
+          <button className="botonpage" onClick={cleanFilter}>
+            Limpiar filtros
+          </button>
         </div>
-      ) : location.pathname !== "/home" ? (
+      ) : Loading === false ? (
         <div>
           <br />
           <br />
@@ -74,8 +89,7 @@ export const Videogames = ({ onClose, videogames, source }) => {
         </div>
       )}
       <div className="cards">
-        {
-          videoPageContent.map((videogame) => {
+        {videoPageContent.map((videogame) => {
           return (
             <div key={videogame.id}>
               <Videogame videogame={videogame} onClose={onClose} />

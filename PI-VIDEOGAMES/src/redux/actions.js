@@ -16,7 +16,7 @@ export const getVideoGames = () => {
          }
        );
     } catch (error){
-       window.alert("Videojuego no encontrado!");
+       window.alert("Videojuegos no encontrados!");
     }
 
   };
