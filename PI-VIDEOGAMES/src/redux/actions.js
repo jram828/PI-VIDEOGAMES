@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_FAV, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_LOADING, SET_SOURCE_FILTER } from "./actionTypes";
+import { ADD_FAV, CLEAN_FILTER, CLEAN_VIDEOGAMES, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_LOADING, SET_SOURCE_FILTER } from "./actionTypes";
 
 
 
@@ -91,6 +91,20 @@ export const setSourceFilter = (sourceFilter) => {
   return {
     type: SET_SOURCE_FILTER,
     payload: sourceFilter,
+  };
+};
+
+export const cleanerFilter = () => {
+  return {
+    type: CLEAN_FILTER,
+    // payload:{allVideogames: allVideogames},
+  };
+};
+
+export const cleanVideogames = () => {
+  return {
+    type: CLEAN_VIDEOGAMES,
+    // payload:{allVideogames: allVideogames},
   };
 };
 

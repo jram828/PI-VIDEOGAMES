@@ -1,26 +1,23 @@
 import styled from "styled-components"
 
 export const ContainerNav = styled.div`
-  // width: 10%;
   display: flex;
   flex-direction: row;
-  // justify-content: center;
   height: 40px;
-  // margin-left: 10px;
 `;
 export const Button = styled.button`
-  border-radius: 10%;
+  border-radius: 10px;
   cursor: pointer;
   background-color: black;
   color: white;
-  height: 100%;
-  width: 100%;
+  height: 40px;
+  width: 140px;
   font-weight: bold;
   font-size: 80%
 `;
 
 export const Button2 = styled.button`
-  border-radius: 10%;
+  border-radius: 10px;
   margin-right: 10px;
   cursor: pointer;
   background-color: black;
@@ -37,13 +34,12 @@ width: 150px;
 `;
 
 export const Button3 = styled.button`
-  border-radius: 10%;
-  margin-right: 10px;
+  border-radius: 10px;
   cursor: pointer;
   background-color: black;
   color: white;
-  height: 30px;
-  width: 20%;
+  height: 40px;
+  width: 140px;
   font-weight: bold;
   font-size: 80%;
-`;
+  margin-right: 35px`;

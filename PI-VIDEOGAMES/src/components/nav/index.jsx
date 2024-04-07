@@ -1,9 +1,10 @@
 /* eslint-disable */
 import SearchBar from "../searchbar";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "../Mystyles";
+import { Button, Button3} from "../Mystyles";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  cleanerFilter,
   filterVideogamesGen,
   filterVideogamesOrig,
   getVideoGames,
@@ -48,6 +49,12 @@ const Nav = ({logout }) => {
     dispatch(filterVideogamesOrig(e.target.value, sourceFilter));
   };
 
+  const cleanFilter = () => {
+
+      dispatch(cleanerFilter());
+      // dispatch(getVideoGames());
+  };
+  
   return (
     <div className="contenedornav">
       <div className="botonesnav">
@@ -125,9 +132,9 @@ const Nav = ({logout }) => {
               <option value="RD">Descendente</option>
             </select>
           </div>
-          <Button className="botonpage" onClick={cleanFilter}>
-            Limpiar filtros
-          </Button>
+          <div className="limpiar">
+            <Button3 onClick={cleanFilter}>Limpiar filtros</Button3>
+          </div>
         </div>
       ) : undefined}
     </div>

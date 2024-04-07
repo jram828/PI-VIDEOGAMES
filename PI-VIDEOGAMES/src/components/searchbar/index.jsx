@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Button2, ContainerNav, Input } from "../Mystyles";
 import { useState } from "react";
-import { getVideoGamesByName, setSourceFilter } from "../../redux/actions";
+import { cleanVideogames, getVideoGamesByName, setSourceFilter } from "../../redux/actions";
 
 
 const SearchBar = () => {
@@ -11,6 +11,7 @@ const SearchBar = () => {
   const handleClick = async() => {
     //console.log("Name handleClick: ", name);
     dispatch(setSourceFilter("search"));
+    dispatch(cleanVideogames());
     try {
       dispatch(getVideoGamesByName(name));
       //http://localhost:3001/videogames/name?name=%22Grand%20Theft%20Auto%22

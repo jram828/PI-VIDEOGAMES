@@ -4,7 +4,7 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoGames, setLoading } from "../../redux/actions";
+import { cleanVideogames, getVideoGames, setLoading } from "../../redux/actions";
 
 export const Videogames = ({ onClose }) => {
   const [Page, setPage] = useState(1);
@@ -26,6 +26,7 @@ export const Videogames = ({ onClose }) => {
   useEffect(() => {
     // dispatch(setLoading(true));
     dispatch(getVideoGames());
+
   }, [dispatch]);
   
 
@@ -50,9 +51,7 @@ export const Videogames = ({ onClose }) => {
     }
   };
 
-  const cleanFilter = () => {
-    dispatch(getVideoGames());
-  }
+
   console.log("Videogames Cards: ", videoPageContent);
   console.log('Loading', Loading)
   return (
@@ -68,9 +67,6 @@ export const Videogames = ({ onClose }) => {
           </h3>
           <button className="botonpage" onClick={nextPage}>
             Siguiente
-          </button>
-          <button className="botonpage" onClick={cleanFilter}>
-            Limpiar filtros
           </button>
         </div>
       ) : Loading === false ? (
