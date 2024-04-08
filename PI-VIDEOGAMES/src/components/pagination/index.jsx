@@ -8,10 +8,6 @@ const Paginate = () => {
   
   const videoPerPage = 15;
   const nPages = Math.ceil(allVideogames.length / videoPerPage);
-  //const start = (Page - 1) * videoPerPage;
-  //const end = start + videoPerPage;
- // var videoPageContent = allVideogames.slice(start, end)
-
   const prevPage = () => {
     if (Page > 1) { setPage(Page - 1) }
   }

@@ -27,7 +27,7 @@ const getVideoById = async (req, res) => {
       });
 
        var videogame = cleanVideogameDB(responseDB.dataValues);
-        console.log('Videogame getbyID: ',responseDB)
+        //console.log('Videogame getbyID: ',responseDB)
       //console.log("videogame getbyiD: ", videogame.genres[0].dataValues.name);
     } else {
         const response = await axios.get(`${URL}${ID}?key=${APIKEY}`);

@@ -17,7 +17,6 @@ import CrearUsuario from "./components/crearusuario";
 import axios from "axios";
 
 export const URL = "http://localhost:3001/videogames/";
-// 'https://rickandmortyapi.com/api/character/'
 
 function App() {
   const allVideogames = useSelector((state) => state.allVideogames);
@@ -30,8 +29,6 @@ function App() {
   useEffect(() => {
     !access && navigate("/");
   }, [access, navigate]);
-
-  // const initialVideogames = async () => {};
 
   //console.log('Initial video: ',allVideogames)
       async function crearUsuario(userDataCrear) {
@@ -55,7 +52,6 @@ function App() {
   function crearVideogame(userDataCrear) {
     //console.log("Datos videojuego Crear:", userDataCrear);
     //console.log('Plataformas: ',platforms)
-    // const URL = "http://localhost:3001/rickandmorty/register/";
     try {
       const newVideogame = crearvideojuego(userDataCrear);
       console.log("Juego creado:", newVideogame);
@@ -99,8 +95,7 @@ function App() {
     setAccess(true);
     navigate("/crearusuario");
   };
-  // const source = "all";
-  //console.log("Initial video 2: ", allVideogames);
+
   return (
     <div className="App">
       {location.pathname !== "/" &&

@@ -24,7 +24,7 @@ function validarusuario(input) {
   if (input.password.length > 12) {
     errors.password = "Debe tener máximo 12 caracteres";
   }
-  console.log(errors);
+  //console.log(errors);
   return errors;
 }
 export default validarusuario;

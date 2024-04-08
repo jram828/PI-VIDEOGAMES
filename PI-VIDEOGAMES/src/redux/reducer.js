@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case GET_VIDEOGAME_BY_NAME:
-      console.log("Payload Get Videogames By Name: ", action.payload);
+      //console.log("Payload Get Videogames By Name: ", action.payload);
       return {
         ...state,
         foundVideogame: action.payload,
@@ -103,7 +103,7 @@ const rootReducer = (state = initialState, action) => {
             foundVideogame: state.initialFoundVideogame,
           };
         } else {
-          console.log("Search filter by genre: ", state.foundVideogame);
+          //console.log("Search filter by genre: ", state.foundVideogame);
 
           let videogamesFilter = state.foundVideogame.filter((videogame) =>
             videogame.genres
@@ -137,7 +137,7 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case FILTER_VIDEOGAMES_BY_ORIGIN:
-      console.log("Payload origin: ", action.payload);
+      //console.log("Payload origin: ", action.payload);
       if (action.payload.sourceFilter === "all") {
         if (action.payload.origin.toUpperCase() === "TODOS") {
           return {
@@ -225,7 +225,7 @@ const rootReducer = (state = initialState, action) => {
           }
         }
       } else {
-        console.log("Origin search: ", action.payload.origin.toUpperCase());
+        //console.log("Origin search: ", action.payload.origin.toUpperCase());
         if (action.payload.origin.toUpperCase() === "TODOS") {
           return {
             ...state,
@@ -374,8 +374,6 @@ const rootReducer = (state = initialState, action) => {
     case CLEAN_VIDEOGAMES:
       return {
         ...state,
-        // myFavorites: state.initialMyFavorites,
-        // allVideogames: state.initialVideogames,
         foundVideogame: [],
       };
 

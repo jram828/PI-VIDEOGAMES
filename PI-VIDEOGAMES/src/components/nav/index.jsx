@@ -50,9 +50,7 @@ const Nav = ({logout }) => {
   };
 
   const cleanFilter = () => {
-
       dispatch(cleanerFilter());
-      // dispatch(getVideoGames());
   };
   
   return (

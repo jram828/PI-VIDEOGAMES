@@ -10,7 +10,7 @@ const cleanVideogameDB = require("../utils/cleanVideogameDB");
 
 const getVideoByName = async (req, res) => {
   const { name } = req.query;
-  console.log("Name: ", name);
+  //console.log("Name: ", name);
   let videogamesDB = [];
   let videogamesAPI = [];
   let videogames = [];
@@ -41,7 +41,7 @@ const getVideoByName = async (req, res) => {
     });
     videogames = [...videogamesDB,... videogamesAPI].slice(0, 15);
 
-    console.log("Videogame API:", videogamesAPI);
+    //console.log("Videogame API:", videogamesAPI);
     res.status(200).json(videogames);
   } catch (error) {
     // console.log('Aqui se rompe');

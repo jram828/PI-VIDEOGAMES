@@ -12,14 +12,13 @@ const Videogame = (props) => {
   const myFavorites = useSelector((state) => state.myFavorites);
   const { name, image, id, genres, rating, newRating} =
     props.videogame;
-  const { addFav, removeFav } = props;
   //console.log('Video id:',id)
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
     if (isFav === false) {
       setIsFav(true);
-      addFav(props.videogame);
+      dispatch(addFav(props.videogame));
     } else if (isFav === true) {
       setIsFav(false);
       console.log(props.videogame.id)
@@ -80,8 +79,4 @@ const Videogame = (props) => {
   );
 };
 
-var mapStateToProps = (state) => {
-  return { myFavorites: state.myFavorites };
-};
-
-export default connect(mapStateToProps, { getVideoGames,addFav, removeFav })(Videogame);
+export default Videogame;

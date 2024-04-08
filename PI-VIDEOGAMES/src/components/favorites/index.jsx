@@ -9,17 +9,11 @@ const Favorites = () => {
 
    useEffect(() => {
      dispatch(setLoading(false));
-    //  return (() => {
-    //    dispatch(setLoading(''));
-    //  })
    }, [dispatch]);
-  
-//  const source="favorites"
+
   return (
     <div className="favorites">
-      <Videogames
-        // source={source}
-      />
+      <Videogames/>
     </div>
   );
 };

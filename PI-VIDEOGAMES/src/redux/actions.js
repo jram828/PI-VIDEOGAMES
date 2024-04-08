@@ -97,14 +97,12 @@ export const setSourceFilter = (sourceFilter) => {
 export const cleanerFilter = () => {
   return {
     type: CLEAN_FILTER,
-    // payload:{allVideogames: allVideogames},
   };
 };
 
 export const cleanVideogames = () => {
   return {
     type: CLEAN_VIDEOGAMES,
-    // payload:{allVideogames: allVideogames},
   };
 };
 
@@ -116,8 +114,7 @@ export const addFav = (videogame) => {
 };
 
 export const removeFav = (id) => {
-  console.log('Id remove Fav:', id)
-
+  //console.log('Id remove Fav:', id)
     return {
       type: REMOVE_FAV,
       payload: id,

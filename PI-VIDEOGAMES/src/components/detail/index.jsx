@@ -8,11 +8,11 @@ import "./detail.css";
 const Detail = () => {
   const [videogame, setVideogame] = useState({});
   const { id } = useParams();
-  console.log('Details id:', id)
-  console.log("URL Detail:", `${URL}${id}`);
+  //console.log('Details id:', id)
+  //console.log("URL Detail:", `${URL}${id}`);
   useEffect(() => {
     axios(`${URL}${id}`).then(({ data }) => {
-      console.log('Data detail:',data)
+      //console.log('Data detail:',data)
       if (data.name) {
         setVideogame(data);
       } else {
@@ -22,7 +22,7 @@ const Detail = () => {
     return setVideogame({});
   }, [id]);
 
-  console.log('videogame Detail',videogame.genres)
+  //console.log('videogame Detail',videogame.genres)
   return (
     <div className="container">
       <div className="detail" key={id}>

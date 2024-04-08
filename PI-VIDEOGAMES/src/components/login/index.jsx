@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+/* eslint-disable */
+import { useState } from "react";
 import "../../App.css";
-import logo from "../../assets/RickAndMorty.jpg"
+import logo from "../../assets/RickAndMorty.jpg";
 import { Button3 } from "../Mystyles";
 
 const Form = ({ login, clickHandlerCrear }) => {
   //console.log('Login: ',login)
-    const [userData, setUserData] = useState({
-      email: "",
-      password: "",
-    });
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleChange=(e)=> {
-     setUserData({
+  const handleChange = (e) => {
+    setUserData({
       ...userData,
       [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
     });
-    
-  }
-  
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     login(userData);
-  }
+  };
 
   return (
     <div>
@@ -81,5 +81,5 @@ const Form = ({ login, clickHandlerCrear }) => {
       </form>
     </div>
   );
-  };
+};
 export default Form;

@@ -19,7 +19,7 @@ const getVideogames = async (req, res) => {
     const videogamesDB = responseDB.map((videogame) => {
       return cleanVideogameDB(videogame);
     });
-    console.log("Videogames DB", videogamesDB);
+    //console.log("Videogames DB", videogamesDB);
     //console.log("URL:", `${URL}${APIKEY}`);
 
     for (let i = 1; i < 6; i++) {

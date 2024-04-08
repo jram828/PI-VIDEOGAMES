@@ -4,7 +4,7 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanVideogames, getVideoGames, setLoading } from "../../redux/actions";
+import { getVideoGames } from "../../redux/actions";
 
 export const Videogames = ({ onClose }) => {
   const [Page, setPage] = useState(1);
@@ -24,13 +24,11 @@ export const Videogames = ({ onClose }) => {
   
   
   useEffect(() => {
-    // dispatch(setLoading(true));
     dispatch(getVideoGames());
-
   }, [dispatch]);
   
 
-  console.log('All videogames: ',allVideogames)
+ // console.log('All videogames: ',allVideogames)
   const videoPerPage = 15;
 
   const nPages = Math.ceil(allVideogames.length / videoPerPage);
@@ -51,9 +49,8 @@ export const Videogames = ({ onClose }) => {
     }
   };
 
-
-  console.log("Videogames Cards: ", videoPageContent);
-  console.log('Loading', Loading)
+  //console.log("Videogames Cards: ", videoPageContent);
+  //console.log('Loading', Loading)
   return (
     <div>
       {nPages !== 0 ? (
