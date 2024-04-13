@@ -26,13 +26,13 @@ const CrearVideogame = ({ crearVideogame }) => {
   
   const handleChangeCrear = (e) => {
     if (e.target.parentNode.parentNode.parentNode.id === "genres") {
-      console.log("Parent node id: ", e.target.parentNode.parentNode.id);
+      //console.log("Parent node id: ", e.target.parentNode.parentNode.id);
       if (e.target.checked) {
         setUserDataCrear({
           ...userDataCrear,
           genres: userDataCrear.genres.concat(e.target.value),
         });
-        console.log("Genres handle change crear: ", userDataCrear.genres);
+        //console.log("Genres handle change crear: ", userDataCrear.genres);
       } else {
         setUserDataCrear({
           ...userDataCrear,
@@ -46,7 +46,7 @@ const CrearVideogame = ({ crearVideogame }) => {
           ...userDataCrear,
           platforms: userDataCrear.platforms.concat(e.target.value),
         });
-        console.log("Plataformas: ", userDataCrear.platforms);
+        //console.log("Plataformas: ", userDataCrear.platforms);
       } else {
         setUserDataCrear({
           ...userDataCrear,

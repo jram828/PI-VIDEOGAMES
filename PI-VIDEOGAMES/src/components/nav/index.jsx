@@ -45,7 +45,7 @@ const Nav = ({logout }) => {
 
   const handleFilterOrig = (e) => {
     e.preventDefault();
-    console.log("Handle filter orig: ", e.target.value, sourceFilter);
+    //console.log("Handle filter orig: ", e.target.value, sourceFilter);
     dispatch(filterVideogamesOrig(e.target.value, sourceFilter));
   };
 
