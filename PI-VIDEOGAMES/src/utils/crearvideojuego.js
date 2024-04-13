@@ -14,6 +14,6 @@ export const crearvideojuego = async (userDataCrear) => {
       rating,
       genres,
   })
-  //console.log('Newvideogame crear: ', newVideogame)
+  console.log('Newvideogame crear: ', newVideogame)
     return newVideogame
 };
