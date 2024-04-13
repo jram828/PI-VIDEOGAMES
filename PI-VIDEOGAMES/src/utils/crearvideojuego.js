@@ -5,7 +5,7 @@ export const crearvideojuego = async (userDataCrear) => {
   console.log('User data: ', userDataCrear)
   const { name, description, image, launchDate, rating, platforms, genres } =
     userDataCrear;
-  const newVideogame=await axios.post("/", {
+  const newVideogame=await axios.post("/videogames", {
       name,
       description,
       image,
