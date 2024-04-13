@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { URL } from "../../App";
+// import { URL } from "../../App";
 import "./detail.css";
 
 const Detail = () => {
@@ -11,7 +11,7 @@ const Detail = () => {
   //console.log('Details id:', id)
   //console.log("URL Detail:", `${URL}${id}`);
   useEffect(() => {
-    axios(`${URL}${id}`).then(({ data }) => {
+    axios(`/${id}`).then(({ data }) => {
       //console.log('Data detail:',data)
       if (data.name) {
         setVideogame(data);

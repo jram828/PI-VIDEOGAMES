@@ -1,11 +1,11 @@
 import axios from "axios";
-import { URL } from "../App";
+// import { URL } from "../App";
 
 export const crearvideojuego = async (userDataCrear) => {
-  console.log('User data: ', userDataCrear)
+  //console.log('User data: ', userDataCrear)
   const { name, description, image, launchDate, rating, platforms, genres } =
     userDataCrear;
-  const newVideogame=await axios.post(URL, {
+  const newVideogame=await axios.post("/", {
       name,
       description,
       image,
@@ -14,6 +14,6 @@ export const crearvideojuego = async (userDataCrear) => {
       rating,
       genres,
   })
-  console.log('Newvideogame crear: ', newVideogame)
+  //console.log('Newvideogame crear: ', newVideogame)
     return newVideogame
 };

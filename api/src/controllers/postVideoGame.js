@@ -3,16 +3,6 @@ const { Videogame} = require("../db");
 
 const postVideoGame = async (req, res) => {
   const { name, description, platforms, image, rating, genres, launchDate } = req.body;
-  console.log("Datos postVideogame:", {
-    name,
-    description,
-    platforms,
-    image,
-    rating,
-    genres,
-    launchDate,
-  });
-
   //console.log('Platforms: ',platforms)
   if (!name || !description || !platforms||!image||!rating) {
     res.status(400).send("Faltan datos");

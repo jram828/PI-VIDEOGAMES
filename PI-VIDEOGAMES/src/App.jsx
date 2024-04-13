@@ -16,10 +16,11 @@ import Favorites from "./components/favorites";
 import CrearUsuario from "./components/crearusuario";
 import axios from "axios";
 
-export const URL = "http://localhost:3001/videogames/";
+// export const URL = "http://localhost:3001/videogames/";
+const URL = import.meta.env.VITE_URL;
+axios.defaults.baseURL = URL;
 
 function App() {
-  const allVideogames = useSelector((state) => state.allVideogames);
   const dispatch = useDispatch();
   const [access, setAccess] = useState(false);
 
@@ -35,7 +36,7 @@ function App() {
         const { email, password } = userDataCrear;
 
         //console.log('User Data crear: ', userDataCrear)
-        const URL = "http://localhost:3001/register";
+        const URL = "/register";
         try {
           //console.log({ email: email, password: password })
           const response = await axios.post(URL, { email: `${email}`, password: `${password}` });
@@ -44,7 +45,7 @@ function App() {
           setAccess(false);
           access && navigate("/");
         } catch (error) {
-          console.log('error: ', error)
+          //console.log('error: ', error)
           window.alert("No fue posible crear el usuario.");
         }
       }
@@ -54,7 +55,7 @@ function App() {
     //console.log('Plataformas: ',platforms)
     try {
       const newVideogame = crearvideojuego(userDataCrear);
-      console.log("Juego creado:", newVideogame);
+      //console.log("Juego creado:", newVideogame);
       window.alert("Videojuego creado con éxito.");
       setAccess(true);
       access && navigate("/home");
@@ -66,7 +67,7 @@ function App() {
 
     async function login(userData) {
       const { email, password } = userData;
-      const URL = "http://localhost:3001/login";
+      const URL = "/login";
       try {
         const { data } = await axios(
           URL + `?email=${email}&password=${password}`
@@ -130,7 +131,6 @@ function App() {
           path="/crearvideojuego"
           element={
             <CrearVideogame
-              videogame={videogame}
               crearVideogame={crearVideogame}
             />
           }

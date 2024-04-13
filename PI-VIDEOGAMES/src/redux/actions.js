@@ -5,7 +5,7 @@ import { ADD_FAV, CLEAN_FILTER, CLEAN_VIDEOGAMES, CLOSE_VIDEOGAME, FILTER_VIDEOG
 
 
 export const getVideoGames = () => {
-  const endpoint = "http://localhost:3001/videogames";
+  const endpoint = "/videogames";
   return async (dispatch) => {
     const { data } = await axios.get(endpoint)
     try{
@@ -33,7 +33,7 @@ export const setLoading = (loading) => {
 
 export const getVideoGamesByName = (name) => {
   
-  const endpoint = "http://localhost:3001/videogames/";
+  const endpoint = "/videogames/";
   return async (dispatch) => {
     //console.log('Name getVideogamesByName: ',name);
     const { data } = await axios.get(`${endpoint}name?name=${name}`);
