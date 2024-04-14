@@ -145,7 +145,7 @@ const rootReducer = (state = initialState, action) => {
             allVideogames: state.initialVideogames,
           };
         } else if (action.payload.origin.toUpperCase() === "CREADO") {
-          let videogamesFilterOrig = state.allVideogames.filter(
+          let videogamesFilterOrig = state.initialVideogames.filter(
             (videogame) => videogame.id.length === 36
           );
 
@@ -163,7 +163,7 @@ const rootReducer = (state = initialState, action) => {
             };
           }
         } else {
-          let videogamesFilterOrig = state.allVideogames.filter(
+          let videogamesFilterOrig = state.initialVideogames.filter(
             (videogame) => videogame.id.length !== 36
           );
 
@@ -188,7 +188,7 @@ const rootReducer = (state = initialState, action) => {
             myFavorites: state.initialMyFavorites,
           };
         } else if (action.payload.origin.toUpperCase() === "CREADO") {
-          let videogamesFilterOrig = state.myFavorites.filter(
+          let videogamesFilterOrig = state.initialMyFavorites.filter(
             (videogame) => videogame.id.length === 36
           );
 
@@ -206,7 +206,7 @@ const rootReducer = (state = initialState, action) => {
             };
           }
         } else {
-          let videogamesFilterOrig = state.myFavorites.filter(
+          let videogamesFilterOrig = state.initialMyFavorites.filter(
             (videogame) => videogame.id.length !== 36
           );
 
@@ -232,7 +232,7 @@ const rootReducer = (state = initialState, action) => {
             foundVideogame: state.initialFoundVideogame,
           };
         } else if (action.payload.origin.toUpperCase() === "CREADO") {
-          let videogamesFilterOrig = state.foundVideogame.filter(
+          let videogamesFilterOrig = state.initialFoundVideogame.filter(
             (videogame) => videogame.id.length === 36
           );
 
@@ -251,7 +251,7 @@ const rootReducer = (state = initialState, action) => {
           }
         } else {
           // console.log('State Found: ',state.foundVideogame);
-          let videogamesFilterOrig = state.foundVideogame.filter(
+          let videogamesFilterOrig = state.initialFoundVideogame.filter(
             (videogame) => videogame.id.length !== 36
           );
 
