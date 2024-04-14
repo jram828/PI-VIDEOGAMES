@@ -44,6 +44,13 @@
     -webkit-text-stroke-color: black; */
 }
 
+.label {
+    color: white;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
 .botoneslanding {
     grid-column: 1/4;
     grid-row: 2;
