@@ -11,7 +11,7 @@ const Detail = () => {
   //console.log('Details id:', id)
   //console.log("URL Detail:", `${URL}${id}`);
   useEffect(() => {
-    axios(`/${id}`).then(({ data }) => {
+    axios(`/videogames/${id}`).then(({ data }) => {
       //console.log('Data detail:',data)
       if (data.name) {
         setVideogame(data);
