@@ -40,13 +40,15 @@ export const Videogames = ({ onClose }) => {
 
   const prevPage = () => {
     if (Page > 1) {
-      setPage(Page - 1);
+      dispatch(setPage(Page - 1));
+      // setPage(Page - 1);
     }
   };
 
   const nextPage = () => {
     if (Page < nPages) {
-      setPage(Page + 1);
+      dispatch(setPage(Page + 1));
+      // setPage(Page + 1);
     }
   };
 
