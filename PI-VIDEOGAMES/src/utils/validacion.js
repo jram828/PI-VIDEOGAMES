@@ -10,6 +10,9 @@ const validar=(input)=> {
   if (input.image.length > 255) {
     errors.image = "Máximo 255 caracteres";
   }
+  if (input.image.substr(0,4) !== "http") {
+    errors.image = "Debe contener una URL";
+  }
 
   if (Number(input.rating)>5) {
     errors.rating = "El rating debe ser menor a 5";
