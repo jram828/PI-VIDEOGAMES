@@ -13,8 +13,8 @@ const Landing = ({ login, clickHandlerCrear }) => {
   });
 
   const [errors, setErrors] = useState({
-    email: "",
-    password: "",
+    email: "Debe ingresar un email",
+    password: "Debe ingresar un password",
   });
 
   const handleChange = (e) => {
@@ -45,11 +45,12 @@ const Landing = ({ login, clickHandlerCrear }) => {
       <form onSubmit={submitHandler}>
         <div className="formlanding">
           <div className="InputLogin">
-            <label className="label">
+            <label className="label" htmlFor="email">
               Email:
               <input
                 name="email"
                 type="text"
+                id="email"
                 placeholder="Ingrese su Email"
                 value={userData.email}
                 onChange={handleChange}
@@ -57,14 +58,19 @@ const Landing = ({ login, clickHandlerCrear }) => {
             </label>
             <br />
 
-            {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
-            <hr />
+            {errors.email ? (
+              <h2 className="error">{errors.email}</h2>
+            ) : (
+              <h2 className="error2">. </h2>
+            )}
+            {/* <hr /> */}
             <br />
-            <label className="label">
+            <label className="label" htmlFor="password">
               Contraseña
               <input
                 name="password"
                 type="password"
+                id="password"
                 placeholder="Ingrese su contraseña"
                 value={userData.password}
                 onChange={handleChange}
@@ -72,10 +78,12 @@ const Landing = ({ login, clickHandlerCrear }) => {
             </label>
             <br />
 
-            {errors.password !== "" && (
+            {errors.password ? (
               <h2 className="error">{errors.password}</h2>
+            ) : (
+              <h2 className="error2"> .</h2>
             )}
-            <hr />
+            {/* <hr /> */}
           </div>
           <div className="botoneslanding">
             <img

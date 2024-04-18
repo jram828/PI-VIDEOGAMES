@@ -17,154 +17,178 @@ const CrearVideogame = ({ crearVideogame }) => {
   });
   
   const [errors, setErrors] = useState({
-    name: "",
-    description: "",
-    image: "",
-    launchDate: "",
-    rate:""
+    name: "Debe ingresar un nombre",
+    description: "Debe ingresar una descripción",
+    image: "Debe contener una URL",
+    launchDate: "Debe seleccionar una fecha",
+    rating: "Debe ingresar un rating",
+    platforms: "Debe seleccionar al menos una plataforma",
+    genres: "Debe seleccionar al menos un género",
   });
   
-  const handleChangeCrear = (e) => {
-    if (e.target.parentNode.parentNode.parentNode.id === "genres") {
-      //console.log("Parent node id: ", e.target.parentNode.parentNode.id);
-      if (e.target.checked) {
-        setUserDataCrear({
-          ...userDataCrear,
-          genres: userDataCrear.genres.concat(e.target.value),
-        });
-        //console.log("Genres handle change crear: ", userDataCrear.genres);
-      } else {
-        setUserDataCrear({
-          ...userDataCrear,
-          genres: userDataCrear.genres.filter((x) => e.target.value !== x),
-        });
-      }
-    }
-    if (e.target.parentNode.parentNode.id === "platforms") {
-      if (e.target.checked) {
-        setUserDataCrear({
-          ...userDataCrear,
-          platforms: userDataCrear.platforms.concat(e.target.value),
-        });
-        //console.log("Plataformas: ", userDataCrear.platforms);
-      } else {
-        setUserDataCrear({
-          ...userDataCrear,
-          platforms: userDataCrear.platforms.filter((x) => e.target.name !== x),
-        });
-      }
-    }
-    if (e.target.type !== "checkbox") {
+const handleChangeCrear = (e) => {
+  if (e.target.parentNode.parentNode.parentNode.id === "genres") {
+    console.log(
+      "Parent node id: ",
+      e.target.parentNode.parentNode.parentNode.id
+    );
+    if (e.target.checked) {
       setUserDataCrear({
         ...userDataCrear,
-        [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
+        genres: userDataCrear.genres.concat(e.target.value),
+      });
+      //console.log("Genres handle change crear: ", userDataCrear.genres);
+      setErrors(
+        validar({
+          ...userDataCrear,
+          genres: userDataCrear.genres.concat(e.target.value),
+        })
+      );
+    } else {
+      setUserDataCrear({
+        ...userDataCrear,
+        genres: userDataCrear.genres.filter((x) => e.target.value !== x),
       });
     }
+  } else if (e.target.parentNode.parentNode.id === "platforms") {
+    if (e.target.checked) {
+      setUserDataCrear({
+        ...userDataCrear,
+        platforms: userDataCrear.platforms.concat(e.target.value),
+      });
+      //console.log("Plataformas: ", userDataCrear.platforms);
+      setErrors(
+        validar({
+          ...userDataCrear,
+          platforms: userDataCrear.genres.concat(e.target.value),
+        })
+      );
+    } else {
+      setUserDataCrear({
+        ...userDataCrear,
+        platforms: userDataCrear.platforms.filter((x) => e.target.name !== x),
+      });
+    }
+  } else {
+    setUserDataCrear({
+      ...userDataCrear,
+      [e.target.name]: e.target.value, // Sintaxis ES6 para actualizar la key correspondiente
+    });
     setErrors(
       validar({
         ...userDataCrear,
         [e.target.name]: e.target.value,
       })
     );
-  };
+  }
+  console.log("target: ", e.target.name);
+  console.log("value: ", e.target.value);
+};
 
-  const submitHandlerCrear = (e) => {
-    e.preventDefault();
-    crearVideogame(userDataCrear);
-  };
+const submitHandlerCrear = (e) => {
+  e.preventDefault();
+  crearVideogame(userDataCrear);
+};
 
-  return (
-    <div>
-      <form onSubmit={submitHandlerCrear}>
-        <h2 className="titulo">CREAR VIDEOGAME</h2>
+return (
+  <div>
+    <form onSubmit={submitHandlerCrear}>
+      <h2 className="titulo">CREAR VIDEOGAME</h2>
 
-        <div className="Crear">
-          <div className="inputcrear">
-            <div className="nombre">
-              <label className="labelcrear" htmlFor="name">
-                Nombre:
-              </label>
-              <input
-                className="inputname"
-                name="name"
-                type="text"
-                placeholder="Ingrese el nombre"
-                value={userDataCrear.name}
-                onChange={handleChangeCrear}
-              />
-              {errors.name !== "" && <h2 className="error">{errors.name}</h2>}
-            </div>
-
-            <div className="image">
-              <label className="labelcrear" htmlFor="image">
-                Imagen:
-              </label>
-              <input
-                name="image"
-                type="text"
-                placeholder="Ingrese la url de la imagen"
-                value={userDataCrear.image}
-                onChange={handleChangeCrear}
-              />
-              {errors.image !== "" && <h2 className="error">{errors.image}</h2>}
-            </div>
-            <div className="rating">
-              <label className="labelcrear" htmlFor="rating">
-                Rating:
-              </label>
-              <input
-                name="rating"
-                type="number"
-                placeholder="Ingrese el rating"
-                value={userDataCrear.rating}
-                onChange={handleChangeCrear}
-              />
-              {errors.rating !== "" && (
-                <h2 className="error">{errors.rating}</h2>
-              )}
-            </div>
-            <div className="launchDate">
-              <label className="labelcrear" htmlFor="launchDate">
-                Fecha Lanzamiento:
-              </label>
-              <input
-                name="launchDate"
-                className="date"
-                type="date"
-                id="date"
-                value={userDataCrear.launchDate}
-                onChange={handleChangeCrear}
-              />
-              {errors.launchDate !== "" && (
-                <h2 className="error">{errors.launchDate}</h2>
-              )}
-            </div>
-            <div className="description">
-              <label className="labelcrear" htmlFor="description">
-                Descripción:
-              </label>
-              <input
-                name="description"
-                type="text"
-                placeholder="Ingrese la descripción"
-                value={userDataCrear.description}
-                onChange={handleChangeCrear}
-                // cols="40"
-                // rows="4"
-                className="inputdescription"
-              />
-              {errors.description !== "" && (
-                <h2 className="error">{errors.description}</h2>
-              )}
-            </div>
-          </div>
-          <div className="contenedorgenres">
-            <hr style={{ borderStyle: "none" }} />
-            <label className="labelgenres" htmlFor="genres">
-              Generos:
+      <div className="Crear">
+        <div className="inputcrear">
+          <div className="nombre">
+            <label className="labelcrear" htmlFor="name">
+              Nombre:
             </label>
-            {errors.genres !== "" && <h2 className="error">{errors.genres}</h2>}
-            <div id="genres" className="genres" onChange={handleChangeCrear}>
+            <input
+              className="inputname"
+              name="name"
+              id="name"
+              type="text"
+              placeholder="Ingrese el nombre"
+              value={userDataCrear.name}
+              onChange={handleChangeCrear}
+            />
+            {errors.name !== "" && <h2 className="error">{errors.name}</h2>}
+          </div>
+
+          <div className="image">
+            <label className="labelcrear" htmlFor="image">
+              Imagen:
+            </label>
+            <input
+              name="image"
+              type="text"
+              id="image"
+              placeholder="Ingrese la url de la imagen"
+              value={userDataCrear.image}
+              onChange={handleChangeCrear}
+            />
+            {errors.image !== "" && <h2 className="error">{errors.image}</h2>}
+          </div>
+          <div className="rating">
+            <label className="labelcrear" htmlFor="rating">
+              Rating:
+            </label>
+            <input
+              name="rating"
+              type="number"
+              id="rating"
+              placeholder="Ingrese el rating"
+              value={userDataCrear.rating}
+              onChange={handleChangeCrear}
+            />
+            {errors.rating !== "" && <h2 className="error">{errors.rating}</h2>}
+          </div>
+          <div className="launchDate">
+            <label className="labelcrear" htmlFor="launchDate">
+              Fecha Lanzamiento:
+            </label>
+            <input
+              name="launchDate"
+              className="date"
+              type="date"
+              id="launchDate"
+              value={userDataCrear.launchDate}
+              onChange={handleChangeCrear}
+            />
+            {errors.launchDate !== "" && (
+              <h2 className="error">{errors.launchDate}</h2>
+            )}
+          </div>
+          <div className="description">
+            <label className="labelcrear" htmlFor="description">
+              Descripción:
+            </label>
+            <input
+              name="description"
+              type="text"
+              id="description"
+              placeholder="Ingrese la descripción"
+              value={userDataCrear.description}
+              onChange={handleChangeCrear}
+              // cols="40"
+              // rows="4"
+              className="inputdescription"
+            />
+            {errors.description !== "" && (
+              <h2 className="error">{errors.description}</h2>
+            )}
+          </div>
+        </div>
+
+        <div className="contenedorgenres">
+          <hr style={{ borderStyle: "none" }} />
+          <label className="labelgenres">
+            Generos:
+            <div
+              name="genres"
+              id="genres"
+              className="genres"
+              onChange={handleChangeCrear}
+              key="genres"
+            >
               <div className="genrescontainer1">
                 <div className="Action">
                   <input name="Action" value="4" type="checkbox" id="Action" />
@@ -306,13 +330,15 @@ const CrearVideogame = ({ crearVideogame }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <label className="labelgenres">Plataformas:</label>
-          {errors.platforms !== "" && (
-            <h2 className="error">{errors.platforms}</h2>
-          )}
+          </label>
+        </div>
+
+        {errors.genres !== "" && <h2 className="error">{errors.genres}</h2>}
+        <label className="labelgenres">
+          Plataformas:
           <div
             id="platforms"
+            name="platforms"
             className="platforms"
             onChange={handleChangeCrear}
           >
@@ -369,18 +395,30 @@ const CrearVideogame = ({ crearVideogame }) => {
               <label htmlFor="PS Vita">PS Vita</label>
             </div>
           </div>
-          <hr style={{ borderStyle: "none" }} />
-          <hr style={{ borderStyle: "none" }} />
-          <hr style={{ borderStyle: "none" }} />
-          <Button2
-            type="submit"
-            disabled={!userDataCrear.name || !userDataCrear.description|| !userDataCrear.image|| !userDataCrear.launchDate|| !userDataCrear.rating}
-          >
-            Crear
-          </Button2>
-        </div>
-      </form>
-    </div>
-  );
+        </label>
+        {errors.platforms !== "" && (
+          <h2 className="error">{errors.platforms}</h2>
+        )}
+        <hr style={{ borderStyle: "none" }} />
+        <hr style={{ borderStyle: "none" }} />
+        <hr style={{ borderStyle: "none" }} />
+        <Button2
+          type="submit"
+          disabled={
+            !userDataCrear.name ||
+            !userDataCrear.description ||
+            !userDataCrear.image ||
+            !userDataCrear.launchDate ||
+            !userDataCrear.rating ||
+            userDataCrear.genres.length === 0 ||
+            userDataCrear.platforms.length === 0
+          }
+        >
+          Crear
+        </Button2>
+      </div>
+    </form>
+  </div>
+);
 };
 export default CrearVideogame;

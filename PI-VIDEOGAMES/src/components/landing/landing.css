@@ -76,3 +76,8 @@
 transform: rotateY(180deg);
 transform-style: preserve-3d;
 }
+
+.error2{
+   font-size: 100%;
+   color: rgb(0, 0, 0, 0)
+}
