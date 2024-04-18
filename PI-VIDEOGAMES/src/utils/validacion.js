@@ -1,8 +1,8 @@
 const validar = (input) => {
   const errors = {};
 
-  console.log("INput paltforms: ", input.platforms);
-  console.log("INput genres: ", input);
+  // console.log("INput paltforms: ", input.platforms);
+  // console.log("INput genres: ", input);
   if (!input.name) {
     errors.name = "Debe ingresar un nombre";
   }
