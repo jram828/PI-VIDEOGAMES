@@ -4,49 +4,50 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanVideogames, getVideoGames, setPage } from "../../redux/actions";
-import { Paginate, videoPageContent } from "../pagination";
+import { getVideoGames } from "../../redux/actions";
 
 export const Videogames = ({ onClose }) => {
-  // const [Page, setPage] = useState(1);
+  const [Page, setPage] = useState(1);
   const dispatch = useDispatch();
-console.log('Video page content: ',videoPageContent)
+  
   var Loading = useSelector((state) => state.loading);
-  // var source = useSelector((state) => state.sourceFilter);
-  // // var Page = useSelector((state) => state.page);
-  // //console.log('Source videogames:' , source)
-  // if (source === "all") {
-  //   var allVideogames = useSelector((state) => state.allVideogames);
-  // } else if (source === "favorites") {
-  //   var allVideogames = useSelector((state) => state.myFavorites);
-  // } else {
-  //   var allVideogames = useSelector((state) => state.foundVideogame);
-  // }
-
+  var source = useSelector((state) => state.sourceFilter);
+  
+  //console.log('Source videogames:' , source)
+  if (source === "all") {
+    var allVideogames = useSelector((state) => state.allVideogames);
+  } else if (source === "favorites") {
+    var allVideogames = useSelector((state) => state.myFavorites);
+  } else {
+    var allVideogames = useSelector((state) => state.foundVideogame);
+  }
+  
+  
   useEffect(() => {
     dispatch(getVideoGames());
   }, [dispatch]);
+  
 
-  // console.log('All videogames: ',allVideogames)
+ // console.log('All videogames: ',allVideogames)
   const videoPerPage = 15;
 
-  const nPages = Math.ceil(videoPageContent.length / videoPerPage);
-  // const start = (Page - 1) * videoPerPage;
-  // const end = start + videoPerPage;
+  const nPages = Math.ceil(allVideogames.length / videoPerPage);
+  const start = (Page - 1) * videoPerPage;
+  const end = start + videoPerPage;
 
-  // const videoPageContent = allVideogames.slice(start, end);
+  const videoPageContent = allVideogames.slice(start, end);
 
-  // const prevPage = () => {
-  //   if (Page > 1) {
-  //     dispatch(setPage(Page - 1));
-  //   }
-  // };
+  const prevPage = () => {
+    if (Page > 1) {
+      setPage(Page - 1);
+    }
+  };
 
-  // const nextPage = () => {
-  //   if (Page < nPages) {
-  //     dispatch(setPage(Page + 1));
-  //   }
-  // };
+  const nextPage = () => {
+    if (Page < nPages) {
+      setPage(Page + 1);
+    }
+  };
 
   //console.log("Videogames Cards: ", videoPageContent);
   //console.log('Loading', Loading)
@@ -54,8 +55,7 @@ console.log('Video page content: ',videoPageContent)
     <div>
       {nPages !== 0 ? (
         <div className="paginate">
-          <Paginate />
-          {/* {" "}
+          {" "}
           <button className="botonpage" onClick={prevPage}>
             Anterior
           </button>
@@ -64,7 +64,7 @@ console.log('Video page content: ',videoPageContent)
           </h3>
           <button className="botonpage" onClick={nextPage}>
             Siguiente
-          </button> */}
+          </button>
         </div>
       ) : Loading === false ? (
         <div>
