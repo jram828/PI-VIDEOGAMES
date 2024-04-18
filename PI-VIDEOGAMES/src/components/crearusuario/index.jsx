@@ -48,6 +48,7 @@ const CrearUsuario = ({ crearUsuario }) => {
           <br />
           <input
             name="email"
+            id="email"
             type="text"
             placeholder="Ingrese su Email"
             value={userDataCrear.email}
@@ -61,6 +62,7 @@ const CrearUsuario = ({ crearUsuario }) => {
           <br />
           <input
             name="password"
+            id="password"
             type="password"
             placeholder="Ingrese su contraseña"
             value={userDataCrear.password}
