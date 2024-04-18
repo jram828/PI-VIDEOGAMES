@@ -60,7 +60,7 @@ const Landing = ({ login, clickHandlerCrear }) => {
             {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
             <br />
             <label className="label">
-              Contraseña:
+              Contraseña
               <input
                 name="password"
                 type="password"
