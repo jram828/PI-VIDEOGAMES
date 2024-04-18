@@ -11,7 +11,7 @@ const SearchBar = () => {
   const handleClick = async() => {
     //console.log("Name handleClick: ", name);
     dispatch(setSourceFilter("search"));
-    // dispatch(cleanVideogames());
+    dispatch(cleanVideogames());
     dispatch(setPage(1));
     try {
       dispatch(getVideoGamesByName(name));

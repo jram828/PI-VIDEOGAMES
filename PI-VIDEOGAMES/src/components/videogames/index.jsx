@@ -25,7 +25,6 @@ export const Videogames = ({ onClose }) => {
   
   useEffect(() => {
     dispatch(getVideoGames());
-    return cleanVideogames();
   }, [dispatch]);
   
 
