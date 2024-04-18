@@ -2,7 +2,7 @@ import { sortA_Z } from "../utils/sortA_Z";
 import { sortRA } from "../utils/sortRA";
 import { sortRD } from "../utils/sortRD";
 import { sortZ_A } from "../utils/sortZ-A";
-import { CLEAN_FILTER, CLEAN_VIDEOGAMES, SET_LOADING } from "./actionTypes";
+import { CLEAN_FILTER, CLEAN_VIDEOGAMES, SET_LOADING, SET_PAGE } from "./actionTypes";
 import {ADD_FAV, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_SOURCE_FILTER} from "./actionTypes";
 
 let initialState = {
@@ -15,6 +15,7 @@ let initialState = {
   videoPageContent: [],
   sourceFilter: "all",
   loading: "",
+  page:1
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -386,6 +387,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: action.payload,
+      };
+    case SET_PAGE:
+      return {
+        ...state,
+        page: action.payload,
       };
     default:
       return state;

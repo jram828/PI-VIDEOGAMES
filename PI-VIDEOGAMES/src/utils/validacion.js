@@ -17,6 +17,9 @@ const validar=(input)=> {
   if (Number(input.rating)>5) {
     errors.rating = "El rating debe ser menor a 5";
   }
+    if (isNaN(Number(input.rating))) {
+      errors.rating = "El rating debe ser un numero";
+    }
   if (input.launchDate.length < 10) {
     errors.launchDate = "Debe seleccionar una fecha";
   }

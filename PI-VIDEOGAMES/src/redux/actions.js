@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_FAV, CLEAN_FILTER, CLEAN_VIDEOGAMES, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_LOADING, SET_SOURCE_FILTER } from "./actionTypes";
+import { ADD_FAV, CLEAN_FILTER, CLEAN_VIDEOGAMES, CLOSE_VIDEOGAME, FILTER_VIDEOGAMES_BY_GENRE, FILTER_VIDEOGAMES_BY_ORIGIN, GET_VIDEOGAMES, GET_VIDEOGAME_BY_NAME, ORDER_VIDEOGAMES_BY_NAME, ORDER_VIDEOGAMES_BY_RATING, REMOVE_FAV, SET_LOADING, SET_PAGE, SET_SOURCE_FILTER } from "./actionTypes";
 
 
 
@@ -31,6 +31,14 @@ export const setLoading = (loading) => {
   };
 };
 
+export const setPage = (page) => {
+  return async (dispatch) => {
+    return dispatch({
+      type: SET_PAGE,
+      payload: page,
+    });
+  };
+};
 export const getVideoGamesByName = (name) => {
   
   const endpoint = "/videogames/";

@@ -4,15 +4,15 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { getVideoGames } from "../../redux/actions";
+import { cleanVideogames, getVideoGames } from "../../redux/actions";
 
 export const Videogames = ({ onClose }) => {
-  const [Page, setPage] = useState(1);
+  // const [Page, setPage] = useState(1);
   const dispatch = useDispatch();
   
   var Loading = useSelector((state) => state.loading);
   var source = useSelector((state) => state.sourceFilter);
-  
+  var Page = useSelector((state) => state.page);
   //console.log('Source videogames:' , source)
   if (source === "all") {
     var allVideogames = useSelector((state) => state.allVideogames);
@@ -25,6 +25,7 @@ export const Videogames = ({ onClose }) => {
   
   useEffect(() => {
     dispatch(getVideoGames());
+    // return cleanVideogames();
   }, [dispatch]);
   
 
