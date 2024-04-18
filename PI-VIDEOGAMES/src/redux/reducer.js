@@ -34,6 +34,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         foundVideogame: action.payload,
         initialFoundVideogame: action.payload,
+        loading: true,
       };
 
     case FILTER_VIDEOGAMES_BY_GENRE:
