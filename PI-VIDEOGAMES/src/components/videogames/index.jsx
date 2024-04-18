@@ -25,7 +25,7 @@ export const Videogames = ({ onClose }) => {
   
   useEffect(() => {
     dispatch(getVideoGames());
-    // return cleanVideogames();
+    return cleanVideogames();
   }, [dispatch]);
   
 
@@ -41,14 +41,12 @@ export const Videogames = ({ onClose }) => {
   const prevPage = () => {
     if (Page > 1) {
       dispatch(setPage(Page - 1));
-      // setPage(Page - 1);
     }
   };
 
   const nextPage = () => {
     if (Page < nPages) {
       dispatch(setPage(Page + 1));
-      // setPage(Page + 1);
     }
   };
 
