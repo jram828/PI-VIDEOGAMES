@@ -56,8 +56,9 @@ const Landing = ({ login, clickHandlerCrear }) => {
               />
             </label>
             <br />
-            <hr />
+
             {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
+            <hr />
             <br />
             <label className="label">
               Contraseña
@@ -70,10 +71,11 @@ const Landing = ({ login, clickHandlerCrear }) => {
               />
             </label>
             <br />
-            <hr />
+
             {errors.password !== "" && (
               <h2 className="error">{errors.password}</h2>
             )}
+            <hr />
           </div>
           <div className="botoneslanding">
             <img
