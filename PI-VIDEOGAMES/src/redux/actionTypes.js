@@ -14,3 +14,4 @@ export const REMOVE_FAV = "REMOVE_FAV";
 export const SET_SOURCE_FILTER = "SET_SOURCE_FILTER";
 export const SET_LOADING = "SET_LOADING";
 export const SET_PAGE = "SET_PAGE";
+export const SET_PAGE_CONTENT = "SET_PAGE";

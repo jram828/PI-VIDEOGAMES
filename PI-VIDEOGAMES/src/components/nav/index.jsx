@@ -10,6 +10,7 @@ import {
   getVideoGames,
   orderVideogamesAlfa,
   orderVideogamesRat,
+  setPage,
   setSourceFilter,
 } from "../../redux/actions";
 import "./nav.css";
@@ -40,11 +41,13 @@ const Nav = ({logout }) => {
 
   const handleFilterGen = (e) => {
     e.preventDefault();
+    // dispatch(setPage(1));
     dispatch(filterVideogamesGen(e.target.value, sourceFilter));
   };
 
   const handleFilterOrig = (e) => {
     e.preventDefault();
+    // dispatch(setPage(1));
     //console.log("Handle filter orig: ", e.target.value, sourceFilter);
     dispatch(filterVideogamesOrig(e.target.value, sourceFilter));
   };

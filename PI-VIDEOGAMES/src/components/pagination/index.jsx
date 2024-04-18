@@ -1,20 +1,39 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+// import { useState } from "react";
+/* eslint-disable */
+import { useDispatch, useSelector } from "react-redux";
+import { setPage } from "../../redux/actions";
 
 
 const Paginate = () => {
-  const allVideogames = useSelector((state) => state.allVideogames);
-  const [Page, setPage] = useState(1)
-  
+  const dispatch = useDispatch();
+  var source = useSelector((state) => state.sourceFilter);
+
+  if (source === "all") {
+    var allVideogames = useSelector((state) => state.allVideogames);
+  } else if (source === "favorites") {
+    var allVideogames = useSelector((state) => state.myFavorites);
+  } else {
+    var allVideogames = useSelector((state) => state.foundVideogame);
+  }
+  // const [Page, setPage] = useState(1)
+  var Page = useSelector((state) => state.page);
   const videoPerPage = 15;
   const nPages = Math.ceil(allVideogames.length / videoPerPage);
+  const start = (Page - 1) * videoPerPage;
+  const end = start + videoPerPage;
+  const videoPageContent = allVideogames.slice(start, end);
+  // dispatch(setvideoPageContent(videoPageContent));
   const prevPage = () => {
-    if (Page > 1) { setPage(Page - 1) }
-  }
+    if (Page > 1) {
+      dispatch(setPage(Page - 1));
+    }
+  };
 
   const nextPage = () => {
-    if (Page < nPages) { setPage(Page + 1); }
-  }
+    if (Page < nPages) {
+      dispatch(setPage(Page + 1));
+    }
+  };
   return (
     <div>
       <div className="paginate">
@@ -22,7 +41,7 @@ const Paginate = () => {
         <button className="botonpage" onClick={prevPage}>
           Anterior
         </button>
-        <h3 className='labelpage'>
+        <h3 className="labelpage">
           {" "}
           Página: {Page} de {nPages}
         </h3>
@@ -31,8 +50,8 @@ const Paginate = () => {
         </button>
       </div>
     </div>
-  )
+  );
 };
  
 
-export default Paginate;
+module.exports= { Paginate, videoPageContent };
