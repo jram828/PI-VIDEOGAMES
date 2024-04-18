@@ -45,7 +45,7 @@ const Landing = ({ login, clickHandlerCrear }) => {
       <form onSubmit={submitHandler}>
         <div className="formlanding">
           <div className="InputLogin">
-            <label className="label" htmlFor="email">
+            <label className="label">
               Email:
             </label>
             <br />
@@ -58,7 +58,7 @@ const Landing = ({ login, clickHandlerCrear }) => {
             />
             {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
             <br />
-            <label className="label" htmlFor="password">
+            <label className="label">
               Contraseña:
             </label>
             <br />
