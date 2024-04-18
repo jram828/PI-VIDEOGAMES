@@ -47,28 +47,30 @@ const Landing = ({ login, clickHandlerCrear }) => {
           <div className="InputLogin">
             <label className="label">
               Email:
+              <input
+                name="email"
+                type="text"
+                placeholder="Ingrese su Email"
+                value={userData.email}
+                onChange={handleChange}
+              />
             </label>
             <br />
-            <input
-              name="email"
-              type="text"
-              placeholder="Ingrese su Email"
-              value={userData.email}
-              onChange={handleChange}
-            />
+            <hr />
             {errors.email !== "" && <h2 className="error">{errors.email}</h2>}
             <br />
             <label className="label">
               Contraseña:
+              <input
+                name="password"
+                type="password"
+                placeholder="Ingrese su contraseña"
+                value={userData.password}
+                onChange={handleChange}
+              />
             </label>
             <br />
-            <input
-              name="password"
-              type="password"
-              placeholder="Ingrese su contraseña"
-              value={userData.password}
-              onChange={handleChange}
-            />
+            <hr />
             {errors.password !== "" && (
               <h2 className="error">{errors.password}</h2>
             )}
