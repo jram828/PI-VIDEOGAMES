@@ -4,7 +4,7 @@ import loading from "../../../src/assets/loading.gif";
 import { useEffect, useState } from "react";
 import Videogame from "../videogame";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanVideogames, getVideoGames } from "../../redux/actions";
+import { cleanVideogames, getVideoGames, setPage } from "../../redux/actions";
 
 export const Videogames = ({ onClose }) => {
   // const [Page, setPage] = useState(1);
