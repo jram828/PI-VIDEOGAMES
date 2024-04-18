@@ -59,6 +59,7 @@ const rootReducer = (state = initialState, action) => {
             return {
               ...state,
               allVideogames: videogamesFilter,
+              page:1
             };
           } else {
             return {
