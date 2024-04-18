@@ -90,6 +90,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               myFavorites: videogamesFilter,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -119,6 +120,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               foundVideogame: videogamesFilter,
               loading: false,
+              page:1
             };
           } else {
             return {
@@ -157,6 +159,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               allVideogames: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -175,6 +178,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               allVideogames: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -200,6 +204,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               myFavorites: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -218,6 +223,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               myFavorites: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -244,6 +250,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               foundVideogame: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
@@ -263,6 +270,7 @@ const rootReducer = (state = initialState, action) => {
               ...state,
               foundVideogame: videogamesFilterOrig,
               loading: false,
+              page: 1,
             };
           } else {
             return {
