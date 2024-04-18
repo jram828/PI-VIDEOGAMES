@@ -85,7 +85,7 @@ const Nav = ({logout }) => {
       location.pathname !== "/crearvideojuego" ? (
         <div className="containerselect">
           <div className="filtros">
-            <select className="filtergenre" onChange={handleFilterGen}>
+            <select className="filtergenre" onChange={handleFilterGen} name="genreFilter">
               <option value="">Seleccione el género</option>
               <option value="Todos">Todos</option>
               <option value="Action">Action</option>
@@ -111,7 +111,7 @@ const Nav = ({logout }) => {
               <option value="Sports">Sports</option>
               <option value="Strategy">Strategy</option>
             </select>
-            <select className="filterorigen" onChange={handleFilterOrig}>
+            <select className="filterorigen" onChange={handleFilterOrig} name="filterOrigin">
               <option value="">Seleccione el origen:</option>
               <option value="Todos">Todos</option>
               <option value="API">API</option>
@@ -119,18 +119,18 @@ const Nav = ({logout }) => {
             </select>
           </div>
           <div className="orden">
-            <select className="ordenalfa" onChange={handleOrderAlfa}>
+            <select className="ordenalfa" onChange={handleOrderAlfa} name="orderAlfa">
               <option value="">Ordenar alfabéticamente</option>
               <option value="A-Z">A - Z</option>
               <option value="Z-A">Z - A</option>
             </select>
-            <select className="orderrating" onChange={handleOrderRat}>
+            <select className="orderrating" onChange={handleOrderRat} name="orderRating">
               <option value="">Ordenar por Rating</option>
               <option value="RA">Ascendente</option>
               <option value="RD">Descendente</option>
             </select>
           </div>
-          <div className="limpiar">
+          <div className="limpiar" name="botonLimpiar">
             <Button3 onClick={cleanFilter}>Limpiar filtros</Button3>
           </div>
         </div>

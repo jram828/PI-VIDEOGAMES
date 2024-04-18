@@ -9,7 +9,7 @@
    /* border-color: black; */
    box-shadow: 15px 20px 25px orangered ;
    width: 1250px;
-   height: 530px;
+   height: 580px;
        display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* grid-gap: 15px; */
